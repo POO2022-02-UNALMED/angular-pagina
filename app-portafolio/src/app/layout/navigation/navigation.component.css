@@ -1,0 +1,10 @@
+.container-fluid {
+    color: white;
+    padding-bottom: 20px ;
+    padding-top: 20px ;
+}
+
+.btn {
+    width: 10%;
+    margin-left: 20px;
+}
