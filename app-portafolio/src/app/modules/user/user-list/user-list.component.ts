@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 
 @Component({
   selector: 'app-user-list',
@@ -6,5 +7,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent {
+  public users: ICardUser[] = [
+    {
+      name: 'Paula Misas',
+      age: 22,
+      description: 'Estudiante de ingenieria de sistemas. aprendiendo angular',
+      avatar: 'hola'
+  
+    },
+    {
+      name: 'Juan',
+      age: 25,
+      description: 'Estudiante de ingenieria de sistemas. full stack',
+      avatar: 'hola1'
+  
+    },
+    {
+      name: 'Luza',
+      age: 60,
+      description: 'Master. arquitecta',
+      avatar: 'hola2'
+  
+    }
+  ]
 
 }
