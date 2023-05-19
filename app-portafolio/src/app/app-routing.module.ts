@@ -3,21 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
 
 const routes: Routes = [
+  
   {
     path: '',
     component: SkeletonComponent,
     children: [
       {
         path: '',
-      loadChildren: ()=> 
-      import ('@modules/user/user.module').then((m)=>m.UserModule)
+        loadChildren: ()=> 
+        import ('@modules/user/user.module').then((m)=>m.UserModule)
       },
       {
         path: '**',
-      redirectTo: ''
+        redirectTo: '/user',
       }
     ]
-  }
+  },
 ];
 
 @NgModule({

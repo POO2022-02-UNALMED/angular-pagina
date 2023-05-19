@@ -12,23 +12,59 @@ export class UserListComponent {
       name: 'Paula Misas',
       age: 22,
       description: 'Estudiante de ingenieria de sistemas. aprendiendo angular',
-      avatar: 'hola'
+      avatar: 'https://as01.epimg.net/diarioas/imagenes/2022/04/20/actualidad/1650466413_240889_1650466661_noticia_normal_recorte1.jpg'
   
     },
     {
       name: 'Juan',
       age: 25,
       description: 'Estudiante de ingenieria de sistemas. full stack',
-      avatar: 'hola1'
+      avatar: 'https://as01.epimg.net/diarioas/imagenes/2022/04/20/actualidad/1650466413_240889_1650466661_noticia_normal_recorte1.jpg'
   
     },
     {
       name: 'Luza',
       age: 60,
       description: 'Master. arquitecta',
-      avatar: 'hola2'
+      avatar: 'https://as01.epimg.net/diarioas/imagenes/2022/04/20/actualidad/1650466413_240889_1650466661_noticia_normal_recorte1.jpg'
   
-    }
+    },
+    {
+      name: 'Juan',
+      age: 25,
+      description: 'Estudiante de ingenieria de sistemas. full stack',
+      avatar: 'https://as01.epimg.net/diarioas/imagenes/2022/04/20/actualidad/1650466413_240889_1650466661_noticia_normal_recorte1.jpg'
+  
+    },
+    {
+      name: 'Juan',
+      age: 25,
+      description: 'Estudiante de ingenieria de sistemas. full stack',
+      avatar: 'https://as01.epimg.net/diarioas/imagenes/2022/04/20/actualidad/1650466413_240889_1650466661_noticia_normal_recorte1.jpg'
+  
+    },
+    {
+      name: 'Juan',
+      age: 25,
+      description: 'Estudiante de ingenieria de sistemas. full stack',
+      avatar: 'https://as01.epimg.net/diarioas/imagenes/2022/04/20/actualidad/1650466413_240889_1650466661_noticia_normal_recorte1.jpg'
+  
+    },
+    {
+      name: 'Juan',
+      age: 25,
+      description: 'Estudiante de ingenieria de sistemas. full stack',
+      avatar: 'https://as01.epimg.net/diarioas/imagenes/2022/04/20/actualidad/1650466413_240889_1650466661_noticia_normal_recorte1.jpg'
+  
+    },
+    {
+      name: 'Juan',
+      age: 25,
+      description: 'Estudiante de ingenieria de sistemas. full stack',
+      avatar: 'https://as01.epimg.net/diarioas/imagenes/2022/04/20/actualidad/1650466413_240889_1650466661_noticia_normal_recorte1.jpg'
+  
+    },
+    
   ]
 
 }
