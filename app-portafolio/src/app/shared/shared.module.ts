@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import * as fromComponents from './components';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [...fromComponents.components],
@@ -11,13 +12,15 @@ import * as fromComponents from './components';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
+    RouterModule,
     ...fromComponents.components
   ]
 })

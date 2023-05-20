@@ -9,6 +9,7 @@ import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata
 export class UserListComponent {
   public users: ICardUser[] = [
     {
+      id: 1,
       name: 'Paula Misas',
       age: 22,
       description: 'Estudiante de ingenieria de sistemas. aprendiendo angular',
@@ -16,6 +17,7 @@ export class UserListComponent {
   
     },
     {
+      id: 2,
       name: 'Juan',
       age: 25,
       description: 'Estudiante de ingenieria de sistemas. full stack',
@@ -23,6 +25,7 @@ export class UserListComponent {
   
     },
     {
+      id: 3,
       name: 'Luza',
       age: 60,
       description: 'Master. arquitecta',
@@ -30,6 +33,7 @@ export class UserListComponent {
   
     },
     {
+      id: 4,
       name: 'Juan',
       age: 25,
       description: 'Estudiante de ingenieria de sistemas. full stack',
@@ -37,6 +41,7 @@ export class UserListComponent {
   
     },
     {
+      id: 5,
       name: 'Juan',
       age: 25,
       description: 'Estudiante de ingenieria de sistemas. full stack',
@@ -44,6 +49,7 @@ export class UserListComponent {
   
     },
     {
+      id: 6,
       name: 'Juan',
       age: 25,
       description: 'Estudiante de ingenieria de sistemas. full stack',
@@ -51,6 +57,7 @@ export class UserListComponent {
   
     },
     {
+      id: 7,
       name: 'Juan',
       age: 25,
       description: 'Estudiante de ingenieria de sistemas. full stack',
@@ -58,6 +65,7 @@ export class UserListComponent {
   
     },
     {
+      id: 8,
       name: 'Juan',
       age: 25,
       description: 'Estudiante de ingenieria de sistemas. full stack',
