@@ -7,13 +7,14 @@ export const CAROUSEL_DATA: ICarouselItem[] = [
             first: 'TITULO',
             second: 'Principal'
         },
-        subtitle: 'este es el subtitulo',
-        image: 'assets/images/1.png'
+        subtitle: 'este es el subtitulo 1!',
+        image: 'assets/images/1.png',
+        marginLeft:0
     },
     {
         id: 2,
-        subtitle: 'este es el subtitulo',
-        image: 'assets/images/1.png'
+        image: 'assets/images/2.png',
+        marginLeft:200
     },
     {
         id: 3,
@@ -21,8 +22,9 @@ export const CAROUSEL_DATA: ICarouselItem[] = [
             first: 'TITULO',
             second: 'Tercero'
         },
-        subtitle: 'este es el subtitulo',
-        image: 'assets/images/2.png'
+        subtitle: 'este es el subtitulo 3',
+        image: 'assets/images/3.png',
+        marginLeft:100
     },
     {
         id: 4,
@@ -30,7 +32,7 @@ export const CAROUSEL_DATA: ICarouselItem[] = [
             first: 'TITULO',
             second: 'Cuarto'
         },
-        subtitle: 'este es el subtitulo',
+        subtitle: 'este es el subtitulo 4',
         image: 'assets/images/4.png'
     },
 ]

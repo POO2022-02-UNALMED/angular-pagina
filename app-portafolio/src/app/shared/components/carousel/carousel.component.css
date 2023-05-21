@@ -1,4 +1,4 @@
-.dsc-carousel{
+/*.dsc-carousel{
     width: 100%;
     display: flex;
     align-items: center;
@@ -28,7 +28,7 @@
     align-items: center;
     justify-content: center;
     min-width: 100%;
-    height: 500px;
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -88,5 +88,136 @@
 .dsc-carousel__steps-step:hover, &-active{
     opacity: 0.7;
     background: white;
+}*/
+
+.carousel-container {
+    position:relative;
+    margin: auto;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.48);
 }
+.carruselimg::before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.48);
+}
+
+.carousel-container img{
+    display: none;
+    border-radius: 15px;
+    position: flex;
+}
+.carousel-container img.image-active {
+    display: block;
+    width: 100%;
+    max-height: 350px;
     
+}
+
+.carousel-dot-container{
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 1 rem;
+}
+
+.dot {
+    height: 13px;
+    width: 13px;
+    margin: 5 5px;
+    background-color: #fff;
+    border-radius: 30%;
+    display: inline-block;
+    transition: opacity 0.6s ease;
+    opacity: 0.5;
+}
+
+.active,
+.dot:hover{
+    opacity: 1;
+}
+/*
+.btn-carousel {
+    position: absolute;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    > i {
+        opacity: 0.7;
+        color: #fff;
+        font-size: 45px;
+        cursor: pointer;
+        justify-content: space-between;
+    }
+}
+*/
+.btn-carousel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    width: 15%;
+    padding: 0;
+    text-align: center;
+    background: 0 0;
+    border: 0;
+    opacity: 1;
+    
+}
+
+.btn-prev {
+    left:0;
+    color: #fff;
+}
+.btn-next {
+    right:0;
+    color: #fff;
+}
+
+.icon-carousel{
+    color: #fff;
+    opacity: 0.5;
+    transition: all 0.15s ease;
+    font-size: 35px;
+    cursor: pointer;
+    margin-left: 0;
+}
+
+.h1 {
+    color: white;
+    font-weight: 900;
+    text-transform: uppercase;
+    z-index: 1;
+    position: flex;
+}
+.h1sub {
+        color: #FF8000;
+}
+
+.p {
+    z-index: 1;
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.carruselimg{
+    position: relative;
+}
+.text{
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+

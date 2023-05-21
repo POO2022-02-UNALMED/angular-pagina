@@ -1,4 +1,4 @@
-<div class="dsc-carousel" [ngStyle]="{'min-height': finalHeight}">
+<!--<div class="dsc-carousel" [ngStyle]="{'min-height': finalHeight}">
     <div class="dsc-carousel__btns">
         <i class="fa fa-chevron-circle-left" (click)="setBack()"></i>
         <i class="fa fa-chevron-circle-right" (click)="setNext()"></i>
@@ -21,5 +21,40 @@
         </div>
     </div>
 </div>
-<div style="color:blue;">{{items|json}}</div>
+<div style="color:blue;">{{items|json}}</div>-->
+<div class="carousel-container ">
+
+    <div class="carruselimg">
+        <div *ngFor="let section of items; let i = index" >
+            <img   
+            [src]="section.image"
+            [ngClass]="{'image-active': selectedIndex === i}"
+            >
+        </div>
+        
+        <div class="text">
+            <h1 class="h1">{{llevaTitulo1()}}<span class="h1sub">{{llevaTitulo2()}}</span></h1>
+            <p class="p">{{llevaSubtitulo()}}</p>
+        </div>
+    </div>
+
+    <div *ngIf="controls" class="btn-carousel btn-prev" >
+        <i class="fa fa-chevron-circle-left icon-carousel icon-prev" (click)="onPrevClick()"></i>
+    </div>
+    <div *ngIf="controls" class="btn-carousel btn-next" >
+        <i class="fa fa-chevron-circle-right icon-carousel icon-next" (click)="onNextClick()"></i>
+    </div>
+    
+
+    <div *ngIf="indicators" class="carousel-dot-container">
+        <span *ngFor="let dot of items, let i=index"
+        class="dot"
+        [ngClass]="{'active': selectedIndex === i}"
+        (click)="selectImage(selectedIndex)"
+        ></span>
+    </div>
+
+    
+</div>
+
 
