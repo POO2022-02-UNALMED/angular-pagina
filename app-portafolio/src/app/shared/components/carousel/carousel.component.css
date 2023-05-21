@@ -90,13 +90,13 @@
     background: white;
 }*/
 
-.carousel-container {
+.dsc-carousel-container {
     position:relative;
     margin: auto;
     text-align: center;
     background: rgba(0, 0, 0, 0.48);
 }
-.carruselimg::before {
+.dsc-carruselimg::before {
     content: '';
     height: 100%;
     width: 100%;
@@ -106,19 +106,19 @@
     background: rgba(0, 0, 0, 0.48);
 }
 
-.carousel-container img{
+.dsc-carousel-container img{
     display: none;
     border-radius: 15px;
     position: flex;
 }
-.carousel-container img.image-active {
+.dsc-carousel-container img.image-active {
     display: block;
     width: 100%;
     max-height: 350px;
     
 }
 
-.carousel-dot-container{
+.dsc-carousel-dot-container{
     position: absolute;
     right: 0;
     left: 0;
@@ -129,7 +129,7 @@
     margin-bottom: 1 rem;
 }
 
-.dot {
+.dsc-dot {
     height: 13px;
     width: 13px;
     margin: 5 5px;
@@ -141,11 +141,11 @@
 }
 
 .active,
-.dot:hover{
+.dsc-dot:hover{
     opacity: 1;
 }
 /*
-.btn-carousel {
+.dsc-btn-carousel {
     position: absolute;
     width: 90%;
     margin: auto;
@@ -160,7 +160,7 @@
     }
 }
 */
-.btn-carousel {
+.dsc-btn-carousel {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -176,16 +176,16 @@
     
 }
 
-.btn-prev {
+.dsc-btn-prev {
     left:0;
     color: #fff;
 }
-.btn-next {
+.dsc-btn-next {
     right:0;
     color: #fff;
 }
 
-.icon-carousel{
+.dsc-icon-carousel{
     color: #fff;
     opacity: 0.5;
     transition: all 0.15s ease;
@@ -194,28 +194,28 @@
     margin-left: 0;
 }
 
-.h1 {
+.dsc-h1 {
     color: white;
     font-weight: 900;
     text-transform: uppercase;
     z-index: 1;
     position: flex;
 }
-.h1sub {
+.dsc-h1sub {
         color: #FF8000;
 }
 
-.p {
+.dsc-p {
     z-index: 1;
     color: white;
     font-weight: 500;
     font-size: 20px;
 }
 
-.carruselimg{
+.dsc-carruselimg{
     position: relative;
 }
-.text{
+.dsc-text{
     position: absolute;
     top: 30%;
     left: 10%;

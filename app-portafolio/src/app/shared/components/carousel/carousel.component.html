@@ -22,9 +22,9 @@
     </div>
 </div>
 <div style="color:blue;">{{items|json}}</div>-->
-<div class="carousel-container ">
+<div class="dsc-carousel-container ">
 
-    <div class="carruselimg">
+    <div class="dsc-carruselimg">
         <div *ngFor="let section of items; let i = index" >
             <img   
             [src]="section.image"
@@ -32,23 +32,23 @@
             >
         </div>
         
-        <div class="text">
-            <h1 class="h1">{{llevaTitulo1()}}<span class="h1sub">{{llevaTitulo2()}}</span></h1>
-            <p class="p">{{llevaSubtitulo()}}</p>
+        <div class="dsc-text">
+            <h1 class="dsc-h1">{{llevaTitulo1()}}<span class="dsc-h1sub">{{llevaTitulo2()}}</span></h1>
+            <p class="dsc-p">{{llevaSubtitulo()}}</p>
         </div>
     </div>
 
-    <div *ngIf="controls" class="btn-carousel btn-prev" >
-        <i class="fa fa-chevron-circle-left icon-carousel icon-prev" (click)="onPrevClick()"></i>
+    <div *ngIf="controls" class="dsc-btn-carousel dsc-btn-prev" >
+        <i class="fa fa-chevron-circle-left dsc-icon-carousel dsc-icon-prev" (click)="onPrevClick()"></i>
     </div>
-    <div *ngIf="controls" class="btn-carousel btn-next" >
-        <i class="fa fa-chevron-circle-right icon-carousel icon-next" (click)="onNextClick()"></i>
+    <div *ngIf="controls" class="dsc-btn-carousel dsc-btn-next" >
+        <i class="fa fa-chevron-circle-right dsc-icon-carousel dsc-icon-next" (click)="onNextClick()"></i>
     </div>
     
 
-    <div *ngIf="indicators" class="carousel-dot-container">
+    <div *ngIf="indicators" class="dsc-carousel-dot-container">
         <span *ngFor="let dot of items, let i=index"
-        class="dot"
+        class="dsc-dot"
         [ngClass]="{'active': selectedIndex === i}"
         (click)="selectImage(selectedIndex)"
         ></span>
