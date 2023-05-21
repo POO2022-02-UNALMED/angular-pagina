@@ -4,6 +4,9 @@
 .dsc-card-loader__img, .dsc-card-loader__text {
     background: #dcdada;
     animation: load 1s infinite linear;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 0.5rem;
 }
 .dsc-card-loader__img {
     border-radius: 100%;

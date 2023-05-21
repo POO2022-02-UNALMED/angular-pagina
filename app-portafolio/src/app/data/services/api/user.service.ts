@@ -44,6 +44,12 @@ export class UserService /*extends ApiClass*/ {
     .pipe(
       map( r => {
           response.data = r;
+          r.map(i => {
+            if(i.gender === '') {
+              console.log(i)
+              i.gender = "---";
+            }
+          });
           return response;
         }
       ),

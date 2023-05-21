@@ -13,6 +13,7 @@ export class UserListComponent {
   public users: ICardUser[]; //= USERS_DATA;
   public carouselData: ICarouselItem[] = CAROUSEL_DATA
 
+
   constructor(
     private userService: UserService
   ){

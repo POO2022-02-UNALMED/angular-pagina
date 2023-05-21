@@ -4,8 +4,16 @@
     </div>
     <div class="dsc-card-info">
         <h4>{{data.name}}</h4>
-        <h6>{{data.age}}</h6>
-        <p id="info">{{data.description}}</p>
+        <h6>Edad: {{data.age}}</h6>
+        <p>Genero:
+            <ng-container [ngSwitch]="data.gender">
+                <span *ngSwitchCase="'F'">Femenino</span>
+                <span *ngSwitchCase="'M'">Masculino</span>
+                <span *ngSwitchDefault="">{{data.gender}}</span>
+            </ng-container>
+        </p>
+        <p style="margin-bottom: 0;">{{data.work ? data.work:'sin proyecto'}} </p>
+        <p>{{data.description}}</p>
     </div>
 </div>
 

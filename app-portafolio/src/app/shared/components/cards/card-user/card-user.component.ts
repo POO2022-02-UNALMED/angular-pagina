@@ -9,6 +9,9 @@ import { ICardUser } from './card-user.metadata';
 export class CardUserComponent {
   @Input() data: ICardUser;
 
-  constructor() { }
+
+  constructor(
+  ) { 
+  }
 
 }
