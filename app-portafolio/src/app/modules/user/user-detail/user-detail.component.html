@@ -1,12 +1,12 @@
 <app-title-h1 class="h1" text="DETALLE DE USUARIO"></app-title-h1>
 
-<div class="card">
-    <img src={{currentUser?.avatar}} class="card-img-top" alt="...">
+<div class="card" *ngIf="currentUser">
+    <img src={{currentUser.avatar}} class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">{{currentUser?.name}}</h5>
-      <h6 class="card-title">{{currentUser?.age}} años</h6>
-      <p style="opacity: 1;">{{currentUser?.work ? currentUser?.work: 'Desempleado-Sin proyecto'}}</p>
-      <p class="card-text">{{currentUser?.description}}.</p>
+      <h5 class="card-title">{{currentUser.name}}</h5>
+      <h6 class="card-title">{{currentUser.age}} años</h6>
+      <p style="opacity: 1;">{{currentUser.work ? currentUser.work: 'Desempleado-Sin proyecto'}}</p>
+      <p class="card-text">{{currentUser.description}}.</p>
       <hr>
     <div class="botones">
         <a href="#" class="btn btn-primary">f</a>
