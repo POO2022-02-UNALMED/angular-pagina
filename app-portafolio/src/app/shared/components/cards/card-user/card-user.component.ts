@@ -10,8 +10,7 @@ export class CardUserComponent {
   @Input() data: ICardUser;
 
 
-  constructor(
-  ) { 
+  constructor() { 
   }
 
 }

@@ -1,15 +1,15 @@
-<div class="container-fluid g-0">
 
+<!--BARRA DE MENU-->
+<app-navigation (enviar)="recibirMsg($event)" class="sticky-top"></app-navigation>
 
-    <!--BARRA DE MENU-->
-    <app-navigation (enviar)="recibirMsg($event)" class="sticky-top"></app-navigation>
-    
+<!--MANDA MENSAJE DESDE LA BARRA DE NAVEGACION para saber cuando se corre la pantalla hacia la izquierda-->
+<main class="display-area" [ngClass]="{'app-side-nav-open': menuStatus}">
+    <router-outlet ></router-outlet>
+</main>
 
-    <!--MANDA MENSAJE DESDE LA BARRA DE NAVEGACION para saber cuando se corre la pantalla hacia la izquierda-->
-    <main class="display-area" [ngClass]="{'app-side-nav-open': menuStatus}">
-        <router-outlet ></router-outlet>
-    </main>
-    
+<ng-container *ngIf="isLoading">
+    <div class="dsc-loader">
+        <img [src]="loadingImg" alt="">
+    </div>
+</ng-container>
 
-
-</div>
