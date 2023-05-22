@@ -1,6 +1,17 @@
 <div class="container-fluid" >
-  <img class="imagen" src="./assets/images/logo.jpg">
-  <div>
-      <button type="button" routerLink="" class="btn btn-outline-dark">Lista Usuarios</button>
+  <div class="side-navbar">
+    <div class="side-navbar-btn p-2 me-3 text-align" (click)="userMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+    <img src="assets/images/logo/logo2.jpg">
   </div>
+  
+  <div>
+      <button type="button" routerLink="" class="btn btn-outline-dark">Log Out</button>
+  </div>
+  
 </div>
+
+<ng-container *ngIf="menuStatus">
+  <app-side-var class="black-border sticky-bot"></app-side-var>
+</ng-container>

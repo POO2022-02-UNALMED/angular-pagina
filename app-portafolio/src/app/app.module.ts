@@ -9,6 +9,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
+import { SideVarComponent } from './layout/side-var/side-var.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
     SkeletonComponent,
     FooterComponent,
     NavigationComponent,
+    SideVarComponent,
   ],
   imports: [
     BrowserModule,
