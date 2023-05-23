@@ -10,15 +10,27 @@ import { ICarouselItem } from '@shared/components/carousel/Icarousel-item.metada
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit, OnDestroy{
+  public dateVar: number;
   public users: ICardUser[]; //= USERS_DATA;
   public carouselData: ICarouselItem[];
   public userSubscription: any
+  public user: {
+    name: string;
+    role: string;
+    gender: 'M' | 'F'
+  };
 
 
   constructor(
     private userService: UserService
   ){
-    this.carouselData = CAROUSEL_DATA
+    this.carouselData = CAROUSEL_DATA,
+    this.dateVar = (new Date()).getTime(),
+    this.user = {
+      name: 'Laura',
+      role: 'Admin',
+      gender: 'F'
+    }
   }
   
 

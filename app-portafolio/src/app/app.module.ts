@@ -10,6 +10,7 @@ import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
 import { SideVarComponent } from './layout/side-var/side-var.component';
+import { LoginComponent } from './layout/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SideVarComponent } from './layout/side-var/side-var.component';
     FooterComponent,
     NavigationComponent,
     SideVarComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,7 @@ import { SideVarComponent } from './layout/side-var/side-var.component';
   providers: [
     {
       provide: LocationStrategy,
-      useClass: PathLocationStrategy
+      useClass: PathLocationStrategy,
     }
   ],
   bootstrap: [AppComponent]

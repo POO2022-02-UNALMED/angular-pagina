@@ -18,7 +18,9 @@ export class UserDetailComponent implements OnInit, OnDestroy{
     private userServices: UserService,
     private route: ActivatedRoute
   ) {
-    this.id = this.route.snapshot.params['id']; //toma el id de la ruta ya que es localhost:400/id
+    const id = Number(this.route.snapshot.paramMap.get('id'))
+    this.id = id
+    //this.id = this.route.snapshot.params['id']//toma el id de la ruta ya que es localhost:400/id
     //this.currentUser = this.users.find(user => user.id === +this.id);  //encontrar un user que cumpla que la id buscada sea a la propiedad id
     //console.log(this.currentUser)
   }
@@ -26,6 +28,8 @@ export class UserDetailComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.getUser()
   }
+
+  
   
   
 
