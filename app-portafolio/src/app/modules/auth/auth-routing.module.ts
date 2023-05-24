@@ -4,9 +4,9 @@ import { AuthLoginComponent } from './auth-login/auth-login.component';
 import { AuthRegisterComponent } from './auth-register/auth-register.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: '/auth/login', pathMatch: 'full'},
   {path: 'login', component: AuthLoginComponent},
   {path: 'register', component: AuthRegisterComponent},
-  {path:'', redirectTo:'/auth/login'}
 ];
 
 @NgModule({
