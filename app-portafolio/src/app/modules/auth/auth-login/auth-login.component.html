@@ -1,28 +1,23 @@
-<div class="cdr-login">
 
-    <div class="jumbotron">
-      <h1 class="display-4">Bienvenido</h1>
-      <p class="lead" style="font-size: small;">Estas en mimosas catask, para entrar llena el formulario.</p>
-      <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email*:</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Contraseña*:</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-          <a routerLink="" >Olvidé mi contraseña</a>
-        </div>
-        
-        <!--<div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>-->
-        <div class="btns" style="display: flex;">
-            <button type="submit" class="btn btn-outline-dark">Iniciar sesion</button>
-            <button type="submit" class="btn btn-outline-dark">Registrarse</button>
-        </div>
-        
-      </form>
-    </div>
-</div>
+<div class="form">
+  <div class="jumbotron">
+    <h1 class="display-4">Bienvenido</h1>
+    <p class="lead" style="font-size: small;">Estas en mimosas catask, para entrar llena el formulario.</p>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Email*:</label>
+    <input type="email" #email="ngModel" class="form-control" aria-describedby="emailHelp" [(ngModel)]="loginForm.email.val" placeholder="ejemplo@gmail.com">
+    <small class="text-danger rounded" *ngIf="!loginForm.email.isValid() && email.touched" >{{loginForm.email.error}}</small>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Contraseña*:</label>
+    <input type="password" #password="ngModel" class="form-control" [(ngModel)]="loginForm.password.val" placeholder="*****">
+    <small class="text-danger rounded" *ngIf="!loginForm.password.isValid() && password.touched">{{loginForm.password.error}}</small>
+  </div>
+  <a class="text-primary" routerLink="/auth/register">Olvidé mi contraseña</a>
+  
+  <div class="btns" style="display: flex;">
+      <button type="submit" class="btn btn-outline-dark" routerLink="/auth/register">Registrarse</button>
+      <button type="submit" class="btn btn-dark" [disabled]="!isValidForm" (click)="autenticate()">Iniciar sesion</button>
+  </div>
+</div> 

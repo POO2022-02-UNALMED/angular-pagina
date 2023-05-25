@@ -1,0 +1,47 @@
+
+.form {
+    height: 100%;
+    background-color: #fff;
+    width: 100%;
+    min-width: 350px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.15);
+    color:black;
+}
+
+.jumbotron {
+    text-align: center;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.form-label{
+    margin-bottom: 0px;
+    margin-top: 10px;
+    left: auto;
+    padding-left: 15%;
+}
+
+.form-control {
+    width: 70%;
+    margin: auto;
+}
+
+.form-text {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: smaller;
+}
+
+.btn {
+    margin-top: 20px;
+    width: 50%;
+    margin-left: 25%;
+    box-shadow: rgba(0, 0, 0, 0.3);
+    
+}
+
+.btn:disabled{
+    opacity: 0.5;
+}
