@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { CONST_REGISTER_PAGE } from '@data/constants/pages/register/register.const';
 
 @Component({
   selector: 'app-auth-register',
@@ -54,8 +53,6 @@ export class AuthRegisterComponent implements OnInit {
 //}
 //}
 
-public data = CONST_REGISTER_PAGE
-public registerData: any
 registerForm!: FormGroup
 
 constructor(private formBuilder:FormBuilder){}
@@ -76,10 +73,8 @@ ngOnInit(): void {
 onSingup(formfield: string){
   if(this.registerForm.valid){
 
-    alert("tu formulario es valido")
-    console.log(this.registerForm.value)
+    return
   }else {
-
     this.validateAllFormFields(this.registerForm, formfield)
   } 
 }
@@ -93,6 +88,14 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
       this.validateAllFormFields(control, formfield)
     }
   })
+}
+
+autenticate() {
+  if(this.registerForm.valid){
+    alert(this.registerForm.value)
+  } else {
+    alert("nop")
+  }
 }
 
 }

@@ -1,4 +1,4 @@
-
+<!--
 <div class="form">
   <div class="jumbotron">
     <h1 class="display-4">Bienvenido</h1>
@@ -15,12 +15,41 @@
     <small class="text-danger rounded" *ngIf="!loginForm.password.isValid() && password.touched">{{loginForm.password.error}}</small>
   </div>
 
-  <div class="register-login">
-    <a class="text-primary" routerLink="/auth/register">Olvidé mi contraseña</a>
+  <div class="login-login">
+    <a class="text-primary" routerLink="/auth/login">Olvidé mi contraseña</a>
     
     <div class="btns" style="display: flex;">
-        <button type="submit" class="btn btn-outline-dark" routerLink="/auth/register">Registrarse</button>
+        <button type="submit" class="btn btn-outline-dark" routerLink="/auth/login">Registrarse</button>
         <button type="submit" class="btn btn-dark" [disabled]="!isValidForm" (click)="autenticate()">Iniciar sesion</button>
     </div>  
   </div>
+</div> 
+-->
+
+<div class="form">
+  <form [formGroup]="loginForm">
+    <div class="jumbotron">
+      <h1 class="display-4">Bienvenido</h1>
+      <p class="lead" style="font-size: small;">Estas en mimosas catask, para entrar llena el formulario.</p>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email*:</label>
+      <input type="email" class="form-control" formControlName="email" (click)="onSingin('email')" [class.error]="loginForm.controls['email'].invalid && loginForm.hasError('required','email')" placeholder="ejemplo@gmail.com" >
+      <small *ngIf="loginForm.controls['email'].touched && loginForm.hasError('required','email')" class="text-danger rounded">*Email es requerido</small>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Contraseña*:</label>
+      <input type="password" class="form-control" formControlName="password" (click)="onSingin('password')" [class.error]="loginForm.controls['password'].pristine && !loginForm.hasError('required','password')" placeholder="****">
+      <small *ngIf="loginForm.controls['password'].touched && loginForm.hasError('required','password')" class="text-danger rounded">*Contraseña es requerida</small>
+    </div>
+
+    <div class="login-login">
+      <a class="text-primary" routerLink="/auth/login">Olvidé mi contraseña</a>
+
+      <div class="btns" style="display: flex;">
+          <button type="submit" class="btn btn-outline-dark" routerLink="/auth/register">Registrarse</button>
+          <button type="submit" class="btn btn-dark" (click)="autenticate()">Iniciar sesion</button>
+      </div>  
+    </div>
+  </form>
 </div> 
