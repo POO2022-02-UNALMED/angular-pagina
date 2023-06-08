@@ -19,6 +19,14 @@ export class ValidationsService {
       case ENUM_VALIDATION_OPTION.PASSWORD:
 
         return this.validatePassword(value);
+      
+      case ENUM_VALIDATION_OPTION.NAME:
+
+        return this.validateName(value);
+      
+      case ENUM_VALIDATION_OPTION.LASTNAME:
+
+        return this.validateLastName(value);
     }
   }
 
@@ -35,6 +43,22 @@ export class ValidationsService {
     const pattern = /^(?=.*[!@#$%*])(?=.*[0-9]).{2,20}$/;
     r.isValid = pattern.test(v);
     r.msg = (v === '')? ERROS_VALIDATIONS.PASSWORD_REQUIRED_FIELD : ERROS_VALIDATIONS.PASSWORD_INVALID;
+    return r;
+  }
+
+  private validateName(v: any):IresponseValidation {
+    const r:IresponseValidation = {msg: '', isValid: true}
+    const pattern = /^.{3,8}$/;
+    r.isValid = pattern.test(v);
+    r.msg = (v === '')? ERROS_VALIDATIONS.NAME_REQUIRED_FIELD : ERROS_VALIDATIONS.NAME_INVALID;
+    return r;
+  }
+
+  private validateLastName(v: any):IresponseValidation {
+    const r:IresponseValidation = {msg: '', isValid: true}
+    const pattern = /^{3,10}$/;
+    r.isValid = pattern.test(v);
+    r.msg = (v === '')? ERROS_VALIDATIONS.LASTNAME_REQUIRED_FIELD : ERROS_VALIDATIONS.LASTNAME_INVALID;
     return r;
   }
 }

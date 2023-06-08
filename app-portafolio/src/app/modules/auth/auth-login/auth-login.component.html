@@ -14,10 +14,13 @@
     <input type="password" #password="ngModel" class="form-control" [(ngModel)]="loginForm.password.val" placeholder="*****">
     <small class="text-danger rounded" *ngIf="!loginForm.password.isValid() && password.touched">{{loginForm.password.error}}</small>
   </div>
-  <a class="text-primary" routerLink="/auth/register">Olvidé mi contraseña</a>
-  
-  <div class="btns" style="display: flex;">
-      <button type="submit" class="btn btn-outline-dark" routerLink="/auth/register">Registrarse</button>
-      <button type="submit" class="btn btn-dark" [disabled]="!isValidForm" (click)="autenticate()">Iniciar sesion</button>
+
+  <div class="register-login">
+    <a class="text-primary" routerLink="/auth/register">Olvidé mi contraseña</a>
+    
+    <div class="btns" style="display: flex;">
+        <button type="submit" class="btn btn-outline-dark" routerLink="/auth/register">Registrarse</button>
+        <button type="submit" class="btn btn-dark" [disabled]="!isValidForm" (click)="autenticate()">Iniciar sesion</button>
+    </div>  
   </div>
 </div> 

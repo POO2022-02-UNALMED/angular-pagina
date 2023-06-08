@@ -34,6 +34,10 @@ img{
     margin: auto;
 }
 
+.register-login {
+    padding-top: 10px
+}
+
 .form-text {
     color: rgba(0, 0, 0, 0.6);
     font-size: smaller;
@@ -53,6 +57,13 @@ a:hover{
     width: 50%;
     margin: 10px;
     box-shadow: rgba(0, 0, 0, 0.3);
+}
+
+.btns {
+    margin-bottom: 0px;
+    left: auto;
+    padding-left: 13%;
+    padding-right: 13%;
 }
 
 .btn:disabled{

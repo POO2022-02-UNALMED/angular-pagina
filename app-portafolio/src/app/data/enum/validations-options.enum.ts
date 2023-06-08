@@ -1,4 +1,6 @@
 export enum ENUM_VALIDATION_OPTION {
+    NAME= 'NAME',
+    LASTNAME= 'LASTNAME',
     EMAIL= 'EMAIL',
     PASSWORD = 'PASSWORD'
 }
