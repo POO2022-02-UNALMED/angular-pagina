@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { CONST_LOGIN_PAGE } from '@data/constants';
+//import { CONST_LOGIN_PAGE } from '@data/constants';
 import { AuthService } from '@data/services/api/auth.service';
 
 @Component({
@@ -28,9 +28,11 @@ export class AuthLoginComponent {
 //  }
 
 loginForm!: FormGroup
-private authService: AuthService
 
-constructor(private formBuilder:FormBuilder){}
+constructor(
+  private formBuilder:FormBuilder,
+  private authService: AuthService
+  ){}
 
 ngOnInit(): void {
   //validations 
@@ -63,7 +65,12 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 autenticate() {
   if(this.loginForm.valid){
     console.log(typeof this.loginForm.controls['password'].value)
-    this.authService.login(this.loginForm.controls['password'].value).subscribe( r =>{
+    console.log(typeof this.loginForm.controls['email'].value)
+    data: {
+      email : this.loginForm.controls['email'].value;
+      password : this.loginForm.controls['password'].value
+    };
+    this.authService.login(this.loginForm.value).subscribe( r =>{
       console.log(r);
     })
   } else {
