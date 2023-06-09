@@ -38,7 +38,7 @@ ngOnInit(): void {
   //validations 
   this.loginForm = this.formBuilder.group ({
     email: [ "hola@gmail.com", [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
-    password: [ '1233d', Validators.required],
+    password: [ '12345', Validators.required],
   })
 }
 
@@ -63,18 +63,13 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 }
 
 autenticate() {
+  this.loginForm.markAllAsTouched()
   if(this.loginForm.valid){
-    console.log(typeof this.loginForm.controls['password'].value)
-    console.log(typeof this.loginForm.controls['email'].value)
-    data: {
-      email : this.loginForm.controls['email'].value;
-      password : this.loginForm.controls['password'].value
-    };
-    this.authService.login(this.loginForm.value).subscribe( r =>{
-      console.log(r);
-    })
+    //this.authService.login(this.loginForm.value).subscribe( r =>{
+    //  console.log(r);
+    //})
+    this.authService.login2(this.loginForm.value)
   } else {
-    alert("nop")
   }
 }
 

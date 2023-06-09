@@ -6,6 +6,7 @@ import { API_ROUTES, INTERNAL_ROUTES } from '@data/constants/routes';
 import { IApiUserAutentificated } from '@data/interfaces';
 import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 import { map } from 'rxjs';
+import { LoginRequest } from './loginRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +28,6 @@ export class AuthService {
       return this.currentUser.value
    }
 
-  em: string = "holi";
-  pas:string = "holiss"
-
   login(
     data: {
       email: string;
@@ -41,7 +39,7 @@ export class AuthService {
         data: any
     }> {
       
-      const response ={ error:true, msg:ERRORS_CONST.LOGIN.ERROR, data:null}
+      const response = { error:true, msg:ERRORS_CONST.LOGIN.ERROR, data:null}
       return this.http.post<{error:boolean, msg: string, data: any}>(API_ROUTES.AUTH.LOGIN, data)
       .pipe(
         map( r => {
@@ -70,6 +68,10 @@ export class AuthService {
 
   private serUserToLocalStorage( user:IApiUserAutentificated){
     localStorage.setItem(this.nameUserLS, JSON.stringify(user))
+  }
+
+  login2(credentials:LoginRequest){
+    console.log(credentials)
   }
    
 }
