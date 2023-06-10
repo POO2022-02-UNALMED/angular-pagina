@@ -1,12 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ERRORS_CONST } from '@data/constants';
 import { API_ROUTES, INTERNAL_ROUTES } from '@data/constants/routes';
 import { IApiUserAutentificated } from '@data/interfaces';
-import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of, throwError } from 'rxjs';
 import { map } from 'rxjs';
-import { LoginRequest } from './loginRequest';
+
+import { ILogin } from '@data/interfaces'
+import { IResponse } from '@data/interfaces'
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +21,11 @@ export class AuthService {
     private http: HttpClient,
     private router: Router
   ) {
-    this.currentUser = new BehaviorSubject(
-      JSON.parse(localStorage.getItem(this.nameUserLS)!)
-    );
+
+   // this.currentUser = new BehaviorSubject(
+   //   JSON.parse(localStorage.getItem(this.nameUserLS)!)
+   // );
+    
    }
 
    get getUser(): IApiUserAutentificated{
@@ -40,9 +44,12 @@ export class AuthService {
     }> {
       
       const response = { error:true, msg:ERRORS_CONST.LOGIN.ERROR, data:null}
-      return this.http.post<{error:boolean, msg: string, data: any}>(API_ROUTES.AUTH.LOGIN, data)
+      return this.http.post<{error:boolean, msg: string, data: any}>(API_ROUTES.USERS.LOGIN, data)
       .pipe(
         map( r => {
+          console.log(response.data)
+          console.log(r.data)
+          console.log(response.msg)
           response.msg = r.msg;
           response.error = r.error
           response.data = r.data
@@ -70,8 +77,36 @@ export class AuthService {
     localStorage.setItem(this.nameUserLS, JSON.stringify(user))
   }
 
-  login2(credentials:LoginRequest){
-    console.log(credentials)
+  //loginByEmail(authData:ILogin):Observable<IResponse | void>{
+  //  return this.http.post<IResponse>(API_ROUTES.AUTH.LOGIN, authData).pipe(
+  //    map( (res:IResponse) => {
+  //      console.log('res:', res)
+  //      this.saveToken(res.token)
+  //      //token
+  //    }), 
+  //    catchError ((err) => this.handleError(err))
+  //  )
+  //}
+
+  loginByEmail(credentials:ILogin):Observable<IResponse | void>{
+    const error = null
+    const response = this.http.get<IResponse>(API_ROUTES.USERS.LOGIN).pipe(
+      catchError(this.handleError)
+    )
+    return response
   }
-   
+
+  private saveToken(token:string): void{
+    localStorage.setItem('token', token);
+  }
+
+  private handleError(error: HttpErrorResponse){
+    if (error.status ===0){
+      console.error('se ha producido un error', error.error);
+    } else{
+      console.error('Backend retorno codigo de estado', error.status, error.error);
+    }
+    return throwError(()=> new Error('algo fallo, intente de nuevo.'))
+  }
+
 }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 //import { CONST_LOGIN_PAGE } from '@data/constants';
 import { AuthService } from '@data/services/api/auth.service';
+import { INTERNAL_ROUTES } from '@data/constants/routes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-login',
@@ -31,7 +33,8 @@ loginForm!: FormGroup
 
 constructor(
   private formBuilder:FormBuilder,
-  private authService: AuthService
+  private authService: AuthService,
+  private router : Router
   ){}
 
 ngOnInit(): void {
@@ -68,7 +71,25 @@ autenticate() {
     //this.authService.login(this.loginForm.value).subscribe( r =>{
     //  console.log(r);
     //})
-    this.authService.login2(this.loginForm.value)
+
+    //this.authService.loginByEmail(this.loginForm.value).subscribe( r =>{
+    //  console.log(r);
+    //})
+    //this.authService.login2(this.loginForm.value)
+
+    this.authService.loginByEmail(this.loginForm.value).subscribe({
+      next: (r) => {
+        console.log(r)
+      },
+      error: (error) => {
+        console.error(error)
+      },
+      complete: ()=> {
+        console.info("login completo")
+        this.router.navigateByUrl('/panel')
+      }
+    })
+
   } else {
   }
 }

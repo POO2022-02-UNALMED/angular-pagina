@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AuthRegisterComponent,
-    AuthLoginComponent
+    AuthLoginComponent,
   ],
   imports: [
     AuthRoutingModule,
