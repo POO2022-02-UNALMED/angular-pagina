@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
 import { LoginComponent } from '@layout/login/login.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AuthGuard } from '@core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
   {
     path: 'panel',
     component: SkeletonComponent,
+    //canActivate: [AuthGuard],
     loadChildren: ()=> 
     import ('@modules/user/user.module').then((m)=>m.UserModule)
   },

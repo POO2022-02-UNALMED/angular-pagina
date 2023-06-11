@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./side-var.component.css']
 })
 export class SideVarComponent {
+
+
 }

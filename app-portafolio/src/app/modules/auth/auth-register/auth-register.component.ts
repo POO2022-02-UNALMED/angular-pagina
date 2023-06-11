@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '@data/services/api/auth.service';
+import { Router } from '@angular/router';
+import { INTERNAL_ROUTES } from '@data/constants/routes';
 
 @Component({
   selector: 'app-auth-register',
@@ -54,18 +57,25 @@ export class AuthRegisterComponent implements OnInit {
 //}
 
 registerForm!: FormGroup
+registerSubscribe : any
+searchEmailSubscribe : any
+msgError: string
 
-constructor(private formBuilder:FormBuilder){}
+constructor(
+  private formBuilder:FormBuilder,
+  private authService:AuthService,
+  private router : Router
+  ){}
 
 
 
 ngOnInit(): void {
   //validations 
   this.registerForm = this.formBuilder.group ({
-    firstName: [ '', [Validators.required, Validators.maxLength(8)]],
-    lastName: [ '', [Validators.required, Validators.maxLength(10)]],
-    email: [ '', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
-    password: [ '', Validators.required],
+    firstName: [ 'hola', [Validators.required,  Validators.pattern(/^[a-z0-9._%+-]{3,10}$/)]],
+    lastName: [ 'hola1', [Validators.pattern(/^[a-z0-9._%+-]{0,10}$/)]],
+    email: [ 'hola@gmail.com', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
+    password: [ '12345', Validators.required],
   })
 }
 
@@ -91,10 +101,33 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 }
 
 autenticate() {
+  this.registerForm.markAllAsTouched()
   if(this.registerForm.valid){
-    alert(this.registerForm.value)
+    this.searchEmailSubscribe = this.authService.getByCode(this.registerForm.value.email,"register")!.subscribe( r=> {
+      if (!r.error){
+        this.registerSubscribe = this.authService.register(this.registerForm.value).subscribe(r=>{
+          console.log(r)
+        })
+      } else{
+        this.registerForm.controls['email'].setErrors({'incorrect': true})
+        this.msgError= "*El email ingresado ya se encuentra en la base de datos, pruebe otro"
+      }
+    })
+  
   } else {
-    alert("nop")
+    this.msgError= "*Formulario invalido. llene los espacios que se piden"
+  }
+}
+
+ngOnDestroy(){
+  if (this.registerSubscribe ) {
+    this.registerSubscribe.unsubscribe();
+    console.log('unsuscribe')
+  }
+  
+  if (this.searchEmailSubscribe ) {
+    this.searchEmailSubscribe.unsubscribe();
+    console.log('unsuscribe')
   }
 }
 

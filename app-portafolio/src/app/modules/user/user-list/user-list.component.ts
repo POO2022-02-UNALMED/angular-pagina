@@ -32,6 +32,7 @@ export class UserListComponent implements OnInit, OnDestroy{
       gender: 'F'
     }
   }
+
   
 
   /*OnInit se para cuadno tenemos logica luego 
