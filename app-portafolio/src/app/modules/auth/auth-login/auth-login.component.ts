@@ -73,26 +73,21 @@ export class AuthLoginComponent implements OnInit{
 
       this.loginSubscribe = this.authService.getByCode(this.loginForm.value.email, "login")!.subscribe( r=> {
         let userData:any = r
-        console.log(userData)
         if (userData.error== true){
           this.msgError="*No encontramos este email en la base de datos"
           this.loginForm.controls['email'].setErrors({'incorrect': true})
 
         }
         else{
-          if(userData.data.isActive){
             if(this.loginForm.value.password === userData.data.password){
               if(userData.data.isActive== true){
-                console.log('login')
                 const newData= {
                   email: userData.data.email,
                   password: userData.data.password,
                   id: userData.data.id
                 }
                 this.router.navigateByUrl(INTERNAL_ROUTES.PANEL_USER_LIST)
-                this.authService.loginByEmail(newData).subscribe(r =>{
-                  console.log(r)
-                })
+                this.authService.loginByEmail(newData).subscribe()
               } else {
                 this.msgError='*Contacte con el admin usuario inactivo'
               }
@@ -102,7 +97,6 @@ export class AuthLoginComponent implements OnInit{
               this.msgError="*Contraseña incorrecta, puede recuperar su contraseña"
               this.loginForm.controls['password'].setErrors({'incorrect': true})
             }
-          }
           
         }
       })

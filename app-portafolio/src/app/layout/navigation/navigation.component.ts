@@ -10,6 +10,7 @@ export class NavigationComponent {
   @Output()
   enviar: EventEmitter<boolean> = new EventEmitter <boolean>();
   menuStatus: boolean = true
+  logOutSubscription:any
 
   constructor(
     private authService: AuthService
@@ -22,15 +23,15 @@ export class NavigationComponent {
     }
 
     logOut(){
-      let email = this.obtenerLocalStorage().id
-      this.authService.logout(email).subscribe()
+      let id = this.obtenerLocalStorage().id
+      this.logOutSubscription = this.authService.logout(id).subscribe()
     }
 
     obtenerLocalStorage(){
-      console.log("holi", JSON.parse(localStorage.getItem("currentUserCatask")!))
-      let user = JSON.parse(localStorage.getItem("currentUserCatask")!)
-      return user
+      return JSON.parse(localStorage.getItem("currentUserCatask")!)
     }
+
+    
   }
 
 

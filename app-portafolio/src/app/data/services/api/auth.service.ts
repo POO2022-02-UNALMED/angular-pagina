@@ -132,21 +132,16 @@ export class AuthService {
   //    );
   //  }
 
-    logout(email:any):Observable<any>{
-      localStorage.removeItem(this.nameUserLS);
-      //this.currentUser.next(null);
-      this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN)
-      console.log(`${API_ROUTES.DATA_LOGINS.LOGINS}/${email}`)
-      return this.http.delete(API_ROUTES.DATA_LOGINS.LOGINS +'/'+ email) 
-    }
+  logout(email:any):Observable<any>{
+    localStorage.removeItem(this.nameUserLS);
+    //this.currentUser.next(null);
+    this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN)
+    return this.http.delete(API_ROUTES.DATA_LOGINS.LOGINS +'/'+ email) 
+  }
 
 
   private serUserToLocalStorage( user:IApiUserAutentificated){
     localStorage.setItem(this.nameUserLS, JSON.stringify(user))
-  }
-
-  obtenerLocalStorage(){
-    let email = localStorage.getItem("email")
   }
 
   loginByEmail(data:any):Observable<any>{
