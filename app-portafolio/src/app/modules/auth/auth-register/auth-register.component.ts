@@ -103,14 +103,13 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 autenticate() {
   this.registerForm.markAllAsTouched()
   if(this.registerForm.valid){
-    this.searchEmailSubscribe = this.authService.getByCode(this.registerForm.value.email,"register")!.subscribe( r=> {
+    this.searchEmailSubscribe = this.authService.getByCode(this.registerForm.value.email)!.subscribe( r=> {
       if (!r.error){
         this.registerSubscribe = this.authService.register(this.registerForm.value).subscribe(r=>{
-          console.log(r)
         })
       } else{
         this.registerForm.controls['email'].setErrors({'incorrect': true})
-        this.msgError= "*El email ingresado ya se encuentra en la base de datos, pruebe otro"
+        this.msgError= r.msg
       }
     })
   

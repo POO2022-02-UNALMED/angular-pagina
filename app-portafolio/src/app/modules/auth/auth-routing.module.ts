@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthLoginComponent } from './auth-login/auth-login.component';
 import { AuthRegisterComponent } from './auth-register/auth-register.component';
+import { INTERNAL_PATHS } from '@data/constants/routes';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/auth/login', pathMatch: 'full'},
-  {path: 'login', component: AuthLoginComponent},
-  {path: 'register', component: AuthRegisterComponent},
+  {path: '', redirectTo: INTERNAL_PATHS.AUTH_LOGIN, pathMatch: 'full'},
+  {path: INTERNAL_PATHS.AUTH_LOGIN, component: AuthLoginComponent},
+  {path: INTERNAL_PATHS.AUTH_REGISTER, component: AuthRegisterComponent},
 ];
 
 @NgModule({

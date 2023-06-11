@@ -3,30 +3,33 @@ import { RouterModule, Routes } from '@angular/router';
 import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
 import { LoginComponent } from '@layout/login/login.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { AuthGuard } from '@core/guards/auth.guard';
+import { AuthGuard} from '@core/guards/auth.guard';
+import { NoAuthGuard } from '@core/guards/no-auth.guard';
+import { INTERNAL_PATHS } from '@data/constants/routes';
 
 const routes: Routes = [
   {
-    path: 'auth',
+    path: INTERNAL_PATHS.AUTH_DEFAULT,
     component: LoginComponent,
+    canActivate: [NoAuthGuard],
     loadChildren: ()=> 
     import ('@modules/auth/auth.module').then((m)=>m.AuthModule)
   },
   {
-    path: 'panel',
+    path: INTERNAL_PATHS.PANEL_DEFAULT,
     component: SkeletonComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: ()=> 
     import ('@modules/user/user.module').then((m)=>m.UserModule)
   },
   {
     path: '',
-    redirectTo: '/auth/login',
+    redirectTo: INTERNAL_PATHS.AUTH_DEFAULT,
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: '/auth/login',
+    redirectTo: INTERNAL_PATHS.AUTH_DEFAULT,
     pathMatch: 'full'
   },
   

@@ -2,6 +2,7 @@ export const ROUTES_PATHS = {
     AUTH: {
         DEFAULT: 'auth',
         LOGIN: 'login',
+        REGISTER: 'register'
     },
     PANEL: {
         DEFAULT: 'panel',
@@ -15,6 +16,7 @@ export const INTERNAL_PATHS = {
 
     AUTH_DEFAULT: `${ROUTES_PATHS.AUTH.DEFAULT}`,
     AUTH_LOGIN: `${ROUTES_PATHS.AUTH.LOGIN}`,
+    AUTH_REGISTER: `${ROUTES_PATHS.AUTH.REGISTER}`,
 
     //PANEL
 

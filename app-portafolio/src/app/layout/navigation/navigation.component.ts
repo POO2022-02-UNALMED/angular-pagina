@@ -23,12 +23,8 @@ export class NavigationComponent {
     }
 
     logOut(){
-      let id = this.obtenerLocalStorage().id
+      let id = this.authService.obtenerLocalStorage().id
       this.logOutSubscription = this.authService.logout(id).subscribe()
-    }
-
-    obtenerLocalStorage(){
-      return JSON.parse(localStorage.getItem("currentUserCatask")!)
     }
 
     

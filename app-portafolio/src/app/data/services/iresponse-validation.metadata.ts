@@ -1,4 +1,5 @@
 export interface IresponseValidation {
+    error: boolean;
     msg: string;
-    isValid: boolean
+    data: any
 }

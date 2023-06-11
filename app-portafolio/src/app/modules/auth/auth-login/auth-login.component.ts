@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '@data/services/api/auth.service';
 import { INTERNAL_ROUTES } from '@data/constants/routes';
 import { Router } from '@angular/router';
+import { ERRORS_CONST } from '@data/constants';
 
 @Component({
   selector: 'app-auth-login',
@@ -31,6 +32,7 @@ export class AuthLoginComponent implements OnInit{
 
   loginForm!: FormGroup
   loginSubscribe: any
+  loginLocalSubscribe:any
   msgError:string
 
   constructor(
@@ -48,7 +50,6 @@ export class AuthLoginComponent implements OnInit{
   }
 
   onSingin(formfield: string){
-    console.log(this.loginForm.value)
     if(this.loginForm.valid){
       return
     }else {
@@ -71,70 +72,35 @@ export class AuthLoginComponent implements OnInit{
     this.loginForm.markAllAsTouched()
     if(this.loginForm.valid){
 
-      this.loginSubscribe = this.authService.getByCode(this.loginForm.value.email, "login")!.subscribe( r=> {
-        let userData:any = r
-        if (userData.error== true){
-          this.msgError="*No encontramos este email en la base de datos"
-          this.loginForm.controls['email'].setErrors({'incorrect': true})
-
-        }
-        else{
-            if(this.loginForm.value.password === userData.data.password){
-              if(userData.data.isActive== true){
-                const newData= {
-                  email: userData.data.email,
-                  password: userData.data.password,
-                  id: userData.data.id
-                }
-                this.router.navigateByUrl(INTERNAL_ROUTES.PANEL_USER_LIST)
-                this.authService.loginByEmail(newData).subscribe()
-              } else {
-                this.msgError='*Contacte con el admin usuario inactivo'
-              }
-  
-            }
-            else{
-              this.msgError="*Contraseña incorrecta, puede recuperar su contraseña"
-              this.loginForm.controls['password'].setErrors({'incorrect': true})
-            }
-          
+      this.loginLocalSubscribe = this.authService.login(this.loginForm.value)!.subscribe( r=> {
+        console.log(r.error)
+        if(r.error){
+          this.msgError= r.msg
+          if(r.msg===ERRORS_CONST.LOGIN.USER){
+            this.loginForm.controls['email'].setErrors({'incorrect': true})
+          }
+          if(r.msg===ERRORS_CONST.LOGIN.PASSWORD){
+            this.loginForm.controls['password'].setErrors({'incorrect': true})
+          }
+        } else{
+          const newData= {
+            email: r.data.email,
+            password: r.data.password,
+            id: r.data.id
+          }
+          this.loginSubscribe = this.authService.loginByEmail(newData)!.subscribe()
         }
       })
-
-      //let isUserExist = API_ROUTES.USERS.LOGIN.find(m => m.email == this.loginForm.controls['email'].value)
-      //this.authService.login(this.loginForm.value).subscribe( r =>{
-      //  console.log(r);
-      //})
-
-      //this.authService.loginByEmail(this.loginForm.value).subscribe( r =>{
-      //  console.log(r);
-      //})
-      //this.authService.login2(this.loginForm.value)
-
-      //this.authService.loginByEmail(this.loginForm.value).subscribe({
-      //  next: (r) => {
-      //    console.log(r)
-      //  },
-      //  error: (error) => {
-      //    console.error(error)
-      //  },
-      //  complete: ()=> {
-      //    console.info("login completo")
-      //    this.router.navigateByUrl('/panel')
-      //  }
-      //})
-
-    } else {
-      this.msgError= "*Formulario invalido. llene los espacios que se piden"
     }
-
-
-
-  }
+  }  
 
   ngOnDestroy(){
     if (this.loginSubscribe ) {
       this.loginSubscribe.unsubscribe();
+      console.log('unsuscribe')
+    }
+    if (this.loginLocalSubscribe ) {
+      this.loginLocalSubscribe.unsubscribe();
       console.log('unsuscribe')
     }
   }

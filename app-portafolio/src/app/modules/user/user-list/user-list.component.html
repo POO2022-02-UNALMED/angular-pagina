@@ -3,7 +3,7 @@
         <app-title-h1 text="Lista de usuarios"></app-title-h1>
     </div>
     <ng-container *ngIf="users; else elseUsersLoader" >
-        <app-card-user [data]="user" *ngFor="let user of users" class="col-12 col-md-6 col-xl-4"></app-card-user>
+        <app-card-user [data]="user" *ngFor="let user of users" class="col-12 col-md-6 col-xl-3"></app-card-user>
     </ng-container>
 
     <!---------------------------------------Init loader of cards user---------------------------------------->
