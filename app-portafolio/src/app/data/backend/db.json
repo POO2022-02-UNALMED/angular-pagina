@@ -110,11 +110,5 @@
       "id": 9
     }
   ],
-  "login": [
-    {
-      "email": "hola@gmail1.com",
-      "password": "12345",
-      "id": 1
-    }
-  ]
+  "login": []
 }

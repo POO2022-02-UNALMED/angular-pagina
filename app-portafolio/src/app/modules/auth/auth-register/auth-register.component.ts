@@ -72,10 +72,10 @@ constructor(
 ngOnInit(): void {
   //validations 
   this.registerForm = this.formBuilder.group ({
-    firstName: [ 'hola', [Validators.required,  Validators.pattern(/^[a-z0-9._%+-]{3,10}$/)]],
-    lastName: [ 'hola1', [Validators.pattern(/^[a-z0-9._%+-]{0,10}$/)]],
-    email: [ 'hola@gmail.com', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
-    password: [ '12345', Validators.required],
+    firstName: [ '', [Validators.required,  Validators.pattern(/^[a-z0-9._%+-]{3,10}$/)]],
+    lastName: [ '', [Validators.pattern(/^[a-z0-9._%+-]{0,10}$/)]],
+    email: [ '', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
+    password: [ '', Validators.required],
   })
 }
 
