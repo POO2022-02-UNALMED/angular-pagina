@@ -3,12 +3,12 @@
         <img class="dsc-img" src="{{data.avatar}}" alt="">
     </div>
     <div class="dsc-card-info">
-        <h4>{{data.name}}</h4>
-        <h6>Edad: {{data.age}}</h6>
-        <h6>Genero:
+        <h5>{{data.name}}</h5>
+        <h6 style="font-size: 13px;">Edad: {{data.age}}</h6>
+        <h6 style="font-size: 13px;">Genero:
             <ng-container [ngSwitch]="data.gender">
-                <span *ngSwitchCase="'F'">Femenino</span>
-                <span *ngSwitchCase="'M'">Masculino</span>
+                <span *ngSwitchCase="'F'">F</span>
+                <span *ngSwitchCase="'M'">M</span>
                 <span *ngSwitchDefault="">{{data.gender}}</span>
             </ng-container>
         </h6>
