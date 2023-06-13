@@ -43,9 +43,11 @@ app-footer {
     .app-side-nav-open {
         position: relative;
         width: calc(100% - 250px);
-        left: 230px
+        left: 200px;
+        margin-top: -50px;
     }
 }
+
 
 .dsc-loader {
     position: fixed;

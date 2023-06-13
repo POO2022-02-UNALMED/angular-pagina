@@ -1,31 +1,41 @@
 
 <ng-container *ngIf="exist">
-    <div style="margin-left: 70px;">
+    <!--
+        <div style="margin-left: 40px;">
+
         <div class="row">
-            <div *ngFor="let user of this.completeUsers" class="col-1">
+            <div *ngFor="let user of this.completeUsers; let first = first" class="col-1" style="margin-bottom: 5px;">
+                
                 <img class="img" src="{{user.avatar}}" alt="">
+                
             </div>
         </div>
 
-        <app-title-h1 text="Lista de Tareas"></app-title-h1>
+
+
     </div>
+    -->
+    
+    
+<!---->
+   <app-card-tasks [proyecto]="this.proyecto"></app-card-tasks>
 
-
-
-    <app-card-tasks [proyecto]="this.proyecto"></app-card-tasks>
-
-
+<!--
     <ng-container *ngFor="let coworker of proyecto.coworker"> 
         {{ponerUsuarios(coworker.id)}}  
     </ng-container>
+-->
+    
 
-    <!--
-
+    
+<!--
     <app-title-h1 text="Equipo de trabajo"></app-title-h1>
     <div class="container-fluid row">
         <app-card-user [data]="user" *ngFor="let user of this.completeUsers" class="col-12 col-md-6 col-xl-4"></app-card-user>
     </div>
-    -->
+-->
+    
+    
    
 </ng-container>
 

@@ -9,12 +9,13 @@ export interface IProyect {
 export interface ICoworker{
     id:number;
     name: string;
-    charge:string;
+    charge: string;
 }
 
 export interface ITask{
     id:number;
+    fecha:string
     name: string;
-    user:number;
+    user:Array<ICoworker>;
     description: string
 }

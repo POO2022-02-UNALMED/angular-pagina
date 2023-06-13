@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { UserService } from '@data/services/api/user.service';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
-import { IProyect } from '@shared/components/table/table.metadata';
+import { IProyect } from '@shared/components/cards/card-tasks/card-tasks.metadata'
 
 @Component({
   selector: 'app-user-task',
@@ -25,8 +25,10 @@ export class UserTaskComponent implements OnInit{
   ngOnInit(): void {
     let work = JSON.parse(localStorage.getItem("currentUserCatask")!).work
     //traigo el proyecto en el que esta trabajando el usuario
+
     this.proyectService.traerProyecto(work).subscribe(r => {
       if (r.error===false){
+        console.log(r.data)
         this.proyecto=r.data
         //recojo los id de compa;eros y busco sus usuarios para imprimir las tarjetas
         for(let i=0; i <this.proyecto.coworker.length; i++){

@@ -8,6 +8,7 @@ import { ICoworker, IProyect } from './card-tasks.metadata';
 })
 export class CardTasksComponent {
   @Input() proyecto:IProyect
+  users:any
 
   constructor(
   ){
@@ -16,7 +17,8 @@ export class CardTasksComponent {
 
   buscarPersonaPorId(id:number){
     let person = this.proyecto.coworker.find((person:ICoworker)=>person.id===id)
-    return person
+    console.log(person)
+    return person?.name
   }
 
 }

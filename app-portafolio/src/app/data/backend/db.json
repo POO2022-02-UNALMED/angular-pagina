@@ -120,9 +120,9 @@
   ],
   "login": [
     {
-      "email": "hola@gmail4.com",
+      "email": "hola@gmail7.com",
       "password": "12345",
-      "id": 4
+      "id": 7
     }
   ],
   "proyects": [
@@ -149,27 +149,54 @@
       "task": [
         {
           "id": 1,
+          "fecha": "2023/01/7",
           "name": "Coseguir una lagrima de dragon",
-          "user": 1,
+          "user": [
+            {
+              "id": 3,
+              "name": "Luza",
+              "charge": "Proyect Manager"
+            },
+            {
+              "id": 8,
+              "name": "Oscar",
+              "charge": "diseñadora grafica"
+            }
+          ],
           "description": "morirse, luego revivir y entregarle la lagrima al admin para su acenso"
         },
         {
           "id": 3,
-          "name": "Jugando",
-          "user": 8,
-          "description": "Jugar lol 20 horas seguidas al dia"
+          "fecha": "2023/01/7",
+          "name": "Descubrir por que adonay no me espero",
+          "user": [
+            {
+              "id": 3,
+              "name": "Luza",
+              "charge": "Proyect Manager"
+            }
+          ],
+          "description": "Desenterrarlo y preguntarle"
         },
         {
           "id": 4,
-          "name": "Coseguir una lagrima de dragon",
-          "user": 1,
-          "description": "morirse, luego revivir y entregarle la lagrima al admin para su acenso"
+          "fecha": "2023/01/7",
+          "name": "Hacerle sancandilla a un enano",
+          "user": [
+            {
+              "id": 1,
+              "name": "Juan",
+              "charge": "Desarrollador full stack"
+            }
+          ],
+          "description": "Buscar el enano mas cercano y ponerle el pie para que caiga"
         },
         {
           "id": 2,
-          "name": "tarjetas",
-          "user": 3,
-          "description": "hacer una tarjeta de cada superheroe de marvel"
+          "fecha": "2023/01/7",
+          "name": "Hacerle una entrevista a Batman",
+          "user": [],
+          "description": "contactar al superheroe y asignar una cita"
         }
       ]
     },
@@ -179,11 +206,13 @@
       "coworker": [
         {
           "id": 4,
+          "fecha": "2023/01/7",
           "name": "Manuel",
           "charge": "Desarrollador full stack"
         },
         {
           "id": 5,
+          "fecha": "2023/01/7",
           "name": "Lina",
           "charge": "Proyect Manager"
         },
@@ -196,26 +225,63 @@
       "task": [
         {
           "id": 1,
-          "name": "dormir",
-          "user": 4,
-          "description": "Dormir todo el dia sin pararse al ba;o"
+          "fecha": "2023/01/7",
+          "name": "Descubir que le pasa a lupita",
+          "user": [
+            {
+              "id": 4,
+              "name": "Manuel",
+              "charge": "Desarrollador full stack"
+            }
+          ],
+          "description": "Preguntarle a un familiar de lupita que le pasa y por que quiere bailar"
         },
         {
           "id": 2,
-          "name": "horario",
-          "user": 5,
-          "description": "Terminar la aplicacion que llevo haciendo hace 1 mes"
+          "fecha": "2023/01/7",
+          "name": "Ser millonaria",
+          "user": [
+            {
+              "id": 5,
+              "name": "Lina",
+              "charge": "Proyect Manager"
+            },
+            {
+              "id": 7,
+              "name": "Sofia",
+              "charge": "QA"
+            },
+            {
+              "id": 4,
+              "name": "Manuel",
+              "charge": "Desarrollador full stack"
+            }
+          ],
+          "description": "Comprar la loteria mas cercana y ganar"
         },
         {
           "id": 3,
-          "name": "horario",
-          "user": 5,
-          "description": "Terminar la aplicacion que llevo haciendo hace 1 mes"
+          "fecha": "2023/01/7",
+          "name": "Ver betty la fea",
+          "user": [
+            {
+              "id": 4,
+              "name": "Manuel",
+              "charge": "Desarrollador full stack"
+            },
+            {
+              "id": 5,
+              "name": "Lina",
+              "charge": "Proyect Manager"
+            }
+          ],
+          "description": "Buscar los capitulos completos y ver por 4 vez betty la fea"
         },
         {
           "id": 4,
+          "fecha": "2023/01/7",
           "name": "ganar discretas",
-          "user": 7,
+          "user": [],
           "description": "No repetir matematicas discretas"
         }
       ]
