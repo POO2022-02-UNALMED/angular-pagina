@@ -7,5 +7,8 @@ export const API_ROUTES = {
 
     DATA_LOGINS: {
         LOGINS: `${ENV.url}login`
+    },
+    DATA_PROYECTS: {
+        PROYECTS: `${ENV.url}proyects`
     }
 };

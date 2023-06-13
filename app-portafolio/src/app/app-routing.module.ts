@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
 import { LoginComponent } from '@layout/login/login.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AuthGuard} from '@core/guards/auth.guard';
 import { NoAuthGuard } from '@core/guards/no-auth.guard';
 import { INTERNAL_PATHS } from '@data/constants/routes';

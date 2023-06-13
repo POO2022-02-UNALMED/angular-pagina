@@ -69,11 +69,7 @@ export class AuthService {
         email: string;
         password: string;
       })
-  :Observable <{
-      error: boolean;
-      msg: string;
-      data: any
-  }>{
+  :Observable <IresponseValidation>{
     const response = { error:true, msg:ERRORS_CONST.LOGIN.USER, data:null}
     return this.http.get<{error:boolean, msg:string, data: any}>(API_ROUTES.DATA_USERS.USERS + '?email='+ data.email)
     .pipe(
@@ -158,9 +154,12 @@ export class AuthService {
     localStorage.setItem(this.nameUserLS, JSON.stringify(user))
   }
 
-  loginByEmail(data:any):Observable<any>{
-    this.router.navigateByUrl(INTERNAL_ROUTES.PANEL_USER_LIST);
-    return this.http.post(API_ROUTES.DATA_LOGINS.LOGINS, data)
+  loginByEmail(data:any):Observable<IresponseValidation>{
+    this.router.navigateByUrl(INTERNAL_ROUTES.PANEL_USER_TASK);
+    //this.router.navigateByUrl("/task")
+   // console.log(data)
+   const response = { error:true, msg:ERRORS_CONST.LOGIN.USER, data:null}
+    return this.http.post<{error:boolean, msg:string, data: any}>(API_ROUTES.DATA_LOGINS.LOGINS, data)
   }
 
   //loginByEmail1(credentials:ILogin):Observable<IResponse | void>{

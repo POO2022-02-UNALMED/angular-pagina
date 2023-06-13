@@ -36,7 +36,7 @@
   </div>
     <ul class="nav-list">
       <h6 style="font-size: larger; margin-top: -30px;">{{datosUser().name}}</h6>
-      <p style="font-size: smaller;">{{datosUser().work? datosUser().work :'Sin proyecto'}}</p>
+      <p style="font-size: smaller;">{{datosUser().work? "PROYECTO "+datosUser().work :'Sin proyecto'}}</p>
       <hr style="padding-bottom: 15px;">
         <li class="nav-list-item">
             <span>
@@ -45,7 +45,7 @@
         </li>
         <li class="nav-list-item">
             <span>
-                <a href="#">Proyecto</a>
+                <a href={{this.proyecto}}>Proyecto</a>
             </span>
         </li>
         <li class="nav-list-item">
@@ -55,7 +55,7 @@
         </li>
         <li class="nav-list-item">
           <span>
-              <a href="#">Admin</a>
+              <a href={{this.admin}}>Admin</a>
           </span>
       </li>
     </ul>

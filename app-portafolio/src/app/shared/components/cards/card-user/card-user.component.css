@@ -1,4 +1,4 @@
-.dsc-card {
+.dsc-card-users {
     height: 190px;
     max-width: 350px;
     min-width: 230px;
@@ -13,6 +13,24 @@
     margin-top: 50px;
     cursor: pointer;
 }
+
+.dsc-card-admin {
+    height: 190px;
+    max-width: 350px;
+    min-width: 230px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.15);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid rgb(0, 0, 0);
+    margin: auto;
+    margin-top: 50px;
+    cursor: pointer;
+    
+}
+
 
 .dsc-img {
     height: 120px;

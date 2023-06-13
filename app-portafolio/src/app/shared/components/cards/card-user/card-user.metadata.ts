@@ -1,3 +1,5 @@
+export type Licencias = 'USER' | 'ADMIN'
+
 export interface ICardUser {
     map(arg0: (i: any) => void): unknown;
     id: number,
@@ -7,5 +9,6 @@ export interface ICardUser {
     age: number;
     description: string;
     work?: string; //opcional
+    license: Licencias;
     info: string
 }

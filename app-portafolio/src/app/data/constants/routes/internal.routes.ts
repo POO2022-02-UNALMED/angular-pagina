@@ -6,7 +6,7 @@ export const ROUTES_PATHS = {
     },
     PANEL: {
         DEFAULT: 'panel',
-        USER: 'user'
+        ADMIN: 'panel/admin'
     }
 }
 
@@ -21,7 +21,7 @@ export const INTERNAL_PATHS = {
     //PANEL
 
     PANEL_DEFAULT: `${ROUTES_PATHS.PANEL.DEFAULT}`,
-    PANEL_USER_LIST: `${ROUTES_PATHS.PANEL.USER}`
+    PANEL_USER_LIST: `${ROUTES_PATHS.PANEL.ADMIN}`
 }
 
 export const INTERNAL_ROUTES = {
@@ -32,5 +32,5 @@ export const INTERNAL_ROUTES = {
 
     //PANEL
 
-    PANEL_USER_LIST: `/${INTERNAL_PATHS.PANEL_DEFAULT}`,
+    PANEL_USER_TASK: `/${INTERNAL_PATHS.PANEL_DEFAULT}`,
 };

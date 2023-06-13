@@ -1,19 +1,37 @@
-<div class="dsc-card" *ngIf= "data" routerLink="/panel/{{data.id}}"> 
-    <div class="dsc-card-img">
-        <img class="dsc-img" src="{{data.avatar}}" alt="">
-    </div>
-    <div class="dsc-card-info">
-        <h5>{{data.name}}</h5>
-        <h6 style="font-size: 13px;">Edad: {{data.age}}</h6>
-        <h6 style="font-size: 13px;">Genero:
-            <ng-container [ngSwitch]="data.gender">
-                <span *ngSwitchCase="'F'">F</span>
-                <span *ngSwitchCase="'M'">M</span>
-                <span *ngSwitchDefault="">{{data.gender}}</span>
-            </ng-container>
-        </h6>
-        <p style="margin-bottom: 0;">{{data.work ? data.work:'sin proyecto'}} </p>
-        <p>{{data.description}}</p>
-    </div>
-</div>
+<ng-container *ngIf= "data">
+    <ng-container *ngIf= "admin; else users">
+        <div class="dsc-card-admin border-dark" routerLink="/panel/{{data.id}}"> 
+    
+            <div class="dsc-card-img">
+                <img class="dsc-img" src="{{data.avatar}}" alt="">
+            </div>
+            <div class="dsc-card-info">
+                <h5>{{data.name}}</h5>
+                <h6 style="font-size: 13px;">Admin</h6>
+                <p style="margin-bottom: 0;">{{data.work ? "proyecto "+data.work:'sin proyecto'}} </p>
+            </div>
+        </div>
+    </ng-container>
+    
+    <ng-template #users>
+        <div class="dsc-card-users"  routerLink="/panel/{{data.id}}"> 
+            <div class="dsc-card-img">
+                <img class="dsc-img" src="{{data.avatar}}" alt="">
+            </div>
+            <div class="dsc-card-info">
+                <h5>{{data.name}}</h5>
+                <h6 style="font-size: 13px;">Edad: {{data.age}}</h6>
+                <h6 style="font-size: 13px;">Genero:
+                    <ng-container [ngSwitch]="data.gender">
+                        <span *ngSwitchCase="'F'">F</span>
+                        <span *ngSwitchCase="'M'">M</span>
+                        <span *ngSwitchDefault="">{{data.gender}}</span>
+                    </ng-container>
+                </h6>
+                <p style="margin-bottom: 0;">{{data.work ? "Proyecto "+data.work:'sin proyecto'}} </p>
+                <p>{{data.description}}</p>
+            </div>
+        </div>
+    </ng-template>
+</ng-container>
 

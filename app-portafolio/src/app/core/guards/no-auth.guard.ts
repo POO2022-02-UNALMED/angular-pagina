@@ -19,7 +19,7 @@ export class NoAuthGuard implements CanActivate {
     state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
       const currentUser= this.authService.obtenerLocalStorage()
       if(currentUser){
-        this.router.navigateByUrl(INTERNAL_ROUTES.PANEL_USER_LIST);
+        this.router.navigateByUrl(INTERNAL_ROUTES.PANEL_USER_TASK);
         return false
       }
 

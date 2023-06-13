@@ -13,6 +13,7 @@
 
 import { Component } from '@angular/core';
 import { AuthService } from '@data/services/api/auth.service';
+import { INTERNAL_PATHS } from '@data/constants/routes';
 
 @Component({
   selector: 'app-side-var',
@@ -21,7 +22,8 @@ import { AuthService } from '@data/services/api/auth.service';
 })
 export class SideVarComponent {
 
-  
+  proyecto = INTERNAL_PATHS.PANEL_DEFAULT
+  admin = INTERNAL_PATHS.PANEL_USER_LIST
 
   constructor(
     authService:AuthService

@@ -44,8 +44,8 @@ export class AuthLoginComponent implements OnInit{
   ngOnInit(): void {
     //validations 
     this.loginForm = this.formBuilder.group ({
-      email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
-      password: [ '', Validators.required],
+      email: ['hola@gmail1.com', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
+      password: [ '12345', Validators.required],
     })
   }
 
@@ -88,7 +88,7 @@ export class AuthLoginComponent implements OnInit{
             password: r.data.password,
             id: r.data.id
           }
-          this.loginSubscribe = this.authService.loginByEmail(newData)!.subscribe()
+          this.authService.loginByEmail(newData)!.subscribe()
         }
       })
     }
@@ -97,10 +97,6 @@ export class AuthLoginComponent implements OnInit{
   ngOnDestroy(){
     if (this.loginSubscribe ) {
       this.loginSubscribe.unsubscribe();
-      console.log('unsuscribe')
-    }
-    if (this.loginLocalSubscribe ) {
-      this.loginLocalSubscribe.unsubscribe();
       console.log('unsuscribe')
     }
   }
