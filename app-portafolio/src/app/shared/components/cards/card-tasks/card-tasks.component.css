@@ -12,6 +12,11 @@
     margin-bottom: 20px;
 }
 
+.card-body{
+    color: rgb(58, 58, 58);
+    font-weight: lighter;
+}
+
 .footer{
     padding-top: 5px;
     font-weight: 300;
