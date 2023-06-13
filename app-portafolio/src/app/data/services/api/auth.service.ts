@@ -142,11 +142,16 @@ export class AuthService {
   //    );
   //  }
 
-  logout(email:any):Observable<any>{
+  logout(email:number):Observable<any>{
     localStorage.removeItem(this.nameUserLS);
     //this.currentUser.next(null);
     this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN)
-    return this.http.delete(API_ROUTES.DATA_LOGINS.LOGINS +'/'+ email) 
+    return this.http.delete(API_ROUTES.DATA_LOGINS.LOGINS +'/'+ email)
+    .pipe(
+      map(r=>{
+        console.log(r)
+      })
+    )
   }
 
 

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ICoworker, IProyect } from './card-tasks.metadata';
+import { ICoworker, IProyect, ITask } from './card-tasks.metadata';
+import { ProyectService } from '@data/services/api/proyect.service';
 
 @Component({
   selector: 'app-card-tasks',
@@ -8,25 +9,31 @@ import { ICoworker, IProyect } from './card-tasks.metadata';
 })
 export class CardTasksComponent {
   @Input() proyecto:IProyect
+  coworkers=[]
   users:any
 
   constructor(
+    private proyectService: ProyectService
   ){
   }
 
 
-  buscarPersonaPorId(id:number){
-    let person = this.proyecto.coworker.find((person:ICoworker)=>person.id===id)
-    console.log(person)
-    return person?.name
+  searchWorkerForId(id:number){
+    let person = this.proyecto.coworker.find((persona:ICoworker)=>persona.id===1)
+    return person
   }
 
-  agregarUser(idTask:number){
-    let idUser = JSON.parse(localStorage.getItem("currentUserCatask")!).id
+  agregarUser(task:ITask){
+    let user = JSON.parse(localStorage.getItem("currentUserCatask")!).id
+    let person = this.searchWorkerForId(user)
     let idProyecto = this.proyecto.id
-    console.log("id user",idUser)
-    console.log("id task",idTask)
-    console.log("id proyecto",idProyecto)
+    //console.log("person",person)
+    //console.log("task",task)
+    //console.log("proyecto",idProyecto)
+    this.proyectService.addUserToTask(person!, idProyecto, this.proyecto.task).subscribe(r=>{
+      console.log(r)
+    })
+
   }
 
 }

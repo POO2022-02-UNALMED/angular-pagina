@@ -7,7 +7,7 @@
       "age": 25,
       "description": "Desarrollador full stack",
       "avatar": "https://www.mintrabajo.gov.co/documents/20147/169985/WhatsApp+Image+2021-05-13+at+7.31.52+AM.jpeg/d54522fe-bd47-3820-71cc-9d4057e816b7?t=1620914777771",
-      "work": 2,
+      "work": 1,
       "gender": "M",
       "info": "Estudiante de ingenieria de sistemas. Desarrollo en angular, larabel, react",
       "password": "12345",
@@ -118,7 +118,14 @@
       "id": 9
     }
   ],
-  "login": [],
+  "login": [
+    {
+      "email": "hola@gmail1.com",
+      "password": "12345",
+      "id": 1
+    }
+  ],
+
   "proyects": [
     {
       "id": 1,
@@ -279,6 +286,70 @@
           "description": "No repetir matematicas discretas"
         }
       ]
+    }
+  ],
+
+  "task": [
+    {
+      "id": 1,
+      "fecha": "2023/01/7",
+      "name": "Descubir que le pasa a lupita",
+      "user": [
+        {
+          "id": 4,
+          "name": "Manuel",
+          "charge": "Desarrollador full stack"
+        }
+      ],
+      "description": "Preguntarle a un familiar de lupita que le pasa y por que quiere bailar"
+    },
+    {
+      "id": 2,
+      "fecha": "2023/01/7",
+      "name": "Ser millonaria",
+      "user": [
+        {
+          "id": 5,
+          "name": "Lina",
+          "charge": "Proyect Manager"
+        },
+        {
+          "id": 7,
+          "name": "Sofia",
+          "charge": "QA"
+        },
+        {
+          "id": 4,
+          "name": "Manuel",
+          "charge": "Desarrollador full stack"
+        }
+      ],
+      "description": "Comprar la loteria mas cercana y ganar"
+    },
+    {
+      "id": 3,
+      "fecha": "2023/01/7",
+      "name": "Ver betty la fea",
+      "user": [
+        {
+          "id": 4,
+          "name": "Manuel",
+          "charge": "Desarrollador full stack"
+        },
+        {
+          "id": 5,
+          "name": "Lina",
+          "charge": "Proyect Manager"
+        }
+      ],
+      "description": "Buscar los capitulos completos y ver por 4 vez betty la fea"
+    },
+    {
+      "id": 4,
+      "fecha": "2023/01/7",
+      "name": "ganar discretas",
+      "user": [],
+      "description": "No repetir matematicas discretas"
     }
   ]
 }
