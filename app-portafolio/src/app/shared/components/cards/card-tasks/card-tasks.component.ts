@@ -21,4 +21,12 @@ export class CardTasksComponent {
     return person?.name
   }
 
+  agregarUser(idTask:number){
+    let idUser = JSON.parse(localStorage.getItem("currentUserCatask")!).id
+    let idProyecto = this.proyecto.id
+    console.log("id user",idUser)
+    console.log("id task",idTask)
+    console.log("id proyecto",idProyecto)
+  }
+
 }

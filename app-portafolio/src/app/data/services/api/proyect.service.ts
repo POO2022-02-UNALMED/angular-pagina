@@ -31,4 +31,10 @@ export class ProyectService {
       )
     }
 
+    addUserToTask(idUser:number, idProyecto:number,idTask:number):Observable<IresponseValidation>{
+      const response= {error:true, msg:'No se pudo unir al proyecto', data:null}
+      return this.http.post<{error:boolean, msg:string, data: any}>(API_ROUTES.DATA_PROYECTS.PROYECTS + `${idTask}` + :)
+      // TODO TERMINAR EL SERVICIO
+    }
+
 }

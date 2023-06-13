@@ -28,7 +28,6 @@ export class UserTaskComponent implements OnInit{
 
     this.proyectService.traerProyecto(work).subscribe(r => {
       if (r.error===false){
-        console.log(r.data)
         this.proyecto=r.data
         //recojo los id de compa;eros y busco sus usuarios para imprimir las tarjetas
         for(let i=0; i <this.proyecto.coworker.length; i++){
