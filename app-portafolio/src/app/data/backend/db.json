@@ -118,13 +118,7 @@
       "id": 9
     }
   ],
-  "login": [
-    {
-      "email": "hola@gmail7.com",
-      "password": "12345",
-      "id": 7
-    }
-  ],
+  "login": [],
   "proyects": [
     {
       "id": 1,
