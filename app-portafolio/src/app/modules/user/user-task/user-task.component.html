@@ -18,7 +18,11 @@
     
     
 <!---->
-   <app-card-tasks [proyecto]="this.proyecto"></app-card-tasks>
+    <ng-container>
+        <div class="container-fluid row">
+            <app-card-tasks [task]="task" *ngFor="let task of this.tasks" class="col-12 col-md-6 col-xl-6"></app-card-tasks>
+        </div>
+    </ng-container>
    <img src="assets/images/task/add-button.png" (click)="addTask()">
 
 <!--

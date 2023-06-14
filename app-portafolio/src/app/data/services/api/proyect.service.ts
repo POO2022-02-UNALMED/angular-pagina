@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { IresponseValidation } from '../iresponse-validation.metadata';
-import { API_ROUTES } from '@data/constants/routes';
+import { API_ROUTES, INTERNAL_ROUTES } from '@data/constants/routes';
 import { ICoworker, IProyect, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 import { identifierName } from '@angular/compiler';
 
@@ -58,9 +58,22 @@ export class ProyectService {
     //  // TODO TERMINAR EL SERVICIO
     //}
 
+    searchTasks(id:number):Observable<Array<ITask>>{
+      return this.http.get<Array<ITask>>(API_ROUTES.DATA_TASK.TASKS + '?admin=' + id)
+    }
+
 
     addTask(data:any):Observable<any>{
       return this.http.post(API_ROUTES.DATA_TASK.TASKS, data)
+      .pipe(
+        map(r=>{
+          return r
+        })
+      )
+    }
+
+    deleteTask(task:ITask):Observable<any>{
+      return this.http.delete(API_ROUTES.DATA_TASK.TASKS + '/' + task.id)
     }
 
 }

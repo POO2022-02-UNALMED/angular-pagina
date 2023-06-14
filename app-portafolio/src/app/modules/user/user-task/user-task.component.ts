@@ -3,6 +3,8 @@ import { ProyectService } from '@data/services/api/proyect.service';
 import { UserService } from '@data/services/api/user.service';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { ICoworker, IProyect } from '@shared/components/cards/card-tasks/card-tasks.metadata'
+import { Router } from '@angular/router';
+import { INTERNAL_ROUTES } from '@data/constants/routes';
 
 @Component({
   selector: 'app-user-task',
@@ -18,7 +20,7 @@ export class UserTaskComponent implements OnInit{
 
   constructor(
     private proyectService: ProyectService,
-    private userService: UserService
+    private router: Router
   ){
   }
 
@@ -30,12 +32,20 @@ export class UserTaskComponent implements OnInit{
       if (r.error===false){
         this.proyecto=r.data
         //recojo los id de compa;eros y busco sus usuarios para imprimir las tarjetas
-        for(let i=0; i <this.proyecto.coworker.length; i++){
-          this.userService.getUserById(this.proyecto.coworker[i].id).subscribe(r=>{
-            this.completeUsers.push(r.data)
-          })
-        }
+        //for(let i=0; i <this.proyecto.coworker.length; i++){
+        //  this.userService.getUserById(this.proyecto.coworker[i].id).subscribe(r=>{
+        //    this.completeUsers.push(r.data)
+        //  })
+        //}
         this.exist=true
+        let code = this.proyecto.coworker.find((persona:ICoworker)=>persona.license==="ADMIN")
+
+        this.proyectService.searchTasks(code!.id).subscribe(r=>{
+          //for(let i=0; i< r.length; i++){
+          //  this.task.push(r[i])
+          //}
+          this.tasks=r
+    })
       }
       else{
         this.exist=false
@@ -61,6 +71,7 @@ export class UserTaskComponent implements OnInit{
     }
     this.proyectService.addTask(form).subscribe(r=>{
       console.log(r)
+      this.ngOnInit();
     })
   }
 

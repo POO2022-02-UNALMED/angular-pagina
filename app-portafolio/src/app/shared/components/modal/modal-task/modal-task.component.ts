@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ProyectService } from '@data/services/api/proyect.service';
 import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 
 @Component({
@@ -10,7 +11,9 @@ export class ModalTaskComponent implements OnInit {
   public show = false
   @Input() task:ITask
 
-  constructor(){
+  constructor(
+    private proyectService: ProyectService
+  ){
   }
   ngOnInit(): void {
   }
@@ -22,5 +25,6 @@ export class ModalTaskComponent implements OnInit {
   hideModal(){
     this.show = false
   }
+
 
 }

@@ -48,7 +48,7 @@
       "age": 26,
       "description": "Desarrollador full stack",
       "avatar": "https://resizer.iproimg.com/unsafe/640x/filters:format(webp)/https://assets.iproup.com/assets/jpg/2021/06/19482_landscape.jpg",
-      "work": 1,
+      "work": 2,
       "gender": "",
       "info": "desarrollador jr en practicas",
       "password": "12345",
@@ -62,7 +62,7 @@
       "age": 27,
       "description": "Proyect Manager",
       "avatar": "https://actualidadlaboral.com/wp-content/uploads/2020/01/teletrabajo-1024x576.jpg",
-      "work": 1,
+      "work": 2,
       "gender": "",
       "info": "Estudios en arquitectura de software, 5 años de experiencia",
       "password": "12345",
@@ -133,74 +133,20 @@
         {
           "id": 1,
           "name": "Juan",
+          "license": "USER",
           "charge": "Desarrollador full stack"
         },
         {
           "id": 3,
           "name": "Luza",
+          "license": "ADMIN",
           "charge": "Proyect Manager"
         },
         {
           "id": 8,
           "name": "Oscar",
+          "license": "USER",
           "charge": "diseñadora grafica"
-        }
-      ],
-      "task": [
-        {
-          "id": 1,
-          "admin": 3,
-          "fecha": "2023/01/7",
-          "name": "Coseguir una lagrima de dragon",
-          "user": [
-            {
-              "id": 3,
-              "name": "Luza",
-              "charge": "Proyect Manager"
-            },
-            {
-              "id": 8,
-              "name": "Oscar",
-              "charge": "diseñadora grafica"
-            }
-          ],
-          "description": "morirse, luego revivir y entregarle la lagrima al admin para su acenso"
-        },
-        {
-          "id": 3,
-          "admin": 3,
-          "fecha": "2023/01/7",
-          "name": "Descubrir por que adonay no me espero",
-          "user": [
-            {
-              "id": 3,
-              "name": "Luza",
-              "charge": "Proyect Manager"
-            }
-          ],
-          "description": "Desenterrarlo y preguntarle"
-        },
-        {
-          "id": 4,
-          "admin": 3,
-          "fecha": "2023/01/7",
-          "name": "Hacerle sancandilla a un enano",
-          "user": [
-            {
-              "id": 1,
-              "name": "Juan",
-              "charge": "Desarrollador full stack"
-            }
-          ],
-          "description": "Buscar el enano mas cercano y ponerle el pie para que caiga"
-        },
-        {
-          "id": 2,
-          "admin": 3,
-          "fecha": "2023/01/7",
-          "name": "Hacerle una entrevista a Batman",
-          "user": [],
-          "description": "contactar al superheroe y asignar una cita"
         }
       ]
     },
@@ -212,11 +158,111 @@
           "id": 4,
           "fecha": "2023/01/7",
           "name": "Manuel",
+          "license": "USER",
           "charge": "Desarrollador full stack"
         },
         {
           "id": 5,
           "fecha": "2023/01/7",
+          "name": "Lina",
+          "license": "ADMIN",
+          "charge": "Proyect Manager"
+        },
+        {
+          "id": 7,
+          "name": "Sofia",
+          "license": "USER",
+          "charge": "QA"
+        }
+      ]
+    }
+  ],
+  "task": [
+    {
+      "id": 1,
+      "admin": 3,
+      "fecha": "2023/01/7",
+      "name": "Coseguir una lagrima de dragon",
+      "user": [
+        {
+          "id": 3,
+          "name": "Luza",
+          "charge": "Proyect Manager"
+        },
+        {
+          "id": 8,
+          "name": "Oscar",
+          "charge": "diseñadora grafica"
+        }
+      ],
+      "description": "morirse, luego revivir y entregarle la lagrima al admin para su acenso"
+    },
+    {
+      "id": 2,
+      "admin": 3,
+      "fecha": "2023/01/7",
+      "name": "Descubrir por que adonay no me espero",
+      "user": [
+        {
+          "id": 3,
+          "name": "Luza",
+          "charge": "Proyect Manager"
+        }
+      ],
+      "description": "Desenterrarlo y preguntarle"
+    },
+    {
+      "id": 3,
+      "admin": 3,
+      "fecha": "2023/01/7",
+      "name": "Hacerle sancandilla a un enano",
+      "user": [
+        {
+          "id": 1,
+          "name": "Juan",
+          "charge": "Desarrollador full stack"
+        }
+      ],
+      "description": "Buscar el enano mas cercano y ponerle el pie para que caiga"
+    },
+    {
+      "id": 4,
+      "admin": 3,
+      "fecha": "2023/01/7",
+      "name": "Hacerle una entrevista a Batman",
+      "user": [],
+      "description": "contactar al superheroe y asignar una cita"
+    },
+    {
+      "id": 5,
+      "admin": 3,
+      "fecha": "2023/01/7",
+      "name": "Hacerle una entrevista a Batman2",
+      "user": [],
+      "description": "contactar al superheroe y asignar una cita"
+    },
+    {
+      "id": 1,
+      "fecha": "2023/01/7",
+      "admin": 5,
+      "name": "Descubir que le pasa a lupita",
+      "user": [
+        {
+          "id": 4,
+          "name": "Manuel",
+          "charge": "Desarrollador full stack"
+        }
+      ],
+      "description": "Preguntarle a un familiar de lupita que le pasa y por que quiere bailar"
+    },
+    {
+      "id": 2,
+      "fecha": "2023/01/7",
+      "admin": 5,
+      "name": "Ser millonaria",
+      "user": [
+        {
+          "id": 5,
           "name": "Lina",
           "charge": "Proyect Manager"
         },
@@ -224,76 +270,59 @@
           "id": 7,
           "name": "Sofia",
           "charge": "QA"
-        }
-      ],
-      "task": [
-        {
-          "id": 1,
-          "fecha": "2023/01/7",
-          "admin": 5,
-          "name": "Descubir que le pasa a lupita",
-          "user": [
-            {
-              "id": 4,
-              "name": "Manuel",
-              "charge": "Desarrollador full stack"
-            }
-          ],
-          "description": "Preguntarle a un familiar de lupita que le pasa y por que quiere bailar"
-        },
-        {
-          "id": 2,
-          "fecha": "2023/01/7",
-          "admin": 5,
-          "name": "Ser millonaria",
-          "user": [
-            {
-              "id": 5,
-              "name": "Lina",
-              "charge": "Proyect Manager"
-            },
-            {
-              "id": 7,
-              "name": "Sofia",
-              "charge": "QA"
-            },
-            {
-              "id": 4,
-              "name": "Manuel",
-              "charge": "Desarrollador full stack"
-            }
-          ],
-          "description": "Comprar la loteria mas cercana y ganar"
-        },
-        {
-          "id": 3,
-          "admin": 5,
-          "fecha": "2023/01/7",
-          "name": "Ver betty la fea",
-          "user": [
-            {
-              "id": 4,
-              "name": "Manuel",
-              "charge": "Desarrollador full stack"
-            },
-            {
-              "id": 5,
-              "name": "Lina",
-              "charge": "Proyect Manager"
-            }
-          ],
-          "description": "Buscar los capitulos completos y ver por 4 vez betty la fea"
         },
         {
           "id": 4,
-          "admin": 5,
-          "fecha": "2023/01/7",
-          "name": "ganar discretas",
-          "user": [],
-          "description": "No repetir matematicas discretas"
+          "name": "Manuel",
+          "charge": "Desarrollador full stack"
         }
-      ]
+      ],
+      "description": "Comprar la loteria mas cercana y ganar"
+    },
+    {
+      "id": 3,
+      "admin": 5,
+      "fecha": "2023/01/7",
+      "name": "Ver betty la fea",
+      "user": [
+        {
+          "id": 4,
+          "name": "Manuel",
+          "charge": "Desarrollador full stack"
+        },
+        {
+          "id": 5,
+          "name": "Lina",
+          "charge": "Proyect Manager"
+        }
+      ],
+      "description": "Buscar los capitulos completos y ver por 4 vez betty la fea"
+    },
+    {
+      "id": 4,
+      "admin": 5,
+      "fecha": "2023/01/7",
+      "name": "ganar discretas",
+      "user": [],
+      "description": "No repetir matematicas discretas"
+    },
+    {
+      "admin": 5,
+      "fecha": "2023/06/13",
+      "name": "Ir al polo norte",
+      "user": [
+        null
+      ],
+      "id": 6
+    },
+    {
+      "admin": 5,
+      "fecha": "2023/06/13",
+      "name": "Ir al polo norte",
+      "user": [
+        null
+      ],
+      "id": 7
     }
-  ],
-  "task": []
+  ]
 }
