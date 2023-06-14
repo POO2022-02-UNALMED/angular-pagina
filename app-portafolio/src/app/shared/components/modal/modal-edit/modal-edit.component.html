@@ -1,3 +1,5 @@
+<p>modal-edit works!</p>
+
 <ng-container *ngIf="show">
     <div class="modalt">
         <div class="modalt-content">
@@ -19,9 +21,8 @@
                     <i class="fa-regular fa-clock text-danger"></i>
                     <h6 class="text-danger" >fecha limite:{{task.fecha}}</h6>
                 </div>
-                <button type="button" class="btn" style="background-color: #e30052; color: white;" (click)="modalEdit.showModal(); hideModal()">Editar</button>
-                <button type="button" class="btn bg-danger" style=" color: white;" (click)="delete(task)" >Eliminar</button>
-                <app-modal-edit #modalEdit [task]="task"></app-modal-edit>
+                <button type="button" class="btn" style="background-color: #e30052; color: white;">Guardar</button>
+                <app-modal-task #modalEdit [task]="task"></app-modal-task>
             </div>
         </div>
     </div>

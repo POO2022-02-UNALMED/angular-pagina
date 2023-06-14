@@ -45,12 +45,14 @@ export class UserTaskComponent implements OnInit{
           //  this.task.push(r[i])
           //}
         this.tasks=r
-        
-    })
+        })
+
       }
       else{
         this.exist=false
       }
+
+
     })
 
   }

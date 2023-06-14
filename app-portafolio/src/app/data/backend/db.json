@@ -242,34 +242,29 @@
       "description": "contactar al superheroe y asignar una cita"
     },
     {
-      "id": 7,
-      "fecha": "2023/01/7",
+      "id": 8,
       "admin": 5,
-      "name": "Ser millonaria",
+      "fecha": "2023/01/7",
+      "name": "Adoptar un duende que limpie la casa",
       "user": [
-        {
-          "id": 5,
-          "name": "Lina",
-          "charge": "Proyect Manager"
-        },
-        {
-          "id": 7,
-          "name": "Sofia",
-          "charge": "QA"
-        },
         {
           "id": 4,
           "name": "Manuel",
           "charge": "Desarrollador full stack"
+        },
+        {
+          "id": 5,
+          "name": "Lina",
+          "charge": "Proyect Manager"
         }
       ],
-      "description": "Comprar la loteria mas cercana y ganar"
+      "description": "Buscar los capitulos completos y ver por 4 vez betty la fea"
     },
     {
       "id": 8,
       "admin": 5,
       "fecha": "2023/01/7",
-      "name": "Ver betty la fea",
+      "name": "Ver betty la fea e impedir que betty lea la carta",
       "user": [
         {
           "id": 4,
@@ -288,9 +283,9 @@
       "id": 9,
       "admin": 5,
       "fecha": "2023/01/7",
-      "name": "ganar discretas",
+      "name": "Convocar al pibe y a higita a la seleccion",
       "user": [],
-      "description": "No repetir matematicas discretas"
+      "description": "Retroceder el tiempo y verlos ganar"
     },
     {
       "admin": 5,
