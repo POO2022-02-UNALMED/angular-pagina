@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { UserService } from '@data/services/api/user.service';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
-import { IProyect } from '@shared/components/cards/card-tasks/card-tasks.metadata'
+import { ICoworker, IProyect } from '@shared/components/cards/card-tasks/card-tasks.metadata'
 
 @Component({
   selector: 'app-user-task',
@@ -45,6 +45,23 @@ export class UserTaskComponent implements OnInit{
   }
 
   ponerUsuarios(id:any){
+  }
+
+  searchWorkerForId(id:number){
+    let person = this.proyecto.coworker.find((persona:ICoworker)=>persona.id===1)
+    return person
+  }
+
+  addTask(){
+    let form={
+      admin: 5,
+      fecha: "2023/06/13",
+      name: "Ir al polo norte",
+      user: [this.searchWorkerForId(JSON.parse(localStorage.getItem("currentUserCatask")!).id)]
+    }
+    this.proyectService.addTask(form).subscribe(r=>{
+      console.log(r)
+    })
   }
 
 

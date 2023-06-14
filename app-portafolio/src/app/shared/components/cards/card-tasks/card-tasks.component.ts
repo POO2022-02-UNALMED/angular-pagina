@@ -17,23 +17,22 @@ export class CardTasksComponent {
   ){
   }
 
+  // searchWorkerForId(id:number){
+  //  let person = this.proyecto.coworker.find((persona:ICoworker)=>persona.id===1)
+  //  return person
+  //}
 
-  searchWorkerForId(id:number){
-    let person = this.proyecto.coworker.find((persona:ICoworker)=>persona.id===1)
-    return person
-  }
+  //agregarUser(task:ITask){
+  //  let user = JSON.parse(localStorage.getItem("currentUserCatask")!).id
+  //  let person = this.searchWorkerForId(user)
+  //  let idProyecto = this.proyecto.id
+  //  this.proyectService.addUserToTask(person!, idProyecto, this.proyecto.task).subscribe(r=>{
+  //    console.log(r)
+  //  })
+//
+  //}
 
-  agregarUser(task:ITask){
-    let user = JSON.parse(localStorage.getItem("currentUserCatask")!).id
-    let person = this.searchWorkerForId(user)
-    let idProyecto = this.proyecto.id
-    //console.log("person",person)
-    //console.log("task",task)
-    //console.log("proyecto",idProyecto)
-    this.proyectService.addUserToTask(person!, idProyecto, this.proyecto.task).subscribe(r=>{
-      console.log(r)
-    })
 
-  }
+  
 
 }

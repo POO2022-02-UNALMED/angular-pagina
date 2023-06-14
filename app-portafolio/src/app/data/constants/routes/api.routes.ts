@@ -10,5 +10,8 @@ export const API_ROUTES = {
     },
     DATA_PROYECTS: {
         PROYECTS: `${ENV.url}proyects`
+    },
+    DATA_TASK: {
+        TASKS: `${ENV.url}task`
     }
 };

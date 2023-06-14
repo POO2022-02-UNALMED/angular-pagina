@@ -57,4 +57,10 @@ export class ProyectService {
     //  )
     //  // TODO TERMINAR EL SERVICIO
     //}
+
+
+    addTask(data:any):Observable<any>{
+      return this.http.post(API_ROUTES.DATA_TASK.TASKS, data)
+    }
+
 }

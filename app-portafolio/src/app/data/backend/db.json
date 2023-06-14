@@ -120,12 +120,11 @@
   ],
   "login": [
     {
-      "email": "hola@gmail1.com",
+      "email": "hola@gmail3.com",
       "password": "12345",
-      "id": 1
+      "id": 3
     }
   ],
-
   "proyects": [
     {
       "id": 1,
@@ -150,6 +149,7 @@
       "task": [
         {
           "id": 1,
+          "admin": 3,
           "fecha": "2023/01/7",
           "name": "Coseguir una lagrima de dragon",
           "user": [
@@ -168,6 +168,7 @@
         },
         {
           "id": 3,
+          "admin": 3,
           "fecha": "2023/01/7",
           "name": "Descubrir por que adonay no me espero",
           "user": [
@@ -181,6 +182,7 @@
         },
         {
           "id": 4,
+          "admin": 3,
           "fecha": "2023/01/7",
           "name": "Hacerle sancandilla a un enano",
           "user": [
@@ -194,6 +196,7 @@
         },
         {
           "id": 2,
+          "admin": 3,
           "fecha": "2023/01/7",
           "name": "Hacerle una entrevista a Batman",
           "user": [],
@@ -227,6 +230,7 @@
         {
           "id": 1,
           "fecha": "2023/01/7",
+          "admin": 5,
           "name": "Descubir que le pasa a lupita",
           "user": [
             {
@@ -240,6 +244,7 @@
         {
           "id": 2,
           "fecha": "2023/01/7",
+          "admin": 5,
           "name": "Ser millonaria",
           "user": [
             {
@@ -262,6 +267,7 @@
         },
         {
           "id": 3,
+          "admin": 5,
           "fecha": "2023/01/7",
           "name": "Ver betty la fea",
           "user": [
@@ -280,6 +286,7 @@
         },
         {
           "id": 4,
+          "admin": 5,
           "fecha": "2023/01/7",
           "name": "ganar discretas",
           "user": [],
@@ -288,68 +295,5 @@
       ]
     }
   ],
-
-  "task": [
-    {
-      "id": 1,
-      "fecha": "2023/01/7",
-      "name": "Descubir que le pasa a lupita",
-      "user": [
-        {
-          "id": 4,
-          "name": "Manuel",
-          "charge": "Desarrollador full stack"
-        }
-      ],
-      "description": "Preguntarle a un familiar de lupita que le pasa y por que quiere bailar"
-    },
-    {
-      "id": 2,
-      "fecha": "2023/01/7",
-      "name": "Ser millonaria",
-      "user": [
-        {
-          "id": 5,
-          "name": "Lina",
-          "charge": "Proyect Manager"
-        },
-        {
-          "id": 7,
-          "name": "Sofia",
-          "charge": "QA"
-        },
-        {
-          "id": 4,
-          "name": "Manuel",
-          "charge": "Desarrollador full stack"
-        }
-      ],
-      "description": "Comprar la loteria mas cercana y ganar"
-    },
-    {
-      "id": 3,
-      "fecha": "2023/01/7",
-      "name": "Ver betty la fea",
-      "user": [
-        {
-          "id": 4,
-          "name": "Manuel",
-          "charge": "Desarrollador full stack"
-        },
-        {
-          "id": 5,
-          "name": "Lina",
-          "charge": "Proyect Manager"
-        }
-      ],
-      "description": "Buscar los capitulos completos y ver por 4 vez betty la fea"
-    },
-    {
-      "id": 4,
-      "fecha": "2023/01/7",
-      "name": "ganar discretas",
-      "user": [],
-      "description": "No repetir matematicas discretas"
-    }
-  ]
+  "task": []
 }
