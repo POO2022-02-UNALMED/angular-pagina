@@ -74,6 +74,16 @@ export class ProyectService {
 
     deleteTask(task:ITask):Observable<any>{
       return this.http.delete(API_ROUTES.DATA_TASK.TASKS + '/' + task.id)
+      .pipe(
+        map(r=>{
+          console.log("hola",r)
+          
+        })
+      )
     }
+
+    //reloadComponent():Observable<any>{
+    //  
+    //}
 
 }

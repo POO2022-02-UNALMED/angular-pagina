@@ -242,21 +242,7 @@
       "description": "contactar al superheroe y asignar una cita"
     },
     {
-      "id": 1,
-      "fecha": "2023/01/7",
-      "admin": 5,
-      "name": "Descubir que le pasa a lupita",
-      "user": [
-        {
-          "id": 4,
-          "name": "Manuel",
-          "charge": "Desarrollador full stack"
-        }
-      ],
-      "description": "Preguntarle a un familiar de lupita que le pasa y por que quiere bailar"
-    },
-    {
-      "id": 2,
+      "id": 7,
       "fecha": "2023/01/7",
       "admin": 5,
       "name": "Ser millonaria",
@@ -280,7 +266,7 @@
       "description": "Comprar la loteria mas cercana y ganar"
     },
     {
-      "id": 3,
+      "id": 8,
       "admin": 5,
       "fecha": "2023/01/7",
       "name": "Ver betty la fea",
@@ -299,7 +285,7 @@
       "description": "Buscar los capitulos completos y ver por 4 vez betty la fea"
     },
     {
-      "id": 4,
+      "id": 9,
       "admin": 5,
       "fecha": "2023/01/7",
       "name": "ganar discretas",
@@ -313,16 +299,7 @@
       "user": [
         null
       ],
-      "id": 6
-    },
-    {
-      "admin": 5,
-      "fecha": "2023/06/13",
-      "name": "Ir al polo norte",
-      "user": [
-        null
-      ],
-      "id": 7
+      "id": 10
     }
   ]
 }

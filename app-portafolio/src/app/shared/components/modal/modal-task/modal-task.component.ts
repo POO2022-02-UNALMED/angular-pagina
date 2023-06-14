@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 
@@ -24,6 +24,13 @@ export class ModalTaskComponent implements OnInit {
 
   hideModal(){
     this.show = false
+  }
+
+  delete(task:ITask){
+    this.proyectService.deleteTask(task).subscribe()
+    this.ngOnInit
+    this.hideModal()
+    
   }
 
 

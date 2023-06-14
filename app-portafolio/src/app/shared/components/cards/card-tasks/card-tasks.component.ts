@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICoworker, IProyect, ITask } from './card-tasks.metadata';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { range } from 'rxjs';
@@ -6,19 +6,18 @@ import { range } from 'rxjs';
 @Component({
   selector: 'app-card-tasks',
   templateUrl: './card-tasks.component.html',
-  styleUrls: ['./card-tasks.component.css']
+  styleUrls: ['./card-tasks.component.css'],
 })
 export class CardTasksComponent implements OnInit{
   @Input() task:ITask
-  
 
   constructor(
     private proyectService: ProyectService
   ){
   }
+  
 
   ngOnInit(): void {
-    console.log(this.task)
     //let code = this.proyecto.coworker.find((persona:ICoworker)=>persona.license==="ADMIN")
 //
     //this.proyectService.searchTasks(code!.id).subscribe(r=>{

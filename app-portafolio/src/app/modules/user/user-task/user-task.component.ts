@@ -44,7 +44,8 @@ export class UserTaskComponent implements OnInit{
           //for(let i=0; i< r.length; i++){
           //  this.task.push(r[i])
           //}
-          this.tasks=r
+        this.tasks=r
+        
     })
       }
       else{
@@ -74,6 +75,10 @@ export class UserTaskComponent implements OnInit{
       this.ngOnInit();
     })
   }
+
+  reload() {
+    this.ngOnInit;
+    }
 
 
 }
