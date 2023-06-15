@@ -1,30 +1,30 @@
 <ng-container *ngIf="show">
-    <div class="modalt">
-        <div class="modalt-content">
-            <div class="modalt-header">
-                <p class="title">{{task.name}}</p>
     
-                <svg xnlns="https://www.w3.org/2000/svg" width="113.536" height="113.536" viewBox="0 0 103.536 103.536" (click)="show=false">
-                    <g id="Group_65" data_name="Group 65" transform="translate(-142.732 -214.732)">
-                        <line id="Line_7" data-name="Line 7" x2="100" y2="100" transform="translate(144.5 216.5)" fill="none" stroke="#000"
-                        stroke-width="5"/>
-                        <line id="Line_8" data-name="Line 8" y1="99" x2="99" transform="translate(144.5 216.5)" fill="none" stroke="#000"
-                        stroke-width="5"/>
-                    </g>
-                </svg>
-            </div>
-            <div class="modalt-container">
-                <p>{{task.description}}</p>
-                <div class="footer" style="display: flex; padding-top: 10px;">
-                    <i class="fa-regular fa-clock text-danger"></i>
-                    <h6 class="text-danger" >fecha limite:{{task.fecha}}</h6>
+        <div class="modalt">
+            <div class="modalt-content">
+                <div class="modalt-header">
+                    <p class="title">{{task.name}}</p>
+        
+                    <svg xnlns="https://www.w3.org/2000/svg" width="113.536" height="113.536" viewBox="0 0 103.536 103.536" (click)="show=false">
+                        <g id="Group_65" data_name="Group 65" transform="translate(-142.732 -214.732)">
+                            <line id="Line_7" data-name="Line 7" x2="100" y2="100" transform="translate(144.5 216.5)" fill="none" stroke="#000"
+                            stroke-width="5"/>
+                            <line id="Line_8" data-name="Line 8" y1="99" x2="99" transform="translate(144.5 216.5)" fill="none" stroke="#000"
+                            stroke-width="5"/>
+                        </g>
+                    </svg>
                 </div>
-                <button type="button" class="btn" style="background-color: #e30052; color: white;" (click)="modal.showModal()">Editar</button>
-                <button type="button" class="btn bg-danger" style=" color: white;" (click)="delete(task)">Eliminar</button>
-                <app-modal-edit #modal [task]="task"></app-modal-edit>
+                <div class="modalt-container">
+                    <p>{{task.description}}</p>
+                    <div class="footer" style="display: flex; padding-top: 10px;">
+                        <i class="fa-regular fa-clock text-danger"></i>
+                        <h6 class="text-danger" >fecha limite:{{task.fecha}}</h6>
+                    </div>
+                    <button type="button" class="btn" style="background-color: #e30052; color: white;" (click)="modal.showModal()">Editar</button>
+                    <button type="button" class="btn bg-danger" style=" color: white;" (click)="delete(task)">Eliminar</button>
+                    <app-modal-edit #modal [task]="task" (enviar)="recibirMensaje()"></app-modal-edit>
+                </div>
             </div>
         </div>
-    </div>
+
 </ng-container>
-
-

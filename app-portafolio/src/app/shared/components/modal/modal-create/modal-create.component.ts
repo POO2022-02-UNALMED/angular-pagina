@@ -1,23 +1,17 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
-import { ProyectService } from '@data/services/api/proyect.service';
-import { ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 
 @Component({
-  selector: 'app-modal-edit',
-  templateUrl: './modal-edit.component.html',
-  styleUrls: ['./modal-edit.component.css']
+  selector: 'app-modal-create',
+  templateUrl: './modal-create.component.html',
+  styleUrls: ['./modal-create.component.css']
 })
-export class ModalEditComponent {
+export class ModalCreateComponent {
   public show = false
-  @Input() task:ITask
   registerForm!: FormGroup
-  @Output() enviar: EventEmitter<void> = new EventEmitter<void>();
+  @Input() workers:Array<ICoworker>
 
-
-
-
-  msgError: string
 
 constructor(
   private formBuilder:FormBuilder,
@@ -28,9 +22,9 @@ constructor(
 ngOnInit(): void {
   //validations 
   this.registerForm = this.formBuilder.group ({
-    firstName: [ `${this.task.name}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(49)]],
-    description: [ `${this.task.description}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(60)]],
-    date: [``] ,
+    firstName: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(50)]],
+    description: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(60)]],
+    date: [``,[Validators.required]] ,
   })
 }
 
@@ -61,7 +55,6 @@ autenticate() {
     console.log('edit')
     this.hideModal()
     }else {
-    this.msgError= "*Formulario invalido. llene los espacios que se piden"
     }
   }
 
@@ -72,7 +65,8 @@ autenticate() {
 
   hideModal(){
     this.show = false
-    this.enviar.emit()
   }
 
+
+  
 }

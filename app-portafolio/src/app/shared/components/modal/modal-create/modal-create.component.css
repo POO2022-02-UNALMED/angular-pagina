@@ -10,27 +10,26 @@
     align-items: center;
     justify-content: center;
     overflow-y: auto;
-    z-index: 999999;
+    z-index: 9999999999;
 
 }
 .modalt-content{
     width: 100%;
-    max-width: 300px;
+    max-width: 650px;
 }
 
 .modalt-header{
-    min-height: 93px;
+    min-height: 85px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 32px;
-    background-color: #fff;
+    padding: 0 22px;
     background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
-    /*background-image: radial-gradient(circle at center center, #e6e6e6, #fff), repeating-radial-gradient(circle at center center,
-    #e6e6e6, #e6e6e6, 20px, transparent 40px, transparent 20px);*/
+    background-color: #ffffffab;;
     border-radius: 20px 20px 0 0;
+    border-color: black;
 }
 
 svg {
@@ -44,10 +43,13 @@ svg:hover{
 }
 
 .title{
-    padding-top: 25px;
+    padding-top: 15px;
     font-size: 24px;
     font-weight: 600px;
     color: black;
+    margin: auto;
+    font-weight: 300;
+    padding-bottom: 20px;
 }
 
 .modalt-container{
@@ -59,6 +61,22 @@ svg:hover{
     min-height: 170px;
 
 }
+.scroll{
+    max-height: 300px;
+    max-width: 250px;
+    margin: auto;
+}
+
+@media screen and (max-width:530px){
+    .scroll{
+    max-height: 300px;
+    max-width: 4000px;
+    margin: auto;
+}
+}
+
+
+
 
 i{
     padding-top: 2.5px; 
@@ -102,4 +120,27 @@ textarea{
 
 button{
     align-items: center;
+    margin-left: auto;
+}
+
+small{
+    font-size: 12px;
+}
+
+img{
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    margin: auto;
+    margin-left: 5%;
+}
+
+.name{
+    height: 30px;
+    width: 70px;
+}
+
+.workers{
+    align-items: center;
+    text-align: center;
 }

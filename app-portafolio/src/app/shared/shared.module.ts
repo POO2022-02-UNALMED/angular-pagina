@@ -6,10 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import * as fromComponents from './components';
 import * as fromPipes from './pipes';
 import { RouterModule } from '@angular/router';
-import { ModalEditComponent } from './components/modal/modal-edit/modal-edit.component';
+import { SelectImgComponent } from './components/select/select-img/select-img.component';
+import { SelectCoworkerComponent } from './components/select/select-coworker/select-coworker.component';
 
 @NgModule({
-  declarations: [...fromComponents.components, ...fromPipes.pipes, ModalEditComponent],
+  declarations: [...fromComponents.components, ...fromPipes.pipes, SelectImgComponent, SelectCoworkerComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,

@@ -11,6 +11,7 @@ export interface ICoworker{
     name: string;
     license: string,
     charge: string;
+    avatar: string
 }
 
 export interface ITask{

@@ -7,9 +7,15 @@ import { range } from 'rxjs';
   selector: 'app-card-tasks',
   templateUrl: './card-tasks.component.html',
   styleUrls: ['./card-tasks.component.css'],
+  template: `
+    <app-child-component
+      (edit)="taskEdit($event)">
+    </app-child-component>
+  `
 })
 export class CardTasksComponent implements OnInit{
   @Input() task:ITask
+  edit=false
 
   constructor(
     private proyectService: ProyectService
@@ -46,7 +52,11 @@ export class CardTasksComponent implements OnInit{
 //
   //}
 
-
+  taskEdit(){
+    //modalEdit.showModal()
+    this.edit=true
+    console.log('editando')
+  }
   
 
 }

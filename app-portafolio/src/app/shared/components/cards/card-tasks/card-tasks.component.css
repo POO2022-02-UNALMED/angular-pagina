@@ -41,6 +41,7 @@
 .botones{
     font-weight: 300;
     left: auto;
+    margin-left: 10px;
 }
 
 .btn{

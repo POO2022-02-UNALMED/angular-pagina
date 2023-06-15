@@ -2,9 +2,9 @@
     <div class="modalt">
         <div class="modalt-content">
             <div class="modalt-header">
-                <p class="title">{{task.name}}</p>
+                <p class="title">Editar Tarea</p>
                 
-                <svg xnlns="https://www.w3.org/2000/svg" width="113.536" height="113.536" viewBox="0 0 103.536 103.536" (click)="show=false">
+                <svg xnlns="https://www.w3.org/2000/svg" width="113.536" height="113.536" viewBox="0 0 103.536 103.536" (click)="this.hideModal()">
                     <g id="Group_65" data_name="Group 65" transform="translate(-142.732 -214.732)">
                         <line id="Line_7" data-name="Line 7" x2="100" y2="100" transform="translate(144.5 216.5)" fill="none" stroke="#000"
                         stroke-width="5"/>
@@ -14,11 +14,74 @@
                 </svg>
             </div>
             <div class="modalt-container">
-                <p>holaaaaaaaaaaaaaaa</p>
-                <div class="footer" style="display: flex; padding-top: 10px;">
-                    <h6 class="text-danger" >holi</h6>
+                <!--
+                    <form [formGroup]="editForm">
+                
+                    <small class="text-danger rounded">{{this.msgError}}</small>
+                    <div class="mb-3">
+                        <label class="form-label">Titulo*:</label>
+                        <input type="text" class="form-control" formControlName="title" (click)="onEdit('tile')" [class.error]="editForm.controls['tile'].touched && editForm.hasError('required','title')" placeholder="hola">
+                        
+                            <small *ngIf="editForm.controls['title'].touched && editForm.hasError('required','tile')" class="text-danger rounded">*Nombre es requerido</small>
+                        <small *ngIf="editForm.controls['title'].touched && editForm.hasError('pattern','tile')" class="text-danger rounded">*Nombre entre 3 y 10 caracteres</small>
+                        
+                    </div>
+            
+                    <div class="mb-3">
+                        <label class="form-label">Descripcion*:</label>
+                            <input type="text" class="form-control" formControlName="description" (click)="onEdit('description')" [class.error]="editForm.controls['description'].touched && editForm.hasError('required','description')" >
+                          
+                            <small *ngIf="editForm.controls['description'].touched && editForm.hasError('pattern','description')" class="text-danger rounded">*Apellido de máximo 20 caracteres</small>
+                        
+                        
+                    </div>
+            
+                    <div class="mb-3">
+                        <label class="form-label">Fecha limite*:</label>
+                        <input type="date" class="form-control" formControlName="date" (click)="onEdit('date')" [class.error]="editForm.controls['date'].touched && editForm.hasError('required','date')" >
+                        
+                            <small *ngIf="editForm.controls['date'].touched && editForm.hasError('required','date')" class="text-danger rounded">*Email es requerido, debe ser un email valido</small>
+                        
+                        
+                    </div>
+            
+                    <div class="mb-3">
+                    <button type="submit" class="btn" style="background-color: #e30052; color: white;" >Guardar</button>
+                    </div>
+            
+                </form>
+                -->
+
+                <div class="form">
+                    <form [formGroup]="registerForm">
+                        <small class="text-danger rounded">{{this.msgError}}</small>
+                        <div class="mb-3">
+                            <label class="form-label">Titulo*:</label>
+                            <input type="text" class="form-control" formControlName="firstName" (click)="onSingup('firstName')" [class.error]="registerForm.controls['firstName'].touched && registerForm.hasError('required','firstName')" placeholder="Pepito">
+                            <!--<small *ngIf="registerForm.controls['firstName'].touched && registerForm.hasError('required','firstName')" class="text-danger rounded">*Nombre es requerido</small>-->
+                            <small *ngIf="registerForm.controls['firstName'].touched && registerForm.hasError('pattern','firstName')" class="text-danger rounded">*Nombre entre 3 y 10 caracteres</small>
+                        </div>
+                
+                        <div class="mb-3">
+                            <label class="form-label">Descripcion*:</label>
+                            <textarea type="text" row="3" class="form-control" formControlName="description" (click)="onSingup('description')" [class.error]="registerForm.controls['description'].touched && registerForm.hasError('required','description')" placeholder="(opcional)"></textarea>
+                            <small *ngIf="registerForm.controls['description'].touched && registerForm.hasError('description')" class="text-danger rounded">*Apellido de máximo 10 caracteres</small>
+                        </div>
+                
+                        <div class="mb-3">
+                            <label class="form-label">Fecha limite*:</label>
+                            <input type="date" class="form-control" formControlName="date" (click)="onSingup('date')" [class.error]="registerForm.controls['date'].touched && registerForm.hasError('required','date')" placeholder="ejemplo@gmail.com" >
+                            <small *ngIf="registerForm.controls['date'].touched && registerForm.hasError('required','date')" class="text-danger rounded">*Email es requerido, debe ser un email valido</small>
+                        </div>
+                
+                        <div class="mb-3">
+                            <button type="submit" class="btn" style="background-color: #e30052; color: white;" (click)="autenticate()">Guardar</button>
+                        </div>
+                
+                    </form>
                 </div>
-                <button type="button" class="btn" style="background-color: #e30052; color: white;">Guardar</button>
+
+
             </div>
         </div>
     </div>

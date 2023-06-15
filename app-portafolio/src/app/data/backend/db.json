@@ -34,7 +34,7 @@
       "age": 60,
       "description": "Proyect Manager",
       "avatar": "https://watermark.lovepik.com/photo/20211122/large/lovepik-business-people-who-are-working-on-computers-are-picture_500709606.jpg",
-      "work": 2,
+      "work": 1,
       "gender": "F",
       "info": "20 años de experiencia. graduada de la u de eafit. Doctorado en seguridad web",
       "password": "12345",
@@ -120,9 +120,9 @@
   ],
   "login": [
     {
-      "email": "hola@gmail3.com",
+      "email": "hola@gmail5.com",
       "password": "12345",
-      "id": 3
+      "id": 5
     }
   ],
   "proyects": [
@@ -134,19 +134,22 @@
           "id": 1,
           "name": "Juan",
           "license": "USER",
-          "charge": "Desarrollador full stack"
+          "charge": "Desarrollador full stack",
+          "avatar": "https://www.mintrabajo.gov.co/documents/20147/169985/WhatsApp+Image+2021-05-13+at+7.31.52+AM.jpeg/d54522fe-bd47-3820-71cc-9d4057e816b7?t=1620914777771"
         },
         {
           "id": 3,
           "name": "Luza",
           "license": "ADMIN",
-          "charge": "Proyect Manager"
+          "charge": "Proyect Manager",
+          "avatar": "https://watermark.lovepik.com/photo/20211122/large/lovepik-business-people-who-are-working-on-computers-are-picture_500709606.jpg"
         },
         {
           "id": 8,
           "name": "Oscar",
           "license": "USER",
-          "charge": "diseñadora grafica"
+          "charge": "diseñadora grafica",
+          "avatar": "https://capitalhumano.emol.com/wp-content/uploads/2017/03/productividad-home-office.jpg"
         }
       ]
     },
@@ -156,23 +159,24 @@
       "coworker": [
         {
           "id": 4,
-          "fecha": "2023/01/7",
           "name": "Manuel",
           "license": "USER",
-          "charge": "Desarrollador full stack"
+          "charge": "Desarrollador full stack",
+          "avatar": "https://resizer.iproimg.com/unsafe/640x/filters:format(webp)/https://assets.iproup.com/assets/jpg/2021/06/19482_landscape.jpg"
         },
         {
           "id": 5,
-          "fecha": "2023/01/7",
           "name": "Lina",
           "license": "ADMIN",
-          "charge": "Proyect Manager"
+          "charge": "Proyect Manager",
+          "avatar": "https://actualidadlaboral.com/wp-content/uploads/2020/01/teletrabajo-1024x576.jpg"
         },
         {
           "id": 7,
           "name": "Sofia",
           "license": "USER",
-          "charge": "QA"
+          "charge": "QA",
+          "avatar": "https://people.acciona.com/wp-content/uploads/2020/06/beautiful-blur-casual-935756-min-2000x968.jpg"
         }
       ]
     }
