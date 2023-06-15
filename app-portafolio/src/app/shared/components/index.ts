@@ -8,6 +8,7 @@ import { CardTasksComponent } from "./cards/card-tasks/card-tasks.component";
 import { ModalTaskComponent } from "./modal/modal-task/modal-task.component";
 import { ModalEditComponent } from "./modal/modal-edit/modal-edit.component";
 import { ModalCreateComponent } from "./modal/modal-create/modal-create.component";
+import { SelectCoworkerComponent } from "./select/select-coworker/select-coworker.component";
 
 export const components: any[] = [
     TitleH1Component,
@@ -18,7 +19,8 @@ export const components: any[] = [
     CardTasksComponent,
     ModalTaskComponent,
     ModalEditComponent,
-    ModalCreateComponent
+    ModalCreateComponent,
+    SelectCoworkerComponent
 ];
 
 // Export all components
@@ -32,3 +34,4 @@ export * from './cards/card-tasks/card-tasks.component'
 export * from './modal/modal-task/modal-task.component'
 export * from './modal/modal-edit/modal-edit.component'
 export * from './modal/modal-create/modal-create.component'
+export * from './select/select-coworker/select-coworker.component'
