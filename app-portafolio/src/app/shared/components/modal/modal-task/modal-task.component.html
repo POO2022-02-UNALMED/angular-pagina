@@ -22,7 +22,7 @@
                     </div>
                     <button type="button" class="btn" style="background-color: #e30052; color: white;" (click)="modal.showModal()">Editar</button>
                     <button type="button" class="btn bg-danger" style=" color: white;" (click)="delete(task)">Eliminar</button>
-                    <app-modal-edit #modal [task]="task" (enviar)="recibirMensaje()"></app-modal-edit>
+                    <app-modal-edit #modal [task]="task" [workers]="this.workers" (enviar)="recibirMensaje()"></app-modal-edit>
                 </div>
             </div>
         </div>

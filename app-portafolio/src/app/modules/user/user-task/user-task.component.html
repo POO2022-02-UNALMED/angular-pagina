@@ -29,6 +29,7 @@
     
    <img src="assets/images/task/add-button.png" (click)="modalCreate.showModal()">
    <app-modal-create #modalCreate [workers]="this.proyecto.coworker" (refresh)="reload()"></app-modal-create>
+
 <!--
     <ng-container *ngFor="let coworker of proyecto.coworker"> 
         {{ponerUsuarios(coworker.id)}}  

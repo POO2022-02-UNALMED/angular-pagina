@@ -10,6 +10,7 @@ import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks
 export class ModalTaskComponent implements OnInit {
   public show = false
   @Input() task:ITask
+  @Input() workers:Array<ICoworker>
   @Output() edit = new EventEmitter<void>();
   @Output() del = new EventEmitter<void>();
 

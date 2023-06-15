@@ -36,10 +36,9 @@
                 </div>
                 
             </div>
-            <app-modal-task #modalTask [task]="task" (del)="del()"></app-modal-task>
-            <app-modal-edit #modalEdit [workers]="this.workers" [task]="task" *ngIf="edit" ></app-modal-edit>
         </ng-container> 
-
+        <app-modal-task #modalTask [workers]="this.workers" [task]="task" (del)="del()"></app-modal-task>
+        <app-modal-edit #modalEdit [task]="task" *ngIf="edit" ></app-modal-edit>
         
 </div>
 

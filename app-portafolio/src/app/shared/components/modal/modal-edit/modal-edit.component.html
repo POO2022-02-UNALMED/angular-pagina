@@ -73,7 +73,7 @@
     <div class="modalt">
         <div class="modalt-content">
             <div class="modalt-header">
-                <p class="name">Crear Tarea</p>
+                <p class="name">Editar Tarea</p>
                 
                 <svg xnlns="https://www.w3.org/2000/svg" width="113.536" height="113.536" viewBox="0 0 103.536 103.536" (click)="this.hideModal()">
                     <g id="Group_65" data_name="Group 65" transform="translate(-142.732 -214.732)">
@@ -119,7 +119,6 @@
                                 <label class="form-label">Elige a tus colaboradores*:</label>
                                 <div class="overflow-auto scroll">
                                     <div class="row">
-                                        {{this.workers|json}}
                                             <ng-container  *ngFor="let worker of this.workers">
                                                 <div class="col-6 col-sm-4 col-md-4 col-xl-4 workers">
                                                     <app-select-coworker [worker]="worker" (enviar)="recibirMensaje($event)"></app-select-coworker>

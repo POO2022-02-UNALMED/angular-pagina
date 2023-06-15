@@ -10,27 +10,27 @@
     align-items: center;
     justify-content: center;
     overflow-y: auto;
-    z-index: 999999;
+    z-index: 9999999999;
 
 }
 .modalt-content{
     width: 100%;
-    max-width: 650px;
+    max-width: 700px;
 }
 
 .modalt-header{
-    min-height: 93px;
+    min-height: 85px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 32px;
-    background-color: #fff;
+    padding: 0 22px;
     background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
-    /*background-image: radial-gradient(circle at center center, #e6e6e6, #fff), repeating-radial-gradient(circle at center center,
-    #e6e6e6, #e6e6e6, 20px, transparent 40px, transparent 20px);*/
+    background-color: #ffffff;;
     border-radius: 20px 20px 0 0;
+    border-color: black;
+    font-size: 44px;
 }
 
 svg {
@@ -44,10 +44,13 @@ svg:hover{
 }
 
 .title{
-    padding-top: 25px;
+    padding-top: 15px;
     font-size: 24px;
     font-weight: 600px;
     color: black;
+    margin: auto;
+    font-weight: 300;
+    padding-bottom: 20px;
 }
 
 .modalt-container{
@@ -60,6 +63,30 @@ svg:hover{
 
 }
 
+.name{
+    font-size: 34px;
+    font-weight: 300;
+    margin: auto;
+}
+
+
+.scroll{
+    height: 215px;
+    width: 250px;
+    margin: auto;
+}
+
+@media screen and (max-width:530px){
+    .scroll{
+    max-height: 300px;
+    max-width: 4000px;
+    margin: auto;
+}
+}
+
+
+
+
 i{
     padding-top: 2.5px; 
     padding-right: 5px ;
@@ -71,13 +98,9 @@ h6{
     font-weight:bold;
 }
 
-p{
-    font-size: 14px;
-}
-
 .btn{
-    margin-right: 15px;
     margin-top: 15px;
+    margin-left: auto;
 }
 
 label{
@@ -100,6 +123,7 @@ textarea{
     font-size: small;
 }
 
-button{
-    align-items: center;
+
+small{
+    font-size: 12px;
 }

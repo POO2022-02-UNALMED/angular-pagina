@@ -89,11 +89,11 @@ autenticate() {
 
   showModal(){
     this.show = true
-    this.ngOnInit()
   }
 
   hideModal(){
     this.show = false
+    this.ngOnInit()
     this.enviar.emit()
   }
 
