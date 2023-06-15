@@ -282,29 +282,6 @@
         }
       ],
       "description": "Buscar los capitulos completos y ver por 4 vez betty la fea"
-    },
-    {
-      "id": 8,
-      "admin": 5,
-      "date": "2023/01/7",
-      "name": "Convocar al pibe y a higita a la seleccion",
-      "user": [],
-      "description": "Retroceder el tiempo y verlos ganar"
-    },
-    {
-      "admin": 5,
-      "date": "2023/06/13",
-      "name": "Ir al polo norte",
-      "user": [],
-      "id": 10
-    },
-    {
-      "admin": 5,
-      "name": "12345",
-      "description": "12345",
-      "date": "2023-06-15",
-      "user": [],
-      "id": 11
     }
   ]
 }

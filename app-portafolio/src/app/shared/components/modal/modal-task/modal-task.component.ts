@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProyectService } from '@data/services/api/proyect.service';
-import { ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
+import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 
 @Component({
   selector: 'app-modal-task',

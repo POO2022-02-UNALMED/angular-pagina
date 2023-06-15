@@ -10,7 +10,9 @@ import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks
 })
 export class ModalEditComponent {
   public show = false
+  @Input() workers:Array<ICoworker>
   @Input() task:ITask
+  
   editForm!: FormGroup
   @Output() enviar: EventEmitter<void> = new EventEmitter<void>();
   user:Array<ICoworker> =[]
@@ -28,9 +30,10 @@ constructor(
 
 
 ngOnInit(): void {
+  console.log("holiss",this.workers)
   //validations 
   this.editForm = this.formBuilder.group ({
-    firstName: [ `${this.task.name}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(49)]],
+    name: [ `${this.task.name}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(49)]],
     description: [ `${this.task.description}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(60)]],
     date: [``] ,
   })
@@ -86,6 +89,7 @@ autenticate() {
 
   showModal(){
     this.show = true
+    this.ngOnInit()
   }
 
   hideModal(){

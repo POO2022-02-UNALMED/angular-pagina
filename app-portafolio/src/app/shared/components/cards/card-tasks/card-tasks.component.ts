@@ -10,6 +10,7 @@ import { range } from 'rxjs';
 })
 export class CardTasksComponent implements OnInit{
   @Output() delete = new EventEmitter<void>();
+  @Input() workers:Array<ICoworker>
   @Input() task:ITask
   edit=false
 
@@ -20,6 +21,7 @@ export class CardTasksComponent implements OnInit{
   
 
   ngOnInit(): void {
+    console.log(this.workers)
     //let code = this.proyecto.coworker.find((persona:ICoworker)=>persona.license==="ADMIN")
 //
     //this.proyectService.searchTasks(code!.id).subscribe(r=>{
@@ -27,7 +29,6 @@ export class CardTasksComponent implements OnInit{
     //  //  this.task.push(r[i])
     //  //}
     //  this.task.push(r[0])
-    //  console.log(this.task)
     //})
   }
 
