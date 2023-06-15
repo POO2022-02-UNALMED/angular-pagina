@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ProyectService } from '@data/services/api/proyect.service';
 import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 
 @Component({
@@ -8,33 +9,43 @@ import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks
   styleUrls: ['./modal-create.component.css']
 })
 export class ModalCreateComponent {
+
   public show = false
-  registerForm!: FormGroup
+  taskForm!: FormGroup
   @Input() workers:Array<ICoworker>
+  user:Array<ICoworker> =[]
+  id:number
 
 
 constructor(
   private formBuilder:FormBuilder,
+  private proyectService:ProyectService
   ){}
 
 
 
 ngOnInit(): void {
+
+
   //validations 
-  this.registerForm = this.formBuilder.group ({
-    firstName: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(50)]],
+  this.taskForm = this.formBuilder.group ({
+    admin: [this.workers.find((u:ICoworker)=>u.license==='ADMIN')!.id],
+    name: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(50)]],
     description: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(60)]],
-    date: [``,[Validators.required]] ,
+    date: [``,[Validators.required]],
+    user:[``]
   })
+
+
 }
 
 
 onSingup(formfield: string){
-  if(this.registerForm.valid){
+  if(this.taskForm.valid){
 
     return
   }else {
-    this.validateAllFormFields(this.registerForm, formfield)
+    this.validateAllFormFields(this.taskForm, formfield)
   } 
 }
  
@@ -42,7 +53,7 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
   Object.keys(formGroup.controls).forEach(field =>{
     const control = formGroup.get(field);
     if (control instanceof FormControl) {
-      this.registerForm.controls[formfield].markAsDirty({onlySelf: true});
+      this.taskForm.controls[formfield].markAsDirty({onlySelf: true});
     } else if (control instanceof FormGroup) {
       this.validateAllFormFields(control, formfield)
     }
@@ -50,9 +61,11 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 }
 
 autenticate() {
-  this.registerForm.markAllAsTouched()
-  if(this.registerForm.valid){
-    console.log('edit')
+  this.taskForm.markAllAsTouched()
+  if(this.taskForm.valid){
+    this.taskForm.controls['user'].setValue(this.user)
+    this.proyectService.addTask(this.taskForm.value).subscribe()
+    console.log(this.taskForm.value)
     this.hideModal()
     }else {
     }
@@ -65,8 +78,23 @@ autenticate() {
 
   hideModal(){
     this.show = false
+    this.user = []
   }
 
-
+  recibirMensaje(user:ICoworker){
+    if (this.user.find((u:ICoworker)=>user.id===u.id)){
+      
+      this.user.forEach((element, index)=>{
+        if(element === user){
+          delete this.user[index];}
+     })
+     this.user.pop()
+     
+    }else{
+      this.user.push(user)
+    }
+    
+    console.log(this.user)
+  }
   
 }

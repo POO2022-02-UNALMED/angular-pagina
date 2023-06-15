@@ -16,27 +16,27 @@
             <div class="modalt-container">
 
                 <div class="form">
-                    <form [formGroup]="registerForm">
+                    <form [formGroup]="taskForm">
                         <div class="row">
                             <div class="col">
 
                                 <div class="mb-3">
                                     <label class="form-label">Titulo*:</label>
-                                    <input type="text" class="form-control" formControlName="firstName" (click)="onSingup('firstName')" [class.error]="registerForm.controls['firstName'].touched && registerForm.hasError('required','firstName')" placeholder="nombre del proyecto">
+                                    <input type="text" class="form-control" formControlName="name" (click)="onSingup('name')" [class.error]="taskForm.controls['name'].touched && taskForm.hasError('required','name')" placeholder="nombre del proyecto">
                                     <!--<small *ngIf="registerForm.controls['firstName'].touched && registerForm.hasError('required','firstName')" class="text-danger rounded">*Nombre es requerido</small>-->
-                                    <small *ngIf="registerForm.controls['firstName'].touched && registerForm.hasError('required','firstName')" class="text-danger rounded">*Tilulo entre 5 y 50 caracteres</small>
+                                    <small *ngIf="taskForm.controls['name'].touched && taskForm.hasError('required','name')" class="text-danger rounded">*Tilulo entre 5 y 50 caracteres</small>
                                 </div>
                         
                                 <div class="mb-3">
                                     <label class="form-label">Descripcion*:</label>
-                                    <textarea type="text" row="3" class="form-control" formControlName="description" (click)="onSingup('description')" [class.error]="registerForm.controls['description'].touched && registerForm.hasError('required','description')" placeholder="Agregue una descripcion de su tarea" maxlength="60" ></textarea>
-                                    <small *ngIf="registerForm.controls['description'].touched && registerForm.hasError('required','description')" class="text-danger rounded">*Descripcion entre 5 y 60 caracteres</small>
+                                    <textarea type="text" row="3" class="form-control" formControlName="description" (click)="onSingup('description')" [class.error]="taskForm.controls['description'].touched && taskForm.hasError('required','description')" placeholder="Agregue una descripcion de su tarea" maxlength="60" ></textarea>
+                                    <small *ngIf="taskForm.controls['description'].touched && taskForm.hasError('required','description')" class="text-danger rounded">*Descripcion entre 5 y 60 caracteres</small>
                                 </div>
                         
                                 <div class="mb-3">
                                     <label class="form-label">Fecha limite*:</label>
-                                    <input type="date" class="form-control" formControlName="date" (click)="onSingup('date')" [class.error]="registerForm.controls['date'].touched && registerForm.hasError('required','date')" placeholder="ejemplo@gmail.com" >
-                                    <small *ngIf="registerForm.controls['date'].touched && registerForm.hasError('required','date')" class="text-danger rounded">*Fecha requerida</small>
+                                    <input type="date" class="form-control" formControlName="date" (click)="onSingup('date')" [class.error]="taskForm.controls['date'].touched && taskForm.hasError('required','date')" placeholder="ejemplo@gmail.com" >
+                                    <small *ngIf="taskForm.controls['date'].touched && taskForm.hasError('required','date')" class="text-danger rounded">*Fecha requerida</small>
                                 </div>
                         
                                 <div class="mb-3">
@@ -50,8 +50,10 @@
                                     <div class="row">
                                             <ng-container  *ngFor="let worker of this.workers">
                                                 <div class="col-6 col-sm-4 col-md-4 col-xl-4 workers">
-                                                    <img src="{{worker.avatar}}"> 
-                                                    <label class="name">{{worker.name}}</label>
+                                                    <!-- <img src="{{worker.avatar}}"> 
+                                                    <label class="name">{{worker.name}}</label> -->
+                                                    <app-select-coworker [worker]="worker" (enviar)="recibirMensaje($event)"></app-select-coworker> 
+
                                                 </div>
                                                     
                                             </ng-container>

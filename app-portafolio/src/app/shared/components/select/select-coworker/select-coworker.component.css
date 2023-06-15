@@ -1,0 +1,31 @@
+
+img{
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    margin: auto;
+    margin-left: 5%;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.name{
+    height: 30px;
+    width: 70px;
+}
+
+label{
+    font-size: small;
+    text-align: center;
+}
+
+.worker{
+    align-items: center;
+    text-align: center;
+}
+
+.selected{
+    box-shadow: 0px 0px 6px 2px #000000;
+    border-color: #000000;
+    
+}

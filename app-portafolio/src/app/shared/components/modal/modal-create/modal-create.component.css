@@ -62,7 +62,7 @@ svg:hover{
 
 }
 .scroll{
-    max-height: 300px;
+    max-height: 260px;
     max-width: 250px;
     margin: auto;
 }
@@ -125,22 +125,4 @@ button{
 
 small{
     font-size: 12px;
-}
-
-img{
-    height: 70px;
-    width: 70px;
-    border-radius: 100%;
-    margin: auto;
-    margin-left: 5%;
-}
-
-.name{
-    height: 30px;
-    width: 70px;
-}
-
-.workers{
-    align-items: center;
-    text-align: center;
 }
