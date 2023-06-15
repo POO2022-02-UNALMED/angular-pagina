@@ -25,6 +25,7 @@ export class UserTaskComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    console.log('oninit')
     let work = JSON.parse(localStorage.getItem("currentUserCatask")!).work
     //traigo el proyecto en el que esta trabajando el usuario
 
@@ -46,7 +47,6 @@ export class UserTaskComponent implements OnInit{
           //}
         this.tasks=r
         })
-
       }
       else{
         this.exist=false
@@ -54,7 +54,6 @@ export class UserTaskComponent implements OnInit{
 
 
     })
-
   }
 
   ponerUsuarios(id:any){
@@ -65,21 +64,10 @@ export class UserTaskComponent implements OnInit{
     return person
   }
 
-  addTask(){
-    let form={
-      admin: 5,
-      fecha: "2023/06/13",
-      name: "Ir al polo norte",
-      user: [this.searchWorkerForId(JSON.parse(localStorage.getItem("currentUserCatask")!).id)]
-    }
-    this.proyectService.addTask(form).subscribe(r=>{
-      console.log(r)
-      this.ngOnInit();
-    })
-  }
 
   reload() {
-    this.ngOnInit;
+    console.log('holis')
+    this.ngOnInit();
     }
 
 

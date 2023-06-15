@@ -53,35 +53,54 @@
                 -->
 
                 <div class="form">
-                    <form [formGroup]="registerForm">
-                        <small class="text-danger rounded">{{this.msgError}}</small>
-                        <div class="mb-3">
-                            <label class="form-label">Titulo*:</label>
-                            <input type="text" class="form-control" formControlName="firstName" (click)="onSingup('firstName')" [class.error]="registerForm.controls['firstName'].touched && registerForm.hasError('required','firstName')" placeholder="Pepito">
-                            <!--<small *ngIf="registerForm.controls['firstName'].touched && registerForm.hasError('required','firstName')" class="text-danger rounded">*Nombre es requerido</small>-->
-                            <small *ngIf="registerForm.controls['firstName'].touched && registerForm.hasError('pattern','firstName')" class="text-danger rounded">*Nombre entre 3 y 10 caracteres</small>
+                    <form [formGroup]="editForm">
+                        <div class="row">
+                            <div class="col">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Titulo*:</label>
+                                    <input type="text" class="form-control" formControlName="name" (click)="onSingup('name')" [class.error]="editForm.controls['name'].touched && editForm.hasError('required','name')" placeholder="nombre del proyecto">
+                                    <!--<small *ngIf="registerForm.controls['firstName'].touched && registerForm.hasError('required','firstName')" class="text-danger rounded">*Nombre es requerido</small>-->
+                                    <small *ngIf="editForm.controls['name'].touched && editForm.hasError('required','name')" class="text-danger rounded">*Tilulo entre 5 y 50 caracteres</small>
+                                </div>
+                        
+                                <div class="mb-3">
+                                    <label class="form-label">Descripcion*:</label>
+                                    <textarea type="text" row="3" class="form-control" formControlName="description" (click)="onSingup('description')" [class.error]="editForm.controls['description'].touched && editForm.hasError('required','description')" placeholder="Agregue una descripcion de su tarea" maxlength="60" ></textarea>
+                                    <small *ngIf="editForm.controls['description'].touched && editForm.hasError('required','description')" class="text-danger rounded">*Descripcion entre 5 y 60 caracteres</small>
+                                </div>
+                        
+                                <div class="mb-3">
+                                    <label class="form-label">Fecha limite*:</label>
+                                    <input type="date" class="form-control" formControlName="date" (click)="onSingup('date')" [class.error]="editForm.controls['date'].touched && editForm.hasError('required','date')" placeholder="ejemplo@gmail.com" >
+                                    <small *ngIf="editForm.controls['date'].touched && editForm.hasError('required','date')" class="text-danger rounded">*Fecha requerida</small>
+                                </div>
+                        
+
+                            </div>
+                            <div class="col">
+                                <label class="form-label" style="margin-left: 20px;">Elige a tus colaboradores*:</label>
+                                <p>holaaa</p>
+                                <div class="overflow-auto scroll">
+                                    <div class="row">
+                                            <ng-container  *ngFor="let worker of this.task.user">
+                                                <div class="col-6 col-sm-4 col-md-4 col-xl-4 workers">
+                                                    <!-- <img src="{{worker.avatar}}"> 
+                                                    <label class="name">{{worker.name}}</label> -->
+                                                    <app-select-coworker [worker]="worker" (enviar)="recibirMensaje($event)"></app-select-coworker> 
+
+                                                </div>
+                                                    
+                                            </ng-container>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                
-                        <div class="mb-3">
-                            <label class="form-label">Descripcion*:</label>
-                            <textarea type="text" row="3" class="form-control" formControlName="description" (click)="onSingup('description')" [class.error]="registerForm.controls['description'].touched && registerForm.hasError('required','description')" placeholder="(opcional)"></textarea>
-                            <small *ngIf="registerForm.controls['description'].touched && registerForm.hasError('description')" class="text-danger rounded">*Apellido de máximo 10 caracteres</small>
-                        </div>
-                
-                        <div class="mb-3">
-                            <label class="form-label">Fecha limite*:</label>
-                            <input type="date" class="form-control" formControlName="date" (click)="onSingup('date')" [class.error]="registerForm.controls['date'].touched && registerForm.hasError('required','date')" placeholder="ejemplo@gmail.com" >
-                            <small *ngIf="registerForm.controls['date'].touched && registerForm.hasError('required','date')" class="text-danger rounded">*Email es requerido, debe ser un email valido</small>
-                        </div>
-                
                         <div class="mb-3">
                             <button type="submit" class="btn" style="background-color: #e30052; color: white;" (click)="autenticate()">Guardar</button>
-                        </div>
-                
+                        </div>  
                     </form>
                 </div>
-
-
             </div>
         </div>
     </div>

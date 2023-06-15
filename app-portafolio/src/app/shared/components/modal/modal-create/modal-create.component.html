@@ -39,13 +39,10 @@
                                     <small *ngIf="taskForm.controls['date'].touched && taskForm.hasError('required','date')" class="text-danger rounded">*Fecha requerida</small>
                                 </div>
                         
-                                <div class="mb-3">
-                                    <button type="submit" class="btn" style="background-color: #e30052; color: white;" (click)="autenticate()">Guardar</button>
-                                </div>
 
                             </div>
                             <div class="col">
-                                <label class="form-label">Elige a tus colaboradores*:</label>
+                                <label class="form-label" style="margin-left: 20px;">Elige a tus colaboradores*:</label>
                                 <div class="overflow-auto scroll">
                                     <div class="row">
                                             <ng-container  *ngFor="let worker of this.workers">
@@ -61,6 +58,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn" style="background-color: #e30052; color: white;" (click)="autenticate()">Guardar</button>
+                        </div>  
                 
                     </form>
                 </div>

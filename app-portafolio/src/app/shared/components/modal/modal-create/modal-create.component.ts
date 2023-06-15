@@ -11,6 +11,8 @@ import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks
 export class ModalCreateComponent {
 
   public show = false
+
+  @Output() refresh = new EventEmitter<void>();
   taskForm!: FormGroup
   @Input() workers:Array<ICoworker>
   user:Array<ICoworker> =[]
@@ -30,7 +32,7 @@ ngOnInit(): void {
   //validations 
   this.taskForm = this.formBuilder.group ({
     admin: [this.workers.find((u:ICoworker)=>u.license==='ADMIN')!.id],
-    name: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(50)]],
+    title: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(50)]],
     description: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(60)]],
     date: [``,[Validators.required]],
     user:[``]
@@ -67,6 +69,8 @@ autenticate() {
     this.proyectService.addTask(this.taskForm.value).subscribe()
     console.log(this.taskForm.value)
     this.hideModal()
+    this.refresh.emit()
+    this.ngOnInit()
     }else {
     }
   }

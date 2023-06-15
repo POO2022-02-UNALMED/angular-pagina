@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
 import { ProyectService } from '@data/services/api/proyect.service';
-import { ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
+import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 
 @Component({
   selector: 'app-modal-edit',
@@ -11,8 +11,10 @@ import { ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 export class ModalEditComponent {
   public show = false
   @Input() task:ITask
-  registerForm!: FormGroup
+  editForm!: FormGroup
   @Output() enviar: EventEmitter<void> = new EventEmitter<void>();
+  user:Array<ICoworker> =[]
+  id:number
 
 
 
@@ -27,20 +29,36 @@ constructor(
 
 ngOnInit(): void {
   //validations 
-  this.registerForm = this.formBuilder.group ({
+  this.editForm = this.formBuilder.group ({
     firstName: [ `${this.task.name}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(49)]],
     description: [ `${this.task.description}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(60)]],
     date: [``] ,
   })
 }
 
+recibirMensaje(user:ICoworker){
+  if (this.task.user.find((u:ICoworker)=>user.id===u.id)){
+    
+    this.task.user.forEach((element, index)=>{
+      if(element === user){
+        delete this.task.user[index];}
+   })
+   this.task.user.pop()
+   
+  }else{
+    this.task.user.push(user)
+  }
+  
+  console.log(this.task.user)
+}
+
 
 onSingup(formfield: string){
-  if(this.registerForm.valid){
+  if(this.editForm.valid){
 
     return
   }else {
-    this.validateAllFormFields(this.registerForm, formfield)
+    this.validateAllFormFields(this.editForm, formfield)
   } 
 }
  
@@ -48,7 +66,7 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
   Object.keys(formGroup.controls).forEach(field =>{
     const control = formGroup.get(field);
     if (control instanceof FormControl) {
-      this.registerForm.controls[formfield].markAsDirty({onlySelf: true});
+      this.editForm.controls[formfield].markAsDirty({onlySelf: true});
     } else if (control instanceof FormGroup) {
       this.validateAllFormFields(control, formfield)
     }
@@ -56,8 +74,8 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 }
 
 autenticate() {
-  this.registerForm.markAllAsTouched()
-  if(this.registerForm.valid){
+  this.editForm.markAllAsTouched()
+  if(this.editForm.valid){
     console.log('edit')
     this.hideModal()
     }else {

@@ -6,16 +6,12 @@ import { ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
   selector: 'app-modal-task',
   templateUrl: './modal-task.component.html',
   styleUrls: ['./modal-task.component.css'],
-  template: `
-  <app-modal-edit
-    (hide)="hideModal($event)">
-  </app-modal-edit>
-`
 })
 export class ModalTaskComponent implements OnInit {
   public show = false
   @Input() task:ITask
   @Output() edit = new EventEmitter<void>();
+  @Output() del = new EventEmitter<void>();
 
 
   constructor(
@@ -47,6 +43,7 @@ export class ModalTaskComponent implements OnInit {
 
   delete(task:ITask){
     this.proyectService.deleteTask(task).subscribe()
+    this.del.emit()
     this.ngOnInit
     this.hideModal()
     

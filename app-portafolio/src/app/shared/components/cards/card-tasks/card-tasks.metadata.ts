@@ -16,7 +16,7 @@ export interface ICoworker{
 
 export interface ITask{
     id:number;
-    fecha:string
+    date:string
     name: string;
     admin:number;
     user:Array<ICoworker>;

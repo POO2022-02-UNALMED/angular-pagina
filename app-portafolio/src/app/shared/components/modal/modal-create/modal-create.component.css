@@ -15,7 +15,7 @@
 }
 .modalt-content{
     width: 100%;
-    max-width: 650px;
+    max-width: 700px;
 }
 
 .modalt-header{
@@ -27,7 +27,7 @@
     background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
-    background-color: #ffffffab;;
+    background-color: #ffffff;;
     border-radius: 20px 20px 0 0;
     border-color: black;
 }
@@ -62,8 +62,8 @@ svg:hover{
 
 }
 .scroll{
-    max-height: 260px;
-    max-width: 250px;
+    height: 215px;
+    width: 250px;
     margin: auto;
 }
 
@@ -94,8 +94,8 @@ p{
 }
 
 .btn{
-    margin-right: 15px;
     margin-top: 15px;
+    margin-left: auto;
 }
 
 label{
@@ -118,10 +118,6 @@ textarea{
     font-size: small;
 }
 
-button{
-    align-items: center;
-    margin-left: auto;
-}
 
 small{
     font-size: 12px;

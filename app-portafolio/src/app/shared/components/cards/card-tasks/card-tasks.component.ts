@@ -7,13 +7,9 @@ import { range } from 'rxjs';
   selector: 'app-card-tasks',
   templateUrl: './card-tasks.component.html',
   styleUrls: ['./card-tasks.component.css'],
-  template: `
-    <app-child-component
-      (edit)="taskEdit($event)">
-    </app-child-component>
-  `
 })
 export class CardTasksComponent implements OnInit{
+  @Output() delete = new EventEmitter<void>();
   @Input() task:ITask
   edit=false
 
@@ -58,5 +54,8 @@ export class CardTasksComponent implements OnInit{
     console.log('editando')
   }
   
+  del(){
+    this.delete.emit()
+  }
 
 }

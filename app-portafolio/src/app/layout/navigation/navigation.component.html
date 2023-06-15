@@ -3,8 +3,10 @@
     <div class="side-navbar-btn p-2 me-3 text-align" (click)="userMenu()">
       <i class="fa-solid fa-bars"></i>
     </div>
+    <!--
+      <img src="assets/images/logo/logo2.png">
+    -->
     
-    <img src="assets/images/logo/logo2.png">
   </div>
   
   <div>
@@ -14,5 +16,5 @@
 </div>
 
 <ng-container *ngIf="menuStatus">
-  <app-side-var class="black-border sticky-bot"></app-side-var>
+  <app-side-var class="black-border sticky-left"></app-side-var>
 </ng-container>
