@@ -5,6 +5,8 @@ import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata
 import { ICoworker, IProyect } from '@shared/components/cards/card-tasks/card-tasks.metadata'
 import { Router } from '@angular/router';
 import { INTERNAL_ROUTES } from '@data/constants/routes';
+import { RefreshService } from '@shared/services/refresh/refresh.service';
+import { WorkersService } from '@shared/services/workers/workers.service';
 
 @Component({
   selector: 'app-user-task',
@@ -20,12 +22,16 @@ export class UserTaskComponent implements OnInit{
 
   constructor(
     private proyectService: ProyectService,
-    private router: Router
+    private router: Router,
+    private refreshService: RefreshService,
+    private workersService: WorkersService
   ){
   }
 
   ngOnInit(): void {
-    console.log('oninit')
+    this.refreshService.refresh.subscribe(r=>{
+      this.ngOnInit()
+    })
     let work = JSON.parse(localStorage.getItem("currentUserCatask")!).work
     //traigo el proyecto en el que esta trabajando el usuario
 
@@ -42,6 +48,7 @@ export class UserTaskComponent implements OnInit{
         let code = this.proyecto.coworker.find((persona:ICoworker)=>persona.license==="ADMIN")
 
         this.proyectService.searchTasks(code!.id).subscribe(r=>{
+          //this.componentService.envio.emit(code!.id)
           //for(let i=0; i< r.length; i++){
           //  this.task.push(r[i])
           //}
@@ -63,12 +70,6 @@ export class UserTaskComponent implements OnInit{
     let person = this.proyecto.coworker.find((persona:ICoworker)=>persona.id===1)
     return person
   }
-
-
-  reload() {
-    console.log('holis')
-    this.ngOnInit();
-    }
 
 
 }

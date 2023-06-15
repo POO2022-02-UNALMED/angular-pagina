@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICoworker, IProyect, ITask } from './card-tasks.metadata';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { range } from 'rxjs';
+import { RefreshService } from '@shared/services/refresh/refresh.service';
 
 @Component({
   selector: 'app-card-tasks',
@@ -15,13 +16,17 @@ export class CardTasksComponent implements OnInit{
   edit=false
 
   constructor(
-    private proyectService: ProyectService
+    private proyectService: ProyectService,
+    private refreshService: RefreshService
   ){
   }
   
 
   ngOnInit(): void {
-    console.log(this.workers)
+    this.refreshService.refresh.subscribe(r=>{
+      this.ngOnInit()
+    })
+    //console.log(this.workers)
     //let code = this.proyecto.coworker.find((persona:ICoworker)=>persona.license==="ADMIN")
 //
     //this.proyectService.searchTasks(code!.id).subscribe(r=>{

@@ -282,6 +282,29 @@
         }
       ],
       "description": "Buscar los capitulos completos y ver por 4 vez betty la fea"
+    },
+    {
+      "admin": 3,
+      "name": "holi1",
+      "description": "holi2",
+      "date": "2023-06-15",
+      "user": [
+        {
+          "id": 1,
+          "name": "Juan",
+          "license": "USER",
+          "charge": "Desarrollador full stack",
+          "avatar": "https://www.mintrabajo.gov.co/documents/20147/169985/WhatsApp+Image+2021-05-13+at+7.31.52+AM.jpeg/d54522fe-bd47-3820-71cc-9d4057e816b7?t=1620914777771"
+        },
+        {
+          "id": 8,
+          "name": "Oscar",
+          "license": "USER",
+          "charge": "diseñadora grafica",
+          "avatar": "https://capitalhumano.emol.com/wp-content/uploads/2017/03/productividad-home-office.jpg"
+        }
+      ],
+      "id": 9
     }
   ]
 }

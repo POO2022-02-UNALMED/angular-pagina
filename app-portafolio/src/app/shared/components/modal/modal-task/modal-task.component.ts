@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
+import { RefreshService } from '@shared/services/refresh/refresh.service';
 
 @Component({
   selector: 'app-modal-task',
@@ -12,11 +13,11 @@ export class ModalTaskComponent implements OnInit {
   @Input() task:ITask
   @Input() workers:Array<ICoworker>
   @Output() edit = new EventEmitter<void>();
-  @Output() del = new EventEmitter<void>();
 
 
   constructor(
     private proyectService: ProyectService,
+    private refreshService: RefreshService
     
   ){
   }
@@ -44,7 +45,7 @@ export class ModalTaskComponent implements OnInit {
 
   delete(task:ITask){
     this.proyectService.deleteTask(task).subscribe()
-    this.del.emit()
+    this.refreshService.refresh.emit()
     this.ngOnInit
     this.hideModal()
     

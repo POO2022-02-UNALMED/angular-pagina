@@ -36,13 +36,6 @@ export class ProyectService {
 
     addUserToTask(worker:ICoworker, idProyecto:number,task:any):Observable<any>{
       return this.http.get<ITask>(API_ROUTES.DATA_PROYECTS.PROYECTS + '?task=' + task + '?id=' + idProyecto)
-      .pipe(
-        map(r=>{
-          console.log("hola",r)
-          return r
-        })
-      )
-      // TODO TERMINAR EL SERVICIO
     }
     //addUserToTask(idUser:number, idProyecto:number,idTask:number):Observable<Array<IProyect>>{
     //  this.http.get<Array<IProyect>>(API_ROUTES.DATA_PROYECTS.PROYECTS + '?id=' + idProyecto)
@@ -76,10 +69,12 @@ export class ProyectService {
       return this.http.delete(API_ROUTES.DATA_TASK.TASKS + '/' + task.id)
       .pipe(
         map(r=>{
-          console.log("hola",r)
-          
         })
       )
+    }
+
+    editTask(id:number, task:ITask):Observable<any>{
+      return this.http.put(API_ROUTES.DATA_TASK.TASKS + '/' + id, task)
     }
 
     //reloadComponent():Observable<any>{

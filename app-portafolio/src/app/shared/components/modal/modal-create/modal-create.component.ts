@@ -109,6 +109,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
+import { RefreshService } from '@shared/services/refresh/refresh.service';
+import { WorkersService } from '@shared/services/workers/workers.service';
 
 @Component({
   selector: 'app-modal-create',
@@ -118,20 +120,24 @@ import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks
 export class ModalCreateComponent {
   public show = false
   registerTask!: FormGroup
-  @Output() refresh = new EventEmitter<void>();
+  //@Output() refresh = new EventEmitter<void>();
   @Input() workers:Array<ICoworker>
   user:Array<ICoworker> =[]
 
 
 constructor(
   private formBuilder:FormBuilder,
-  private proyectService:ProyectService
+  private proyectService:ProyectService,
+  private refreshService: RefreshService,
+  private workersService: WorkersService
   ){}
 
 
 
 ngOnInit(): void {
-  //validations 
+  this.workersService.workers.subscribe(r=>{
+    this.workers = r
+  })
   this.registerTask = this.formBuilder.group ({
     admin: [this.workers.find((u:ICoworker)=>u.license==='ADMIN')!.id],
     name: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(50)]],
@@ -169,7 +175,7 @@ autenticate() {
     this.proyectService.addTask(this.registerTask.value).subscribe()
     console.log(this.registerTask.value)
     this.hideModal()
-    this.refresh.emit()
+    this.refreshService.refresh.emit()
     this.ngOnInit()
     }else {
     }

@@ -23,12 +23,12 @@
 
     <ng-container>
         <div class="container-fluid row">
-            <app-card-tasks [workers]="this.proyecto.coworker" [task]="task" *ngFor="let task of this.tasks" class="col-12 col-md-6 col-xl-6" (delete)="reload()"></app-card-tasks>
+            <app-card-tasks [workers]="this.proyecto.coworker" [task]="task" *ngFor="let task of this.tasks" class="col-12 col-md-6 col-xl-6" ></app-card-tasks>
         </div>
     </ng-container>
     
    <img src="assets/images/task/add-button.png" (click)="modalCreate.showModal()">
-   <app-modal-create #modalCreate [workers]="this.proyecto.coworker" (refresh)="reload()"></app-modal-create>
+   <app-modal-create #modalCreate [workers]="this.proyecto.coworker"></app-modal-create>
 
 <!--
     <ng-container *ngFor="let coworker of proyecto.coworker"> 
