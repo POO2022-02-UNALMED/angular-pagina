@@ -26,7 +26,7 @@
             <app-card-tasks [task]="task" *ngFor="let task of this.tasks" class="col-12 col-md-6 col-xl-6" ></app-card-tasks>
         </div>
     </ng-container>
-    
+
     
    <img src="assets/images/task/add-button.png" (click)="modalCreate.showModal()">
    <app-modal-create #modalCreate [workers]="this.proyecto.coworker"></app-modal-create>

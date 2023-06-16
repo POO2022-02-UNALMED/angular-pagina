@@ -19,7 +19,7 @@
                     <div class="footer" style="display: flex; padding-top: 10px;">
                         <i class="fa-regular fa-clock text-danger"></i>
                         <h6 class="text-danger" >fecha limite: {{task.date}}</h6>
-                        
+                        <app-scrollable-menu [workers]="task.user"></app-scrollable-menu>
                     </div>
                     <button type="button" class="btn" style="background-color: #e30052; color: white;" (click)="modal.showModal()">Editar</button>
                     <button type="button" class="btn bg-danger" style=" color: white;" (click)="delete(task)">Eliminar</button>

@@ -1,0 +1,17 @@
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+    width: 250px;
+}
+
+li{
+    text-align: center;
+    font-size: small;
+    height: 22px;
+}
+
+button{
+    font-size: small;
+    font-weight: bold;
+}

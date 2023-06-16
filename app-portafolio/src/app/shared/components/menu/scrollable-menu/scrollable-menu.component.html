@@ -1,10 +1,8 @@
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Dropdown button
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Colaborators<span class="caret"></span></button>
+    <ul class="dropdown-menu scrollable-menu" role="menu">
+        <ng-container *ngFor="let worker of this.workers">
+            <li><label>{{worker.name}} ({{worker.charge}})</label></li>
+        </ng-container>
     </ul>
-  </div>
+</div>
