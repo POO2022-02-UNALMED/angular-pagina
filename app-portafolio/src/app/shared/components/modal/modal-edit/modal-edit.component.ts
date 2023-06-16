@@ -68,7 +68,7 @@ recibirMensaje(user:ICoworker){
     this.task.user.push(user)
   }
   
-  console.log(this.task.user)
+ 
 }
 
 
@@ -117,12 +117,9 @@ autenticate() {
   }
 
   isSelected(worker:ICoworker):boolean{
-    console.log(worker.id)
-    console.log(this.task.user)
     if(this.task.user.find((person:ICoworker)=>person.id===worker.id)){
       return true
     }else{
-      console.log('entro en false')
       return false
     }
 
