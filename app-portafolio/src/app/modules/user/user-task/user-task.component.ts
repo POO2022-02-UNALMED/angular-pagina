@@ -32,12 +32,21 @@ export class UserTaskComponent implements OnInit{
     this.refreshService.refresh.subscribe(r=>{
       this.ngOnInit()
     })
+
+    //this.workersService.workers.emit("hola")
+
+
+
     let work = JSON.parse(localStorage.getItem("currentUserCatask")!).work
     //traigo el proyecto en el que esta trabajando el usuario
 
     this.proyectService.traerProyecto(work).subscribe(r => {
       if (r.error===false){
         this.proyecto=r.data
+
+        this.workersService.setWorker$(this.proyecto.coworker)
+
+
         //recojo los id de compa;eros y busco sus usuarios para imprimir las tarjetas
         //for(let i=0; i <this.proyecto.coworker.length; i++){
         //  this.userService.getUserById(this.proyecto.coworker[i].id).subscribe(r=>{
@@ -45,7 +54,7 @@ export class UserTaskComponent implements OnInit{
         //  })
         //}
         this.exist=true
-        let code = this.proyecto.coworker.find((persona:ICoworker)=>persona.license==="ADMIN")
+        let code = this.proyecto.coworker.find((persona:ICoworker)=>persona.license==="ADMIN")  
 
         this.proyectService.searchTasks(code!.id).subscribe(r=>{
           //this.componentService.envio.emit(code!.id)
@@ -62,6 +71,7 @@ export class UserTaskComponent implements OnInit{
 
     })
   }
+
 
   ponerUsuarios(id:any){
   }

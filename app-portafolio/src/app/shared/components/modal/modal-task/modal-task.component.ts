@@ -11,7 +11,6 @@ import { RefreshService } from '@shared/services/refresh/refresh.service';
 export class ModalTaskComponent implements OnInit {
   public show = false
   @Input() task:ITask
-  @Input() workers:Array<ICoworker>
   @Output() edit = new EventEmitter<void>();
 
 
@@ -33,14 +32,12 @@ export class ModalTaskComponent implements OnInit {
   }
 
   hideModal(){
-    console.log('recibido')
     this.show = false
   }
 
   editTask(){
     this.hideModal()
     this.edit.emit()
-    console.log("editando")
   }
 
   delete(task:ITask){

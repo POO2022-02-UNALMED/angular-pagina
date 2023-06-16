@@ -121,7 +121,7 @@
                                     <div class="row">
                                             <ng-container  *ngFor="let worker of this.workers">
                                                 <div class="col-6 col-sm-4 col-md-4 col-xl-4 workers">
-                                                    <app-select-coworker [worker]="worker" (enviar)="recibirMensaje($event)"></app-select-coworker>
+                                                    <app-select-coworker [worker]="worker" [selected]="isSelected(worker)"></app-select-coworker>
                                                 </div>
                                                     
                                             </ng-container>

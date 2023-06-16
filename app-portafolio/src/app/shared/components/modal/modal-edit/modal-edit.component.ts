@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, MaxLengthValidator, Validators } f
 import { ProyectService } from '@data/services/api/proyect.service';
 import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
+import { WorkersService } from '@shared/services/workers/workers.service';
 
 @Component({
   selector: 'app-modal-edit',
@@ -11,7 +12,7 @@ import { RefreshService } from '@shared/services/refresh/refresh.service';
 })
 export class ModalEditComponent {
   public show = false
-  @Input() workers:Array<ICoworker>
+  workers:Array<ICoworker>
   @Input() task:ITask
   
   editForm!: FormGroup
@@ -19,20 +20,29 @@ export class ModalEditComponent {
   user:Array<ICoworker> =[]
   id:number
 
-
-
-
   msgError: string
 
 constructor(
   private formBuilder:FormBuilder,
   private proyectService : ProyectService,
-  private refreshService: RefreshService
-  ){}
+  private refreshService: RefreshService,
+  private workersService: WorkersService
+  ){
+    
+  }
 
 
 
-ngOnInit(): void {
+ngOnInit(){
+
+  this.user = this.task.user
+
+
+  this.workersService.workers$.subscribe(m=>{
+    this.workers=m
+  })
+  
+
   //validations 
   this.editForm = this.formBuilder.group ({
     name: [ `${this.task.name}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(49)]],
@@ -92,7 +102,6 @@ autenticate() {
     }
   }
 
-
   showModal(){
     this.show = true
   }
@@ -101,6 +110,18 @@ autenticate() {
     this.show = false
     this.ngOnInit()
     this.enviar.emit()
+  }
+
+  isSelected(worker:ICoworker):boolean{
+    console.log(worker.id)
+    console.log(this.task.user)
+    if(this.task.user.find((person:ICoworker)=>person.id===worker.id)){
+      return true
+    }else{
+      console.log('entro en false')
+      return false
+    }
+
   }
 
 }

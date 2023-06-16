@@ -11,7 +11,6 @@ import { RefreshService } from '@shared/services/refresh/refresh.service';
 })
 export class CardTasksComponent implements OnInit{
   @Output() delete = new EventEmitter<void>();
-  @Input() workers:Array<ICoworker>
   @Input() task:ITask
   edit=false
 

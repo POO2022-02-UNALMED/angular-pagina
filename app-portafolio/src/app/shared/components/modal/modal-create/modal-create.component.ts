@@ -120,7 +120,6 @@ import { WorkersService } from '@shared/services/workers/workers.service';
 export class ModalCreateComponent {
   public show = false
   registerTask!: FormGroup
-  //@Output() refresh = new EventEmitter<void>();
   @Input() workers:Array<ICoworker>
   user:Array<ICoworker> =[]
 
