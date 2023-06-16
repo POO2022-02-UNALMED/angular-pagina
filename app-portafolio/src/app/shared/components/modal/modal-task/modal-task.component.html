@@ -21,6 +21,7 @@
                         <h6 class="text-danger" >fecha limite: {{task.date}}</h6>
                         <app-scrollable-menu [workers]="task.user"></app-scrollable-menu>
                     </div>
+                    <button type="button" [ngClass]="task.chek? 'btn-danger': 'btn-success'" class="btn" style=" color: rgb(41, 41, 41);" (click)="chekTask()">{{this.task.chek? 'Seguir':'Terminar'}}</button>
                     <button type="button" class="btn" style="background-color: #e30052; color: white;" (click)="modal.showModal()">Editar</button>
                     <button type="button" class="btn bg-danger" style=" color: white;" (click)="delete(task)">Eliminar</button>
                     <app-modal-edit #modal [task]="task"></app-modal-edit>

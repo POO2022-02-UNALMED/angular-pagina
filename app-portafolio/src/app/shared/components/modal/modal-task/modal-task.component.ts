@@ -23,6 +23,7 @@ export class ModalTaskComponent implements OnInit {
   ){
   }
   ngOnInit(): void {
+
     this.hideModalService.hide.subscribe(
       this.hideModal()
     )
@@ -52,6 +53,14 @@ export class ModalTaskComponent implements OnInit {
     this.ngOnInit
     this.hideModal()
     
+  }
+
+  chekTask(){
+    this.task.chek = !this.task.chek
+    this.proyectService.editTask(this.task.id, this.task).subscribe()
+    console.log(this.task)
+    this.hideModal()
+    this.edit.emit()
   }
 
 

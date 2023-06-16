@@ -16,7 +16,8 @@ export interface ICoworker{
 
 export interface ITask{
     id:number;
-    date:string
+    date:string;
+    chek: boolean,
     name: string;
     admin:number;
     user:Array<ICoworker>;

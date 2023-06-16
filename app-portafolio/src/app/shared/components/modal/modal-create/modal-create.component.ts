@@ -143,6 +143,7 @@ ngOnInit(): void {
     admin: [this.workers.find((u:ICoworker)=>u.license==='ADMIN')!.id],
     name: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(50)]],
     description: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(70)]],
+    check:[false],
     date: [``,[Validators.required]] ,
     user:[``]
   })

@@ -97,6 +97,10 @@ export class CardTasksComponent implements OnInit{
     let person = this.workers.find((persona:ICoworker)=>persona.id===id)
     return person
   }
+
+  chek(){
+    
+  }
 }
 
 

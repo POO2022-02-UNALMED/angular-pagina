@@ -50,7 +50,8 @@ ngOnInit(){
     admin: [this.workers.find((u:ICoworker)=>u.license==='ADMIN')!.id],
     name: [ `${this.task.name}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(49)]],
     description: [ `${this.task.description}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(70)]],
-    date: [`${this.task.date}`] ,
+    date: [`${this.task.date}`],
+    chaek: [`${this.task.chek}`],
     user:[``]
   })
 }

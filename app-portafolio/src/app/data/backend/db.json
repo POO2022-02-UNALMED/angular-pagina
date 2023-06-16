@@ -192,6 +192,7 @@
       "name": "Descubirir por que adonay no me espero",
       "description": "Ir y desenterrarlo de la tumba y preguntarle",
       "date": "2023-06-04",
+      "chek": false,
       "user": [
         {
           "id": 3,
@@ -231,6 +232,7 @@
       "name": "Jugar piedra papel o tijera con una bruja",
       "description": "Retar a un duelo a muerte a una bruja jugando piedra papel o tijeras",
       "date": "2023-09-06",
+      "chek": false,
       "user": [
         {
           "id": 8,
@@ -261,6 +263,7 @@
       "name": "Adoptar un duende que limpie la casa",
       "description": "ir al orfanato mas cercano y adoptar un duende con sombrero",
       "date": "2023-12-10",
+      "chek": false,
       "user": [
         {
           "id": 5,
@@ -284,6 +287,7 @@
       "name": "Hacerle sancadilla a un enano",
       "description": "Ponerle el pie a un enano para que se caiga",
       "date": "2026-10-01",
+      "chek": false,
       "user": [
         {
           "id": 5,
@@ -300,6 +304,7 @@
       "name": "Preguntarle a lupita que le pasa",
       "description": "que le pasa a lupita? no se",
       "date": "2023-06-30",
+      "chek": false,
       "user": [
         {
           "id": 7,
@@ -316,6 +321,7 @@
       "name": "Tarea de prueba",
       "description": "esta es un mensaje de prueba",
       "date": "2022-08-11",
+      "chek": false,
       "user": [
         {
           "id": 4,
