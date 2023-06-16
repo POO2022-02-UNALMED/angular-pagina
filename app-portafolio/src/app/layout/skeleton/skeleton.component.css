@@ -41,10 +41,10 @@ app-footer {
 
 @media screen and (min-width:565px){
     .app-side-nav-open {
-        position: relative;
+        position: static;
         width: calc(100% - 250px);
-        left: 200px;
-        margin-top: -50px;
+        margin-left: 220px;
+        margin-top: 40px;
     }
 }
 

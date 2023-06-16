@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     overflow-y: auto;
-    z-index: 999999;
+    z-index: 99999999;
 
 }
 .modalt-content{
