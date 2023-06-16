@@ -23,13 +23,14 @@
     min-height: 245px;
     margin: auto;
     margin-bottom: 20px;
-    padding-top: 20px;
+    padding-top: 5px;
 }
 
 
 .card-body{
     color: rgb(58, 58, 58);
     font-weight: lighter;
+    padding-top: 0%;
 }
 
 .footer{
@@ -67,6 +68,9 @@ h6{
 
 h4{
     text-transform:capitalize;
+}
+.btn-colab{
+    max-width: 117.7px;
 }
 
 

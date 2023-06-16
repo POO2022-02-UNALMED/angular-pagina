@@ -12,7 +12,9 @@ const initCoworker:Array<ICoworker> =[
 export class WorkersService {
 
   private coworkers$ = new BehaviorSubject<Array<ICoworker>>(initCoworker)
+
   get workers$():Observable<Array<ICoworker>>{
+    console.log('leyendodatos...')
     return this.coworkers$.asObservable()
   }
 

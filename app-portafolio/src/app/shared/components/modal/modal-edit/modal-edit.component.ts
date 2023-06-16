@@ -38,7 +38,7 @@ constructor(
 ngOnInit(){
 
   this.user = this.task.user
-
+  console.log(this.task)
 
   this.workersService.workers$.subscribe(m=>{
     this.workers=m
@@ -51,7 +51,7 @@ ngOnInit(){
     name: [ `${this.task.name}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(49)]],
     description: [ `${this.task.description}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(70)]],
     date: [`${this.task.date}`],
-    chaek: [`${this.task.chek}`],
+    chek: [this.task.chek],
     user:[``]
   })
 }

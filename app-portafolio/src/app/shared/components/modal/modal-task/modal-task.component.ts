@@ -13,6 +13,7 @@ export class ModalTaskComponent implements OnInit {
   public show = false
   @Input() task:ITask
   @Output() edit = new EventEmitter<void>();
+  @Input () colaborando:boolean
 
 
   constructor(
