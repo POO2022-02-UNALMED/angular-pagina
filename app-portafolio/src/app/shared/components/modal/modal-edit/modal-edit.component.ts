@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
+import { HideModalService } from '@shared/services/hide/hide-modal.service';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
 import { WorkersService } from '@shared/services/workers/workers.service';
 
@@ -26,7 +27,8 @@ constructor(
   private formBuilder:FormBuilder,
   private proyectService : ProyectService,
   private refreshService: RefreshService,
-  private workersService: WorkersService
+  private workersService: WorkersService,
+  private hideModalService:HideModalService
   ){
     
   }
@@ -45,9 +47,10 @@ ngOnInit(){
 
   //validations 
   this.editForm = this.formBuilder.group ({
+    admin: [this.workers.find((u:ICoworker)=>u.license==='ADMIN')!.id],
     name: [ `${this.task.name}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(49)]],
-    description: [ `${this.task.description}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(60)]],
-    date: [`${this.task.description}`] ,
+    description: [ `${this.task.description}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(70)]],
+    date: [`${this.task.date}`] ,
     user:[``]
   })
 }
@@ -93,23 +96,24 @@ autenticate() {
   this.editForm.markAllAsTouched()
   if(this.editForm.valid){
     this.editForm.controls['user'].setValue(this.user)
-    //this.proyectService.editTask(this.editForm.value).subscribe()
-    this.hideModal()
+    this.proyectService.editTask(this.task.id, this.editForm.value).subscribe()
+    this.hideModalService.hide.emit()
     this.refreshService.refresh.emit()
     this.ngOnInit()
     }else {
-    this.msgError= "*Formulario invalido. llene los espacios que se piden"
     }
   }
 
   showModal(){
     this.show = true
+    this.hideModalService.hide.emit()
   }
 
   hideModal(){
     this.show = false
+    this.refreshService.refresh.emit()
+    this.hideModalService.hide.emit()
     this.ngOnInit()
-    this.enviar.emit()
   }
 
   isSelected(worker:ICoworker):boolean{

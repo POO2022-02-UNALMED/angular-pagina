@@ -109,6 +109,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
+import { HideModalService } from '@shared/services/hide/hide-modal.service';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
 import { WorkersService } from '@shared/services/workers/workers.service';
 
@@ -128,7 +129,8 @@ constructor(
   private formBuilder:FormBuilder,
   private proyectService:ProyectService,
   private refreshService: RefreshService,
-  private workersService: WorkersService
+  private workersService: WorkersService,
+  private hideModalService: HideModalService
   ){}
 
 
@@ -140,7 +142,7 @@ ngOnInit(): void {
   this.registerTask = this.formBuilder.group ({
     admin: [this.workers.find((u:ICoworker)=>u.license==='ADMIN')!.id],
     name: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(50)]],
-    description: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(60)]],
+    description: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(70)]],
     date: [``,[Validators.required]] ,
     user:[``]
   })
@@ -174,8 +176,8 @@ autenticate() {
     this.proyectService.addTask(this.registerTask.value).subscribe()
     console.log(this.registerTask.value)
     this.hideModal()
-    this.refreshService.refresh.emit()
     this.ngOnInit()
+    this.refreshService.refresh.emit()
     }else {
     }
   }
@@ -183,6 +185,7 @@ autenticate() {
 
   showModal(){
     this.show = true
+    this.hideModalService.hide.emit()
   }
 
   hideModal(){

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
+import { HideModalService } from '@shared/services/hide/hide-modal.service';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
 
 @Component({
@@ -16,11 +17,15 @@ export class ModalTaskComponent implements OnInit {
 
   constructor(
     private proyectService: ProyectService,
-    private refreshService: RefreshService
+    private refreshService: RefreshService,
+    private hideModalService: HideModalService
     
   ){
   }
   ngOnInit(): void {
+    this.hideModalService.hide.subscribe(
+      this.hideModal()
+    )
   }
 
   recibirMensaje(){
@@ -29,6 +34,7 @@ export class ModalTaskComponent implements OnInit {
 
   showModal(){
     this.show = true
+    this.hideModalService.hide.emit()
   }
 
   hideModal(){

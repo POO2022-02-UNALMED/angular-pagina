@@ -100,7 +100,7 @@
                         
                                 <div class="mb-3">
                                     <label class="form-label">Descripcion*:</label>
-                                    <textarea type="text" row="3" class="form-control" formControlName="description" (click)="onSingup('description')" [class.error]="registerTask.controls['description'].touched && registerTask.hasError('required','description')" placeholder="Agregue una descripcion de su tarea" maxlength="60" ></textarea>
+                                    <textarea type="text" row="3" class="form-control" formControlName="description" (click)="onSingup('description')" [class.error]="registerTask.controls['description'].touched && registerTask.hasError('required','description')" placeholder="Agregue una descripcion de su tarea" maxlength="70" ></textarea>
                                     <small *ngIf="registerTask.controls['description'].touched && registerTask.hasError('required','description')" class="text-danger rounded">*Descripcion entre 5 y 60 caracteres</small>
                                 </div>
                         

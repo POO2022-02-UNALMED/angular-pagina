@@ -125,9 +125,9 @@
       "id": 4
     },
     {
-      "email": "hola@gmail5.com",
+      "email": "hola@gmail3.com",
       "password": "12345",
-      "id": 5
+      "id": 3
     }
   ],
   "proyects": [
@@ -188,111 +188,10 @@
   ],
   "task": [
     {
-      "id": 1,
       "admin": 3,
-      "date": "2023/01/7",
-      "name": "Coseguir una lagrima de dragon",
-      "user": [
-        {
-          "id": 3,
-          "name": "Luza",
-          "charge": "Proyect Manager"
-        },
-        {
-          "id": 8,
-          "name": "Oscar",
-          "charge": "diseñadora grafica"
-        }
-      ],
-      "description": "morirse, luego revivir y entregarle la lagrima al admin para su acenso"
-    },
-    {
-      "id": 2,
-      "admin": 3,
-      "date": "2023/01/7",
-      "name": "Descubrir por que adonay no me espero",
-      "user": [
-        {
-          "id": 3,
-          "name": "Luza",
-          "charge": "Proyect Manager"
-        }
-      ],
-      "description": "Desenterrarlo y preguntarle"
-    },
-    {
-      "id": 3,
-      "admin": 3,
-      "date": "2023/01/7",
-      "name": "Hacerle sancandilla a un enano",
-      "user": [
-        {
-          "id": 1,
-          "name": "Juan",
-          "charge": "Desarrollador full stack"
-        }
-      ],
-      "description": "Buscar el enano mas cercano y ponerle el pie para que caiga"
-    },
-    {
-      "id": 4,
-      "admin": 3,
-      "date": "2023/01/7",
-      "name": "Hacerle una entrevista a Batman",
-      "user": [],
-      "description": "contactar al superheroe y asignar una cita"
-    },
-    {
-      "id": 5,
-      "admin": 3,
-      "date": "2023/01/7",
-      "name": "Hacerle una entrevista a Batman2",
-      "user": [],
-      "description": "contactar al superheroe y asignar una cita"
-    },
-    {
-      "id": 6,
-      "admin": 5,
-      "date": "2023/01/7",
-      "name": "Adoptar un duende que limpie la casa",
-      "user": [
-        {
-          "id": 4,
-          "name": "Manuel",
-          "charge": "Desarrollador full stack"
-        },
-        {
-          "id": 5,
-          "name": "Lina",
-          "charge": "Proyect Manager"
-        }
-      ],
-      "description": "Buscar los capitulos completos y ver por 4 vez betty la fea"
-    },
-    {
-      "id": 7,
-      "admin": 5,
-      "date": "2023/01/7",
-      "name": "Ver betty la fea e impedir que betty lea la carta",
-      "user": [
-        {
-          "id": 4,
-          "name": "Manuel",
-          "charge": "Desarrollador full stack"
-        },
-        {
-          "id": 5,
-          "name": "Lina",
-          "charge": "Proyect Manager"
-        }
-      ],
-      "description": "Buscar los capitulos completos y ver por 4 vez betty la fea"
-    },
-    {
-      "admin": 3,
-      "name": "12345",
-      "description": "12345",
-      "date": "2023-06-15",
+      "name": "Descubirir por que adonay no me espero",
+      "description": "Ir y preguntarle",
+      "date": "2023-06-04",
       "user": [
         {
           "id": 3,
@@ -300,6 +199,45 @@
           "license": "ADMIN",
           "charge": "Proyect Manager",
           "avatar": "https://watermark.lovepik.com/photo/20211122/large/lovepik-business-people-who-are-working-on-computers-are-picture_500709606.jpg"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "admin": 3,
+      "name": "Recoger una lagrima de dragon",
+      "description": "recoger una lagrima de dragon morado en un frasco",
+      "date": "2023-06-15",
+      "user": [
+        {
+          "id": 1,
+          "name": "Juan",
+          "license": "USER",
+          "charge": "Desarrollador full stack",
+          "avatar": "https://www.mintrabajo.gov.co/documents/20147/169985/WhatsApp+Image+2021-05-13+at+7.31.52+AM.jpeg/d54522fe-bd47-3820-71cc-9d4057e816b7?t=1620914777771"
+        },
+        {
+          "id": 8,
+          "name": "Oscar",
+          "license": "USER",
+          "charge": "diseñadora grafica",
+          "avatar": "https://capitalhumano.emol.com/wp-content/uploads/2017/03/productividad-home-office.jpg"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "admin": 3,
+      "name": "Jugar piedra papel o tijera con una bruja",
+      "description": "Retar a un duelo a muerte a una bruja jugando piedra papel o tijeras",
+      "date": "2023-09-06",
+      "user": [
+        {
+          "id": 8,
+          "name": "Oscar",
+          "license": "USER",
+          "charge": "diseñadora grafica",
+          "avatar": "https://capitalhumano.emol.com/wp-content/uploads/2017/03/productividad-home-office.jpg"
         },
         {
           "id": 1,
@@ -309,13 +247,68 @@
           "avatar": "https://www.mintrabajo.gov.co/documents/20147/169985/WhatsApp+Image+2021-05-13+at+7.31.52+AM.jpeg/d54522fe-bd47-3820-71cc-9d4057e816b7?t=1620914777771"
         }
       ],
-      "id": 8
+      "id": 3
     },
     {
       "admin": 5,
-      "name": "Encontrar una caleta de Pablo Escobar",
-      "description": "hacer huecos por todo medellin hasta encontrar una caleta",
-      "date": "2024-10-22",
+      "name": "Adoptar un duende que limpie la casa",
+      "description": "ir al orfanato mas cercano y adoptar un duende con sombrero",
+      "date": "2023-12-10",
+      "user": [
+        {
+          "id": 5,
+          "name": "Lina",
+          "license": "ADMIN",
+          "charge": "Proyect Manager",
+          "avatar": "https://actualidadlaboral.com/wp-content/uploads/2020/01/teletrabajo-1024x576.jpg"
+        },
+        {
+          "id": 4,
+          "name": "Manuel",
+          "license": "USER",
+          "charge": "Desarrollador full stack",
+          "avatar": "https://resizer.iproimg.com/unsafe/640x/filters:format(webp)/https://assets.iproup.com/assets/jpg/2021/06/19482_landscape.jpg"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "admin": 5,
+      "name": "Hacerle sancadilla a un enano",
+      "description": "Ponerle el pie a un enano para que se caiga",
+      "date": "2026-10-01",
+      "user": [
+        {
+          "id": 5,
+          "name": "Lina",
+          "license": "ADMIN",
+          "charge": "Proyect Manager",
+          "avatar": "https://actualidadlaboral.com/wp-content/uploads/2020/01/teletrabajo-1024x576.jpg"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "admin": 5,
+      "name": "Preguntarle a lupita que le pasa",
+      "description": "que le pasa a lupita? no se",
+      "date": "2023-06-30",
+      "user": [
+        {
+          "id": 7,
+          "name": "Sofia",
+          "license": "USER",
+          "charge": "QA",
+          "avatar": "https://people.acciona.com/wp-content/uploads/2020/06/beautiful-blur-casual-935756-min-2000x968.jpg"
+        }
+      ],
+      "id": 6
+    },
+    {
+      "admin": 5,
+      "name": "Tarea de prueba",
+      "description": "esta es un mensaje de prueba",
+      "date": "2022-08-11",
       "user": [
         {
           "id": 4,
@@ -325,7 +318,7 @@
           "avatar": "https://resizer.iproimg.com/unsafe/640x/filters:format(webp)/https://assets.iproup.com/assets/jpg/2021/06/19482_landscape.jpg"
         }
       ],
-      "id": 9
+      "id": 7
     }
   ]
 }
