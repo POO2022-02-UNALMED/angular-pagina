@@ -8,6 +8,7 @@ import { ICardUser, Licencias } from './card-user.metadata';
 })
 export class CardUserComponent implements OnInit{
   @Input() data: ICardUser;
+  @Input() fromTask:boolean
 
   admin:boolean
 

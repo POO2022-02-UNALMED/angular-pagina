@@ -1,59 +1,81 @@
 <!--
         ///Titulo y boton de cambio
     -->
-<div class="jumbotro" style="margin-bottom: 75px; margin-top: 40px; padding-left: 50px; padding-right: 50px;">
-    <div class="row">
-        <div class="col-9">
-            <h3 class="display-4" style=" font-weight: 300; color: black;">Catask colaborativo</h3>
-        </div>
-        <div class="col-3  info" style="display: flex; margin-top: 25px;" (click)="replace()">
-            <p class="display-4" style=" font-weight: 200; color: black">{{task? 'my team & info':'tasks'}}</p>
-            <i class="fa-solid fa-arrow-right" style=" padding-left: 3px;"></i>
-        </div>
-    </div>
-    <hr class="my-4">
-</div>
-<ng-container *ngIf="exist && task">
 
-    <!--
-        ///tareas
-    -->
-    
-        <div class="container-fluid row" style="margin-top: 40px;">
-            <app-card-tasks [task]="task" *ngFor="let task of this.tasks" class="col-12 col-md-6 col-xl-6" ></app-card-tasks>
+<ng-container *ngIf="exist else elseExist">
+
+    <div class="jumbotro" style="margin-bottom: 75px; margin-top: 40px; padding-left: 50px; padding-right: 50px;">
+        <div class="row">
+            <div class="col-9">
+                <h3 class="display-4" style=" font-weight: 300; color: black;">Catask colaborativo</h3>
+            </div>
+            <div class="col-3  info" style="display: flex; margin-top: 25px;" (click)="replace()">
+                <p class="display-4" style=" font-weight: 200; color: black">{{task? 'my team & info':'tasks'}}</p>
+                <i class="fa-solid fa-arrow-right" style=" padding-left: 3px;"></i>
+            </div>
         </div>
-        <ng-container>
-        <img class="img" src="assets/images/task/add-button.png" (click)="modalCreate.showModal()" style="margin-left: 18px;">
-        <app-modal-create #modalCreate [workers]="this.proyecto.coworker"></app-modal-create>
+        <hr class="my-4">
+    </div>
+
+    <ng-container *ngIf=" task else elseTask">
+
+        <!--
+            ///tareas
+        -->
+        
+            <div class="container-fluid row" style="margin-top: 40px;">
+                <app-card-tasks [task]="task" *ngFor="let task of this.tasks" class="col-12 col-md-6 col-xl-6" ></app-card-tasks>
+            </div>
+
+            <ng-container>
+            <img *ngIf="admin" class="img" src="assets/images/task/add-button.png" (click)="modalCreate.showModal()" style="margin-left: 18px;">
+            <app-modal-create #modalCreate [workers]="this.proyecto.coworker"></app-modal-create>
+
+        </ng-container>
+    
+        
+       
     </ng-container>
+    <ng-template #elseTask>
 
+        
+        <div class="jumbotron" style="margin-left: 40px; margin-right: 40px; margin-top: -40px;">
+            <h1 class="display-4"></h1>
+            <p class="lead" style="font-size: medium;">En este espacio Podras colaborar con las tareas que quieras y se te asignen para que 
+            junto con tu equipo de trabajo puedan avanzar en el proyecto y terminarlo en la fecha acordada. En detalles vas a tener  la opcion 
+            de otro boton de completar para que marques la tarea como lista. esta funcion solo está habilitada si estas colaborando en la tarea 
+        </p>
+          </div>
     
-   
+    
+        <!--
+            ///tarjetas team
+        -->
+    
+        <div class="container-fluid row">
+            <app-card-user [fromTask]="true" [data]="user" *ngFor="let user of this.completeUsers" class="col-12 col-md-6 col-xl-4" ></app-card-user>
+        </div>
+
+    </ng-template>
+
+
 </ng-container>
 
-<ng-container *ngIf="exist && task===false">
-
-    <div class="jumbotron" style="margin-left: 40px; margin-right: 40px; margin-top: -40px;">
-        <h1 class="display-4"></h1>
-        <p class="lead" style="font-size: medium;">En este espacio Podras colaborar con las tareas que quieras y se te asignen para que 
-        junto con tu equipo de trabajo puedan avanzar en el proyecto y terminarlo en la fecha acordada. En detalles vas a tener  la opcion 
-        de otro boton de completar para que marques la tarea como lista. esta funcion solo está habilitada si estas colaborando en la tarea 
-    </p>
-      </div>
 
 
-    <!--
-        ///tarjetas team
-    -->
 
-    <div class="container-fluid row">
-        <app-card-user [data]="user" *ngFor="let user of this.completeUsers" class="col-12 col-md-6 col-xl-4" ></app-card-user>
+<ng-template #elseExist >
+    <div style="max-width: 500px; text-align: center; margin-left: 29%">
+        <img src="assets/images/task/proyecto.gif" style=" width: 400px; margin-top: -20px;">
+        <h1 class="display-4" style=" font-size: 50px; font-weight: 800;">OH NO!</h1>
+        <h4 class="display-4 text-muted" style=" font-size: 30px; font-weight: 300;">PARECE QUE NO TIENES PROYECTO...</h4>
+        <p class="text-muted" style="font-size: 20px; font-weight: 200;">Conseguir un proyecto es muy facil. Actualiza tu perfil y espera que un administrador te elija</p>
     </div>
+    
 
 
-</ng-container>
+</ng-template>
 
-     
 
    <!--
         <div style="margin-left: 40px;">

@@ -20,6 +20,7 @@ export class UserTaskComponent implements OnInit, OnDestroy{
   exist:boolean
   completeUsers:any = []
   task:boolean = true
+  admin:boolean = false
 
   //suscripciones
 
@@ -33,18 +34,18 @@ export class UserTaskComponent implements OnInit, OnDestroy{
   ){}
 
   ngOnInit(): void {
-    
 
-    //this.display.task=true
     this.refreshService.refresh.subscribe(r=>{
       this.ngOnInit()
     })
 
-    //this.workersService.workers.emit("hola")
-
 
 
     let work = JSON.parse(localStorage.getItem("currentUserCatask")!).work
+    if(JSON.parse(localStorage.getItem("currentUserCatask")!).license === 'ADMIN'){
+      this.admin=true
+    }
+
     //traigo el proyecto en el que esta trabajando el usuario
 
     this.proyectService.traerProyecto(work).subscribe(r => {
@@ -91,12 +92,10 @@ export class UserTaskComponent implements OnInit, OnDestroy{
   replace(){
     this.task = !this.task
     console.log(this.task)
-    //this.dispayTaskService.setDisplay$(this.display)
   }
 
   ngOnDestroy(): void {
     if (this.displaySubscription){
-      console.log('desuscrito display')
       this.displaySubscription.unsubscribe()
     }
   }

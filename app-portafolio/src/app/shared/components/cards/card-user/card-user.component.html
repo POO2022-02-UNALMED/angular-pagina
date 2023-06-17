@@ -1,6 +1,6 @@
 <ng-container *ngIf= "data">
     <ng-container *ngIf= "admin; else users">
-        <div class="dsc-card-admin border-dark" routerLink="/panel/{{data.id}}"> 
+        <div class="dsc-card-admin border-dark" routerLink="{{fromTask? '':'/panel/{{data.id}}'}}"> 
     
             <div class="dsc-card-img">
                 <img class="dsc-img" src="{{data.avatar}}" alt="">

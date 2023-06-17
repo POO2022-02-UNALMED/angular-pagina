@@ -14,6 +14,7 @@ export class ModalTaskComponent implements OnInit {
   @Input() task:ITask
   @Output() edit = new EventEmitter<void>();
   @Input () colaborando:boolean
+  admin:boolean=false
 
 
   constructor(
@@ -24,7 +25,10 @@ export class ModalTaskComponent implements OnInit {
   ){
   }
   ngOnInit(): void {
-
+    if(JSON.parse(localStorage.getItem("currentUserCatask")!).license === 'ADMIN'){
+      this.admin=true
+    }
+    
     this.hideModalService.hide.subscribe(
       this.hideModal()
     )

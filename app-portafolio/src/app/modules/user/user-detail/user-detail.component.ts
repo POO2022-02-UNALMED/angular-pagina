@@ -13,11 +13,10 @@ export class UserDetailComponent implements OnInit, OnDestroy{
   public currentUser?: ICardUser;
   public id: number;
   public detailSubscribe: any
-  public displaySubscribe: any
 
   constructor(
     private userServices: UserService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {
     const id = Number(this.route.snapshot.paramMap.get('id'))
     this.id = id
