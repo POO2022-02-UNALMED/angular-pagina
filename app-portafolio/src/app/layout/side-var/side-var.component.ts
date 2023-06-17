@@ -34,6 +34,13 @@ export class SideVarComponent {
     return  JSON.parse(localStorage.getItem("currentUserCatask")!)
   }
 
+  isAdmin(){
+    if(JSON.parse(localStorage.getItem("currentUserCatask")!).license==='ADMIN'){
+      return true
+    }else{
+      return false
+    }
+  }
   
 }
 
