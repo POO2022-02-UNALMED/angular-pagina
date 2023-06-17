@@ -1,8 +1,29 @@
 
-img{
+.img{
     border-radius: 100%;
     width: 50spx;
     height: 50px;
     margin-bottom: 20px;
     cursor: pointer;
 }
+
+.info{
+    justify-content: end;
+}
+
+p{
+    font-size: 25px;
+    cursor: pointer;
+}
+
+i{
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+
+.info:hover{
+    transform: scale(1.2);
+}
+
+

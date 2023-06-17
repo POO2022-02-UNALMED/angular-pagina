@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { UserService } from '@data/services/api/user.service';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
@@ -13,22 +13,29 @@ import { WorkersService } from '@shared/services/workers/workers.service';
   templateUrl: './user-task.component.html',
   styleUrls: ['./user-task.component.css']
 })
-export class UserTaskComponent implements OnInit{
+export class UserTaskComponent implements OnInit, OnDestroy{
 
   proyecto:IProyect
   tasks:any
   exist:boolean
   completeUsers:any = []
+  task:boolean = true
+
+  //suscripciones
+
+  displaySubscription:any
 
   constructor(
     private proyectService: ProyectService,
-    private router: Router,
+    private userService: UserService,
     private refreshService: RefreshService,
-    private workersService: WorkersService
-  ){
-  }
+    private workersService: WorkersService,
+  ){}
 
   ngOnInit(): void {
+    
+
+    //this.display.task=true
     this.refreshService.refresh.subscribe(r=>{
       this.ngOnInit()
     })
@@ -48,11 +55,11 @@ export class UserTaskComponent implements OnInit{
 
 
         //recojo los id de compa;eros y busco sus usuarios para imprimir las tarjetas
-        //for(let i=0; i <this.proyecto.coworker.length; i++){
-        //  this.userService.getUserById(this.proyecto.coworker[i].id).subscribe(r=>{
-        //    this.completeUsers.push(r.data)
-        //  })
-        //}
+        for(let i=0; i <this.proyecto.coworker.length; i++){
+          this.userService.getUserById(this.proyecto.coworker[i].id).subscribe(r=>{
+            this.completeUsers.push(r.data)
+          })
+        }
         this.exist=true
         let code = this.proyecto.coworker.find((persona:ICoworker)=>persona.license==="ADMIN")  
 
@@ -81,5 +88,16 @@ export class UserTaskComponent implements OnInit{
     return person
   }
 
+  replace(){
+    this.task = !this.task
+    console.log(this.task)
+    //this.dispayTaskService.setDisplay$(this.display)
+  }
 
+  ngOnDestroy(): void {
+    if (this.displaySubscription){
+      console.log('desuscrito display')
+      this.displaySubscription.unsubscribe()
+    }
+  }
 }

@@ -1,56 +1,59 @@
-<ng-container *ngIf="exist">
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href="#">Catask</a>
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Tareas<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">My team</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Info</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
-          
-        </div>
-        <form class="form-inline my-2 my-lg-0" style="margin-right: 60px; display: flex;">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-      </nav>
-
-    
 <!--
-    <ng-container>
-        <div class="container-fluid row">
+        ///Titulo y boton de cambio
+    -->
+<div class="jumbotro" style="margin-bottom: 75px; margin-top: 40px; padding-left: 50px; padding-right: 50px;">
+    <div class="row">
+        <div class="col-9">
+            <h3 class="display-4" style=" font-weight: 300; color: black;">Catask colaborativo</h3>
+        </div>
+        <div class="col-3  info" style="display: flex; margin-top: 25px;" (click)="replace()">
+            <p class="display-4" style=" font-weight: 200; color: black">{{task? 'my team & info':'tasks'}}</p>
+            <i class="fa-solid fa-arrow-right" style=" padding-left: 3px;"></i>
+        </div>
+    </div>
+    <hr class="my-4">
+</div>
+<ng-container *ngIf="exist && task">
+
+    <!--
+        ///tareas
+    -->
+    
+        <div class="container-fluid row" style="margin-top: 40px;">
             <app-card-tasks [task]="task" *ngFor="let task of this.tasks" class="col-12 col-md-6 col-xl-6" ></app-card-tasks>
         </div>
+        <ng-container>
+        <img class="img" src="assets/images/task/add-button.png" (click)="modalCreate.showModal()" style="margin-left: 18px;">
+        <app-modal-create #modalCreate [workers]="this.proyecto.coworker"></app-modal-create>
     </ng-container>
--->
-    
-
-    
-   <img src="assets/images/task/add-button.png" (click)="modalCreate.showModal()">
-   <app-modal-create #modalCreate [workers]="this.proyecto.coworker"></app-modal-create>
-
-   
-
-
-
-    
 
     
    
 </ng-container>
+
+<ng-container *ngIf="exist && task===false">
+
+    <div class="jumbotron" style="margin-left: 40px; margin-right: 40px; margin-top: -40px;">
+        <h1 class="display-4"></h1>
+        <p class="lead" style="font-size: medium;">En este espacio Podras colaborar con las tareas que quieras y se te asignen para que 
+        junto con tu equipo de trabajo puedan avanzar en el proyecto y terminarlo en la fecha acordada. En detalles vas a tener  la opcion 
+        de otro boton de completar para que marques la tarea como lista. esta funcion solo está habilitada si estas colaborando en la tarea 
+    </p>
+      </div>
+
+
+    <!--
+        ///tarjetas team
+    -->
+
+    <div class="container-fluid row">
+        <app-card-user [data]="user" *ngFor="let user of this.completeUsers" class="col-12 col-md-6 col-xl-4" ></app-card-user>
+    </div>
+
+
+</ng-container>
+
+     
 
    <!--
         <div style="margin-left: 40px;">

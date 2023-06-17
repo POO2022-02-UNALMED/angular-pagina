@@ -125,14 +125,14 @@
       "id": 4
     },
     {
-      "email": "hola@gmail3.com",
-      "password": "12345",
-      "id": 3
-    },
-    {
       "email": "hola@gmail1.com",
       "password": "12345",
       "id": 1
+    },
+    {
+      "email": "hola@gmail3.com",
+      "password": "12345",
+      "id": 3
     }
   ],
   "proyects": [
@@ -204,17 +204,9 @@
           "license": "USER",
           "charge": "Desarrollador full stack",
           "avatar": "https://www.mintrabajo.gov.co/documents/20147/169985/WhatsApp+Image+2021-05-13+at+7.31.52+AM.jpeg/d54522fe-bd47-3820-71cc-9d4057e816b7?t=1620914777771"
-        },
-        {
-          "id": 3,
-          "name": "Luza",
-          "license": "ADMIN",
-          "charge": "Proyect Manager",
-          "avatar": "https://watermark.lovepik.com/photo/20211122/large/lovepik-business-people-who-are-working-on-computers-are-picture_500709606.jpg"
         }
       ],
-      "id": 2,
-      "chek": false
+      "id": 2
     },
     {
       "admin": 3,
@@ -235,17 +227,9 @@
           "license": "USER",
           "charge": "Desarrollador full stack",
           "avatar": "https://www.mintrabajo.gov.co/documents/20147/169985/WhatsApp+Image+2021-05-13+at+7.31.52+AM.jpeg/d54522fe-bd47-3820-71cc-9d4057e816b7?t=1620914777771"
-        },
-        {
-          "id": 3,
-          "name": "Luza",
-          "license": "ADMIN",
-          "charge": "Proyect Manager",
-          "avatar": "https://watermark.lovepik.com/photo/20211122/large/lovepik-business-people-who-are-working-on-computers-are-picture_500709606.jpg"
         }
       ],
-      "id": 3,
-      "chek": false
+      "id": 3
     },
     {
       "admin": 5,
@@ -326,7 +310,6 @@
       "admin": 3,
       "name": "combatir a muerte contra una hormiga",
       "description": "Retar a una hormiga a un duelo a muerte",
-      "check": false,
       "date": "2024-02-20",
       "user": [
         {
