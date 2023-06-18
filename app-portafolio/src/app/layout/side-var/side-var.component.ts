@@ -37,13 +37,20 @@ export class SideVarComponent implements OnInit{
   ngOnInit(): void {
     this.authService.getUser.subscribe(r=>{
       this.datos = r
+      console.log("user",r)
     })
+    
+    //let email = JSON.parse(localStorage.getItem("currentUserCatask")!).email
+    //this.authService.getByCode(email).subscribe(r=>{
+    //  console.log(r)
+    //  this.datos = r
+    //})
 
     //this.refreshService.refresh.subscribe(r=>{
+    //  console.log('se recibio el msj')
     //  this.ngOnInit()
     //})
-    //let email = JSON.parse(localStorage.getItem("currentUserCatask")!).email
-    //
+    
     console.log(this.datos)
   }
 

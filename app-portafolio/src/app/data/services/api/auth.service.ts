@@ -6,6 +6,7 @@ import { API_ROUTES, INTERNAL_ROUTES } from '@data/constants/routes';
 import { IApiUserAutentificated, ICompleteUser } from '@data/interfaces';
 import { BehaviorSubject, Observable, catchError, of, throwError, map, switchMap } from 'rxjs';
 import { IresponseValidation } from '../iresponse-validation.metadata';
+import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +55,9 @@ export class AuthService {
         let dat:any = r
         if (dat[0]=== undefined){
           response.error=false
-        } 
+        }else{
+          response.data=dat[0]
+        }
         return response;
       }),
       catchError( e =>{
@@ -148,6 +151,7 @@ export class AuthService {
 
 
   private serUserToLocalStorage( user:IApiUserAutentificated){
+    console.log(user)
     localStorage.setItem(this.nameUserLS, JSON.stringify(user))
   }
 
@@ -170,12 +174,17 @@ export class AuthService {
     .pipe(
       map(r=>{
         let vari = r.data
-        this.currentUser.next(newData)
-        //console.log(this.currentUser)
+        //this.serUserToLocalStorage()
+        //this.currentUser.next(r.data)
         return response
       })
     )
 
   }
+
+
+
+
+
 }
 

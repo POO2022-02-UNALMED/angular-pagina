@@ -78,7 +78,8 @@ export class UserEditComponent implements OnInit{
     //  })
         this.authService.editUser(this.editPerfil.value).subscribe()
         this.refreshService.refresh.emit()
-        console.log(this.editPerfil.value)
+        
+        console.log('se envio el mensaje',this.editPerfil.value)
 
     } else {
     // // this.msgError= "*Formulario invalido. llene los espacios que se piden"

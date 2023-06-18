@@ -20,7 +20,7 @@
       "description": "",
       "gender": "F",
       "info": "Estudiante de ingenieria de sistemas. aprendiendo angular",
-      "avatar": "assets/images/user/leon.jpg",
+      "avatar": "assets/images/user/caiman.jpg",
       "email": "hola@gmail2.com",
       "password": "12345",
       "work": null,
@@ -28,18 +28,17 @@
       "license": "USER"
     },
     {
-      "id": 3,
       "name": "Luza",
-      "email": "hola@gmail3.com",
       "age": 60,
       "description": "Proyect Manager",
-      "avatar": "assets/images/user/panda.jpg",
-      "work": 1,
       "gender": "F",
       "info": "20 años de experiencia. graduada de la u de eafit. Doctorado en seguridad web",
+      "avatar": "assets/images/user/caiman2.jpg",
+      "email": "hola@gmail3.com",
       "password": "12345",
-      "license": "ADMIN",
-      "isActive": true
+      "work": 1,
+      "id": 3,
+      "license": "ADMIN"
     },
     {
       "id": 4,
@@ -125,9 +124,9 @@
       "id": 4
     },
     {
-      "email": "hola@gmail2.com",
+      "email": "hola@gmail3.com",
       "password": "12345",
-      "id": 2
+      "id": 3
     }
   ],
   "proyects": [
