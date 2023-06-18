@@ -1,39 +1,57 @@
+
+
 <div class="container-fluid">
+
+    <div class="jumbotron" style="text-align: center; margin-bottom: 20px;">
+        <h1 class="display-4" style="font-size: 40px;">Edita tu perfil</h1>
+        <p class="lead" style="font-size: small;">Un buen perfil sirve para que te elijan para un proyecto,
+        elige un icono de usuario y llena los campos</p>
+    </div>
+
     <form [formGroup]="editPerfil" >
-        <div class="jumbotron" style="text-align: center;">
-            <h1 class="display-4">Edita tu perfil</h1>
-            <p class="lead" style="font-size: small;">Un buen perfil sirve para que te elijan para un proyecto</p>
-        </div>
-
-
-        
 
 
         <div class="row">
             <div class="col">
 
+                <app-carousel (enviar)="recibir($event)"></app-carousel>
+                
+            </div>
+            <div class="col">
                 <div class="mb-3">
                     <label class="form-label">Nombre*:</label>
                     <input type="text" class="form-control inp" formControlName="name" (click)="onEdit('name')" [class.error]="editPerfil.controls['name'].touched && editPerfil.hasError('required','name')" placeholder="Pepito Perez">
                     <small *ngIf="editPerfil.controls['name'].touched && editPerfil.hasError('required','name')" class="text-danger rounded">*Nombre es requerido maximo 10 caracteres</small>
                 </div>
+                <fieldset disabled>
+                    <div class="mb-3">
+                        <label class="form-label">Email*:</label>
+                        <input type="text" class="form-control inp" formControlName="description" (click)="onEdit('description')" [class.error]="editPerfil.controls['description'].touched && editPerfil.hasError('required','description')" placeholder="{{this.datosBase.email}}">
+                        <small *ngIf="editPerfil.controls['description'].touched && editPerfil.hasError('required','description')" class="text-danger rounded">*Descripcion es requerida</small>
+                    </div>
+                </fieldset>
                 <div class="mb-3">
-                    <label class="form-label">Descripcion*:</label>
+                    <label class="form-label">Descripcion:</label>
                     <input type="text" class="form-control inp" formControlName="description" (click)="onEdit('description')" [class.error]="editPerfil.controls['description'].touched && editPerfil.hasError('required','description')" placeholder="ej: QA, fullstack, frontend">
                     <small *ngIf="editPerfil.controls['description'].touched && editPerfil.hasError('required','description')" class="text-danger rounded">*Descripcion es requerida</small>
                 </div>
-
             </div>
+            
             <div class="col">
 
                 <div class="mb-3">
-                    <label class="form-label">Edad*:</label>
-                    <input type="text" class="form-control inp" formControlName="age" (click)="onEdit('age')" [class.error]="editPerfil.controls['age'].touched && editPerfil.hasError('required','age')" placeholder="22">
+                    <label class="form-label">Edad:</label>
+                    <input type="number" class="form-control inp" formControlName="age" (click)="onEdit('age')" [class.error]="editPerfil.controls['age'].touched && editPerfil.hasError('required','age')" placeholder="22">
                     <small *ngIf="editPerfil.controls['age'].touched && editPerfil.hasError('required','age')" class="text-danger rounded">*La edad es requerida</small>
                     <small *ngIf="editPerfil.controls['age'].touched && editPerfil.hasError('pattern','age')" class="text-danger rounded">*Solo de aceptan numeros</small>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Genero*:</label>
+                    <label class="form-label">Contraseña*:</label>
+                    <input type="password" class="form-control inp" formControlName="password" (click)="onEdit('password')" [class.error]="editPerfil.controls['password'].touched && editPerfil.hasError('required','password')" placeholder="*****">
+                    <small *ngIf="editPerfil.controls['password'].touched && editPerfil.hasError('required','password')" class="text-danger rounded">*Constraseña reqierida minimo 5 caracteres</small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Genero:</label>
                     <div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" formControlName="gender" id="inlineRadio1" value="M">
@@ -49,15 +67,18 @@
             </div>
             
             <div class="mb-3">
-                <label class="form-label">Experiencia y otra informacion*:</label>
-                <textarea rows="4" type="text" class="form-control" formControlName="info" (click)="onEdit('info')" [class.error]="editPerfil.controls['info'].touched && editPerfil.hasError('required','info')" placeholder="..."></textarea>
+                <label class="form-label">Experiencia y otra informacion:</label>
+                <textarea rows="3" type="text" class="form-control" formControlName="info" (click)="onEdit('info')" [class.error]="editPerfil.controls['info'].touched && editPerfil.hasError('required','info')" placeholder="..."></textarea>
                 <small *ngIf="editPerfil.controls['info'].touched && editPerfil.hasError('required','info')" class="text-danger rounded">*Este espacio es requerido, debe contener menos de 100 caracteres</small>
             </div>
 
         </div>
         
 
-        
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark" (click)="autenticate()">Guardar</button>
+        </div>
+    
 
         
     </form>

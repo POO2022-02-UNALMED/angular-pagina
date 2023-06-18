@@ -15,17 +15,17 @@
       "isActive": true
     },
     {
-      "id": 2,
       "name": "Paula Misas",
-      "email": "hola@gmail2.com",
       "age": 22,
       "description": "",
-      "avatar": "assets/images/user/oso.jpg",
       "gender": "F",
       "info": "Estudiante de ingenieria de sistemas. aprendiendo angular",
+      "avatar": "assets/images/user/leon.jpg",
+      "email": "hola@gmail2.com",
       "password": "12345",
-      "license": "USER",
-      "isActive": true
+      "work": null,
+      "id": 2,
+      "license": "USER"
     },
     {
       "id": 3,

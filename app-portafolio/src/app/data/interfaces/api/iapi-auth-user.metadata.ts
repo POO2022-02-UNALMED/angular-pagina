@@ -19,3 +19,5 @@ export interface ICompleteUser {
     isActive: boolean;
 
 }
+
+

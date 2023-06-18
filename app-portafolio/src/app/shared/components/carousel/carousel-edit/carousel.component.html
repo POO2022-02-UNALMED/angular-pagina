@@ -1,0 +1,35 @@
+
+<div class="dsc-carousel-container ">
+
+    <div class="dsc-carruselimg">
+        <div *ngFor="let section of items; let i = index" >
+            <img   
+            [src]="section.image"
+            [ngClass]="{'image-active': selectedIndex === i}">
+
+            <div *ngIf="controls" class="dsc-btn-carousel dsc-btn-prev" >
+                <i class="fa fa-chevron-circle-left dsc-icon-carousel dsc-icon-prev" (click)="onPrevClick()"></i>
+            </div>
+            <div *ngIf="controls" class="dsc-btn-carousel dsc-btn-next" >
+                <i class="fa fa-chevron-circle-right dsc-icon-carousel dsc-icon-next" (click)="onNextClick()"></i>
+            </div>
+
+        </div>
+        
+    </div>
+
+    
+    
+
+    <div *ngIf="indicators" class="dsc-carousel-dot-container">
+        <span *ngFor="let dot of items, let i=index"
+        class="dsc-dot"
+        [ngClass]="{'active': selectedIndex === i}"
+        (click)="selectImage(selectedIndex)"
+        ></span>
+    </div>
+
+    
+</div>
+
+

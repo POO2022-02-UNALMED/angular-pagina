@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ERRORS_CONST } from '@data/constants';
 import { API_ROUTES, INTERNAL_ROUTES } from '@data/constants/routes';
-import { IApiUserAutentificated } from '@data/interfaces';
+import { IApiUserAutentificated, ICompleteUser } from '@data/interfaces';
 import { BehaviorSubject, Observable, catchError, of, throwError, map, switchMap } from 'rxjs';
 import { IresponseValidation } from '../iresponse-validation.metadata';
 
@@ -12,22 +12,22 @@ import { IresponseValidation } from '../iresponse-validation.metadata';
 })
 export class AuthService {
 
-  public currentUser: BehaviorSubject<IApiUserAutentificated>
+  public currentUser: BehaviorSubject<ICompleteUser>
   public nameUserLS = 'currentUserCatask'
   constructor(
     private http: HttpClient,
     private router: Router
-  ) {
+  ){
 
-    //this.currentUser = new BehaviorSubject(
-    //  JSON.parse(localStorage.getItem(this.nameUserLS)!)
-    //);
+    this.currentUser = new BehaviorSubject(
+      JSON.parse(localStorage.getItem(this.nameUserLS)!)
+    );
     
-   }
+  }
 
   
 
-   //register
+  //register
 
   register(dataRegister: {
     firstName:string;
@@ -75,20 +75,17 @@ export class AuthService {
     .pipe(
       map( r => {
         let dat:any = r
+
         //email existe? y contraseña conincide
         if (!(dat[0]=== undefined) && dat[0].password===data.password){
-          //cuenta activa?
-          if(dat[0].isActive=== true){
-            response.data = dat[0]
-            response.error = false
-            response.msg = 'login succes'
-            this.serUserToLocalStorage(dat[0]);
-            this.currentUser.next(dat[0])
+          response.data = dat[0]
+          response.error = false
+          response.msg = 'login succes'
+          this.serUserToLocalStorage(dat[0]);
+          this.currentUser.next(dat[0])
             
             
-           } else{
-            response.msg= ERRORS_CONST.LOGIN.ACTIVE
-           }
+           
         }else{
           if(!(dat[0]=== undefined)){
             response.msg= ERRORS_CONST.LOGIN.PASSWORD
@@ -102,13 +99,9 @@ export class AuthService {
     );
   }
 
-
-  
-
-
-   get getUser(): IApiUserAutentificated{
-      return this.currentUser.value
-   }
+  get getUser():Observable<ICompleteUser>{
+    return this.currentUser.asObservable()
+  }
 
 
   //login(
@@ -144,7 +137,6 @@ export class AuthService {
 
   logout(email:number):Observable<any>{
     localStorage.removeItem(this.nameUserLS);
-    //this.currentUser.next(null);
     this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN)
     return this.http.delete(API_ROUTES.DATA_LOGINS.LOGINS +'/'+ email)
     .pipe(
@@ -159,25 +151,31 @@ export class AuthService {
     localStorage.setItem(this.nameUserLS, JSON.stringify(user))
   }
 
+
   loginByEmail(data:any):Observable<IresponseValidation>{
     this.router.navigateByUrl(INTERNAL_ROUTES.PANEL_USER_TASK);
-    //this.router.navigateByUrl("/task")
-   // console.log(data)
    const response = { error:true, msg:ERRORS_CONST.LOGIN.USER, data:null}
     return this.http.post<{error:boolean, msg:string, data: any}>(API_ROUTES.DATA_LOGINS.LOGINS, data)
   }
 
-  //loginByEmail1(credentials:ILogin):Observable<IResponse | void>{
-  //  const error = null
-  //  const response = this.http.get<IResponse>(API_ROUTES.USERS.LOGIN).pipe(
-  //    catchError(this.handleError)
-  //  )
-  //  return response
-  //}
 
   obtenerLocalStorage(){
     return JSON.parse(localStorage.getItem("currentUserCatask")!)
   }
 
+  editUser(newData:ICompleteUser): Observable <IresponseValidation>{
+    const response = { error:true, msg:'No se completó el cambio', data:null}
+    console.log(newData.id)
+    return this.http.put<{error:boolean, msg: string, data: any}>(API_ROUTES.DATA_USERS.USERS + '/' + newData.id, newData)
+    .pipe(
+      map(r=>{
+        let vari = r.data
+        this.currentUser.next(newData)
+        //console.log(this.currentUser)
+        return response
+      })
+    )
+
+  }
 }
 
