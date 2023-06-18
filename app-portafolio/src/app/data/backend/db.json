@@ -125,11 +125,6 @@
       "id": 4
     },
     {
-      "email": "hola@gmail1.com",
-      "password": "12345",
-      "id": 1
-    },
-    {
       "email": "hola@gmail2.com",
       "password": "12345",
       "id": 2
@@ -197,7 +192,15 @@
       "name": "Descubirir por que adonay no me espero",
       "description": "Ir y desenterrarlo de la tumba y preguntarle",
       "date": "2023-06-04",
-      "user": [],
+      "user": [
+        {
+          "id": 1,
+          "name": "Juan",
+          "license": "USER",
+          "charge": "Desarrollador full stack",
+          "avatar": "assets/images/user/leon.jpg"
+        }
+      ],
       "id": 1
     },
     {
@@ -206,7 +209,22 @@
       "description": "recoger una lagrima de dragon morado en un frasco",
       "date": "2023-06-15",
       "chek": false,
-      "user": [],
+      "user": [
+        {
+          "id": 1,
+          "name": "Juan",
+          "license": "USER",
+          "charge": "Desarrollador full stack",
+          "avatar": "assets/images/user/leon.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Luza",
+          "license": "ADMIN",
+          "charge": "Proyect Manager",
+          "avatar": "assets/images/user/panda.jpg"
+        }
+      ],
       "id": 2
     },
     {
@@ -221,6 +239,13 @@
           "license": "USER",
           "charge": "diseñadora grafica",
           "avatar": "assets/images/user/oso.jpg"
+        },
+        {
+          "id": 1,
+          "name": "Juan",
+          "license": "USER",
+          "charge": "Desarrollador full stack",
+          "avatar": "assets/images/user/leon.jpg"
         }
       ],
       "id": 3

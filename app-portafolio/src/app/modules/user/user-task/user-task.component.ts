@@ -1,10 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { UserService } from '@data/services/api/user.service';
-import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { ICoworker, IProyect } from '@shared/components/cards/card-tasks/card-tasks.metadata'
-import { Router } from '@angular/router';
-import { INTERNAL_ROUTES } from '@data/constants/routes';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
 import { WorkersService } from '@shared/services/workers/workers.service';
 

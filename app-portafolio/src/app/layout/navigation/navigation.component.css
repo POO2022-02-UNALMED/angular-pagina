@@ -24,7 +24,7 @@ ng-container {
 }
 app-side-var{
     position: absolute;
-    height: calc(100vh - 3.4rem);
+    height: calc(100vh - 3.5rem);
     box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.15);
     width: 230px;
     background-color: #7e99a0;

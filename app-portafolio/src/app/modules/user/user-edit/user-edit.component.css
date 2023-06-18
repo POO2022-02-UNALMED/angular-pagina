@@ -1,0 +1,35 @@
+.container-fluid{
+    background-color: #e7dfdd;
+    width: 80%;
+    margin-top: 5%;
+    padding: 5%;
+    margin-bottom: 5%;
+}
+
+
+.ng-invalid:not(form).ng-touched{
+    border-left:5px solid #a94442
+}
+
+.ng-valid:not(form).ng-touched{
+    border-left:5px solid #42A948
+}
+
+form{
+    margin: auto;
+    max-width: 500px;
+}
+
+label{
+    font-size: small;
+}
+
+.inp{
+    font-size: small;
+    height: 30px;
+}
+
+textarea{
+    font-size: small;
+    height: 80%;
+}

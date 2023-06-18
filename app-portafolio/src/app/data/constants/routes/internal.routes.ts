@@ -2,17 +2,18 @@ export const ROUTES_PATHS = {
     AUTH: {
         DEFAULT: 'auth',
         LOGIN: 'login',
-        REGISTER: 'register'
+        REGISTER: 'register',
     },
     PANEL: {
         DEFAULT: 'panel',
-        ADMIN: 'panel/admin'
+        ADMIN: 'admin',
+        EDIT: 'edit'
     }
 }
 
 export const INTERNAL_PATHS = {
 
-    //AUTHENTICATION
+    //AUTENTICATION
 
     AUTH_DEFAULT: `${ROUTES_PATHS.AUTH.DEFAULT}`,
     AUTH_LOGIN: `${ROUTES_PATHS.AUTH.LOGIN}`,
@@ -21,7 +22,8 @@ export const INTERNAL_PATHS = {
     //PANEL
 
     PANEL_DEFAULT: `${ROUTES_PATHS.PANEL.DEFAULT}`,
-    PANEL_USER_LIST: `${ROUTES_PATHS.PANEL.ADMIN}`
+    PANEL_USER_LIST: `${ROUTES_PATHS.PANEL.DEFAULT}/${ROUTES_PATHS.PANEL.ADMIN}`,
+    PANEL_USER_EDIT: `${ROUTES_PATHS.PANEL.DEFAULT}/${ROUTES_PATHS.PANEL.EDIT}`
 }
 
 export const INTERNAL_ROUTES = {
@@ -33,4 +35,5 @@ export const INTERNAL_ROUTES = {
     //PANEL
 
     PANEL_USER_TASK: `/${INTERNAL_PATHS.PANEL_DEFAULT}`,
+   
 };

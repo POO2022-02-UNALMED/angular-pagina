@@ -1,8 +1,6 @@
 import { AfterViewInit, Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { CAROUSEL_DATA } from '@data/constants/carousel.const';
 import { UserService } from '@data/services/api/user.service';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
-import { ICarouselItem } from '@shared/components/carousel/Icarousel-item.metadata';
 
 @Component({
   selector: 'app-user-list',
@@ -12,7 +10,6 @@ import { ICarouselItem } from '@shared/components/carousel/Icarousel-item.metada
 export class UserListComponent implements OnInit, OnDestroy{
   public dateVar: number;
   public users: ICardUser[]; //= USERS_DATA;
-  public carouselData: ICarouselItem[];
   public userSubscription: any
   public user: {
     name: string;
@@ -24,7 +21,6 @@ export class UserListComponent implements OnInit, OnDestroy{
   constructor(
     private userService: UserService
   ){
-    this.carouselData = CAROUSEL_DATA,
     this.dateVar = (new Date()).getTime(),
     this.user = {
       name: 'Laura',

@@ -64,7 +64,6 @@ msgError: string
 constructor(
   private formBuilder:FormBuilder,
   private authService:AuthService,
-  private router : Router
   ){}
 
 

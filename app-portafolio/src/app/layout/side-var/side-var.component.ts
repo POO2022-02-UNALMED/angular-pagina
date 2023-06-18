@@ -24,6 +24,7 @@ export class SideVarComponent {
 
   proyecto = INTERNAL_PATHS.PANEL_DEFAULT
   admin = INTERNAL_PATHS.PANEL_USER_LIST
+  perfil = INTERNAL_PATHS.PANEL_USER_EDIT
 
   constructor(
     authService:AuthService
