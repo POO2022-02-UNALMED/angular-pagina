@@ -32,41 +32,41 @@ export class AuthService{ plainText:string;
 
   //register
 
-  register(dataRegister: {
-    firstName:string;
-    lastName:String;
-    email: string;
-    password: string;
-  }): Observable <IresponseValidation>{
-    const newData= {
-      name: `${dataRegister.firstName} ${dataRegister.lastName}`,
-      email: dataRegister.email,
-      password: dataRegister.password,
-      isActive: false
-    }
-    this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN)
-    return this.http.post<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_USERS.USERS, newData)
-  }
+  //register(dataRegister: {
+  //  firstName:string;
+  //  lastName:String;
+  //  email: string;
+  //  password: string;
+  //}): Observable <IresponseValidation>{
+  //  const newData= {
+  //    name: `${dataRegister.firstName} ${dataRegister.lastName}`,
+  //    email: dataRegister.email,
+  //    password: dataRegister.password,
+  //    isActive: false
+  //  }
+  //  this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN)
+  //  return this.http.post<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_USERS.USERS, newData)
+  //}
 
-  getByCode(email:any)
-  : Observable <IresponseValidation>{
-    const response = { error:true,message:ERRORS_CONST.REGISTER.EMAIL, data:null}
-    return this.http.get<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_USERS.USERS + '?email='+ email)
-    .pipe(
-      map( r => {
-        let dat:any = r
-        if (dat[0]=== undefined){
-          response.error=false
-        }else{
-          response.data=dat[0]
-        }
-        return response;
-      }),
-      catchError( e =>{
-        return of (response);
-      })
-    );
-  }
+  //getByCode(email:any)
+  //: Observable <IresponseValidation>{
+  //  const response = { error:true,message:ERRORS_CONST.REGISTER.EMAIL, data:null}
+  //  return this.http.get<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_USERS.USERS + '?email='+ email)
+  //  .pipe(
+  //    map( r => {
+  //      let dat:any = r
+  //      if (dat[0]=== undefined){
+  //        response.error=false
+  //      }else{
+  //        response.data=dat[0]
+  //      }
+  //      return response;
+  //    }),
+  //    catchError( e =>{
+  //      return of (response);
+  //    })
+  //  );
+  //}
 
   //login 
 
@@ -94,6 +94,23 @@ export class AuthService{ plainText:string;
   }), 
 )}
 
+register(dataRegister:{
+  name:string;
+  email: string;
+  password: string;
+})
+:Observable <IresponseValidation>{
+const response = { error:true, message:ERRORS_CONST.LOGIN.USER, data:null}
+return this.http.post<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_USERS.USERS + '/register', dataRegister)
+.pipe(
+map( r=>{
+  response.message = r.message
+    response.data=r.data
+    response.error=false
+    this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN);
+  return response;
+  }),
+)}
   //login(data: {
   //      email: string;
   //      password: string;
@@ -168,7 +185,8 @@ export class AuthService{ plainText:string;
 
   logout():Observable<any>{
     localStorage.removeItem(this.nameUserLS);
-    //this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN)
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
     return this.http.post(API_ROUTES.DATA_USERS.USERS +'/logout', {}, {withCredentials:true})
     .pipe(
       map(r=>{

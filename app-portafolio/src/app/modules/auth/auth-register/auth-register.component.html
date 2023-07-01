@@ -7,33 +7,43 @@
         <small class="text-danger rounded">{{this.msgError}}</small>
         <div class="mb-3">
             <label class="form-label">Nombre*:</label>
-            <input type="text" class="form-control" formControlName="firstName" (click)="onSingup('firstName')" [class.error]="registerForm.controls['firstName'].touched && registerForm.hasError('required','firstName')" placeholder="Pepito">
-            <small *ngIf="registerForm.controls['firstName'].touched && registerForm.hasError('required','firstName')" class="text-danger rounded">*Nombre es requerido</small>
-            <small *ngIf="registerForm.controls['firstName'].touched && registerForm.hasError('pattern','firstName')" class="text-danger rounded">*Nombre entre 3 y 10 caracteres</small>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Apellido*:</label>
-            <input type="text" class="form-control" formControlName="lastName" (click)="onSingup('lastName')" [class.error]="registerForm.controls['lastName'].touched && registerForm.hasError('required','lastName')" placeholder="(opcional)">
-            <small *ngIf="registerForm.controls['lastName'].touched && registerForm.hasError('pattern','lastName')" class="text-danger rounded">*Apellido de máximo 10 caracteres</small>
+            <input type="text" class="form-control input" formControlName="name" (click)="onSingup('name')" [class.error]="registerForm.controls['name'].touched && registerForm.hasError('required','name')" placeholder="Pepito">
+            <small *ngIf="registerForm.controls['name'].touched && registerForm.hasError('required','name')" class="text-danger rounded">*Nombre es requerido</small>
+            <small *ngIf="registerForm.controls['name'].touched && registerForm.hasError('pattern','name')" class="text-danger rounded">*Nombre entre 3 y 10 caracteres en minuscula</small>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Email*:</label>
-            <input type="email" class="form-control" formControlName="email" (click)="onSingup('email')" [class.error]="registerForm.controls['email'].touched && registerForm.hasError('required','email')" placeholder="ejemplo@gmail.com" >
+            <input type="email" class="form-control input" formControlName="email" (click)="onSingup('email')" [class.error]="registerForm.controls['email'].touched && registerForm.hasError('required','email')" placeholder="ejemplo@gmail.com" >
             <small *ngIf="registerForm.controls['email'].touched && registerForm.hasError('required','email')" class="text-danger rounded">*Email es requerido, debe ser un email valido</small>
         </div>
         
 
         <div class="mb-3">
             <label class="form-label">Contraseña*:</label>
-            <input type="password" class="form-control" formControlName="password" (click)="onSingup('password')" [class.error]="registerForm.controls['password'].touched && registerForm.hasError('required','password')" placeholder="****">
+            <input type="password" class="form-control input" formControlName="password" (click)="onSingup('password')" [class.error]="registerForm.controls['password'].touched && registerForm.hasError('required','password')" placeholder="****">
             <small *ngIf="registerForm.controls['password'].touched && registerForm.hasError('required','password')" class="text-danger rounded">*Contraseña es requerida</small>
         </div>
+
+        <div class="mb-3">
+            <label class="form-label">Permisos*:</label>
+            <div>
+                <div class="form-check form-check-inline" style="margin-left: 15%">
+                    <input class="form-check-input" type="radio" formControlName="is_Admin" id="inlineRadio1" value='false'>
+                    <label class="form-check-label" for="inlineRadio1">User</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" formControlName="is_Admin" id="inlineRadio2" value='true'>
+                    <label class="form-check-label" for="inlineRadio2">Admin</label>
+                </div>
+            </div>
+        </div> 
+        
 
         <div class="mb-3">
         <button type="submit" class="btn btn-dark" (click)="autenticate()">Registrarse</button>
         </div>
 
+        
     </form>
 </div>

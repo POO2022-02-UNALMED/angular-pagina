@@ -45,14 +45,15 @@ export class UserTaskComponent implements OnInit, OnDestroy{
     this.user = await this.getuser()
     if (this.user.id_Proyect!==null){
       this.proyecto = await this.traerProyect(this.user.id_Proyect)
+      if(this.proyecto!==null){
+        this.proyecto.coworker = await this.buscarCoworkers()
+        this.completeUsers = this.proyecto.coworker
+        this.workersService.setWorker$(this.proyecto.coworker)
+        this.exist=true
+        this.tasks = await this.traerTareas()
+      }
     }
-    if(this.proyecto!==null){
-      this.proyecto.coworker = await this.buscarCoworkers()
-      this.completeUsers = this.proyecto.coworker
-      this.workersService.setWorker$(this.proyecto.coworker)
-      this.exist=true
-      this.tasks = await this.traerTareas()
-    }
+    //console.log('los coworkers son', this.completeUsers)
     
 
     this.refreshService.refresh.subscribe(r=>{

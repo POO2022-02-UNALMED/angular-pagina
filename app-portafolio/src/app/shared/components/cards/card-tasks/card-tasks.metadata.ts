@@ -10,7 +10,7 @@ export interface ICoworker{
     id:number;
     name: string;
     is_Admin: boolean,
-    charge: string;
+    description: string;
     avatar: string;
 }
 

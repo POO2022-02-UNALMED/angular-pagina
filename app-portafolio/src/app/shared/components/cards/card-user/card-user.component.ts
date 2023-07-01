@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ICardUser, Licencias } from './card-user.metadata';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-user',
@@ -12,7 +13,9 @@ export class CardUserComponent implements OnInit{
 
   admin:boolean
 
-  constructor() {
+  constructor(
+    private router : Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -22,6 +25,13 @@ export class CardUserComponent implements OnInit{
       this.admin=false
     }
     
+  }
+  url(dat:number){
+    if(this.fromTask){
+      return ''
+    }else{
+      this.router.navigateByUrl('/panel/'+ String(dat))
+    }
   }
 
 

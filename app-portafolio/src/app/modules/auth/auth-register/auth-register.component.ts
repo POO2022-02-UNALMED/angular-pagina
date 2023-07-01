@@ -58,7 +58,6 @@ export class AuthRegisterComponent implements OnInit {
 
 registerForm!: FormGroup
 registerSubscribe : any
-searchEmailSubscribe : any
 msgError: string
 
 constructor(
@@ -71,10 +70,10 @@ constructor(
 ngOnInit(): void {
   //validations 
   this.registerForm = this.formBuilder.group ({
-    firstName: [ '', [Validators.required,  Validators.pattern(/^[a-z0-9._%+-]{3,10}$/)]],
-    lastName: [ '', [Validators.pattern(/^[a-z0-9._%+-]{0,10}$/)]],
+    name: [ '', [Validators.required,  Validators.pattern(/^[a-z0-9._%+-]{3,10}$/)]],
     email: [ '', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
     password: [ '', Validators.required],
+    is_Admin: [ '', Validators.required],
   })
 }
 
@@ -101,16 +100,22 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 
 autenticate() {
   this.registerForm.markAllAsTouched()
+  if(this.registerForm.controls['is_Admin'].value ==='true'){
+    this.registerForm.controls['is_Admin'].setValue(true)
+  }else{
+    this.registerForm.controls['is_Admin'].setValue(false)
+  }
   if(this.registerForm.valid){
-    this.searchEmailSubscribe = this.authService.getByCode(this.registerForm.value.email)!.subscribe( r=> {
-      if (!r.error){
-        this.registerSubscribe = this.authService.register(this.registerForm.value).subscribe(r=>{
-        })
-      } else{
-        this.registerForm.controls['email'].setErrors({'incorrect': true})
-        this.msgError= r.message
-      }
-    })
+    this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe()
+    //this.searchEmailSubscribe = this.authService.getByCode(this.registerForm.value.email)!.subscribe( r=> {
+    //  if (!r.error){
+    //    this.registerSubscribe = this.authService.register(this.registerForm.value).subscribe(r=>{
+    //    })
+    //  } else{
+    //    this.registerForm.controls['email'].setErrors({'incorrect': true})
+    //    this.msgError= r.message
+    //  }
+    //})
   
   } else {
     this.msgError= "*Formulario invalido. llene los espacios que se piden"
@@ -120,12 +125,6 @@ autenticate() {
 ngOnDestroy(){
   if (this.registerSubscribe ) {
     this.registerSubscribe.unsubscribe();
-    console.log('unsuscribe')
-  }
-  
-  if (this.searchEmailSubscribe ) {
-    this.searchEmailSubscribe.unsubscribe();
-    console.log('unsuscribe')
   }
 }
 

@@ -2,7 +2,7 @@
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Colaborators<span class="caret"></span></button>
     <ul class="dropdown-menu scrollable-menu" role="menu">
         <ng-container *ngFor="let worker of this.workers">
-            <li><label>{{worker.name}} ({{worker.charge}})</label></li>
+            <li><label>{{worker.name}}({{worker.description}})</label></li>
         </ng-container>
     </ul>
 </div>

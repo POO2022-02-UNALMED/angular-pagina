@@ -1,13 +1,34 @@
+
+<div class="jumbotron" style="margin-left: 40px; margin-right: 40px;">
+
+    <ng-container>
+        <div class="container-fluid proyect" style="text-align: center;">
+            <div class="col-12">
+                <h4 class="display-4" style=" font-weight: 300; color: black; margin-bottom: 20px;">Crea tu propio proyecto</h4>
+            </div>
+            <h1 class="display-4"></h1>
+            <p class="lead" style="font-size: medium;">Abajo tienes la lista de todos los usurios registrados. En el recuadro puedes editar y crear tu proyecto.
+                 recuerda que solo puedes elegir usuarios que no estan trabajando en ningun proyecto, no puedes elegir otros admin
+            </p>
+            
+            
+
+
+        </div>
+    </ng-container>
+
 <div class="container-fluid row">
-    <div class="col-12">
+    <!--
+        <div class="col-12">
         <h3 class="display-4" style=" font-weight: 300; color: black;">Lista de usuarios</h3>
-    </div>
+        </div>
+    -->
+    
     <ng-container *ngIf="users; else elseUsersLoader" >
-        <app-card-user [data]="user" *ngFor="let user of users" class="col-12 col-md-6 col-xl-4"></app-card-user>
+        <app-card-user [data]="user" [fromTask]="false" *ngFor="let user of users" class="col-12 col-md-6 col-xl-4"></app-card-user>
     </ng-container>
 
     <!---------------------------------------Init loader of cards user---------------------------------------->
-   
     <ng-template #elseUsersLoader>
         <app-card-loader class="col-12 col-md-6 col-xl-3"[bars]="4" *ngFor="let i of [0,1,2,3,4,5,6,7,]"></app-card-loader>
     </ng-template>

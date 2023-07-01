@@ -8,7 +8,7 @@ export interface ICardUser {
     gender: string;
     age: number;
     description: string;
-    work?: number; //opcional
+    id_Proyect?: number; //opcional
     is_Admin: boolean;
     info: string
 }

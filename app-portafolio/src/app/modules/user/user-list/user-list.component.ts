@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { AuthService } from '@data/services/api/auth.service';
 import { UserService } from '@data/services/api/user.service';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 
@@ -17,9 +18,11 @@ export class UserListComponent implements OnInit, OnDestroy{
     gender: 'M' | 'F'
   };
 
+  my:any
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private authService : AuthService
   ){
     this.dateVar = (new Date()).getTime(),
     this.user = {
@@ -34,14 +37,20 @@ export class UserListComponent implements OnInit, OnDestroy{
   /*OnInit se para cuadno tenemos logica luego 
   del constructor                              */ 
 
-  ngOnInit(){
+  async ngOnInit(){
+    this.my = await this.getuser()
+
     this.getUsers()
+    console.log('users',this.my)
+  }
+
+  getuser(){
+    return this.authService.users().toPromise()
   }
 
 
   getUsers(){
-    this.userSubscription = this.userService
-      .getAllUser()
+    this.userSubscription = this.userService.getAllUser()
       .subscribe(r =>  this.users = (r.error) ? [] : r.data)
   }
 

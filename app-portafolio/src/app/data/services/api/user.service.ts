@@ -43,15 +43,10 @@ export class UserService /*extends ApiClass*/ {
     data:ICardUser[]      
   }>{
     const response = {error: false, msg: '', data: [] as ICardUser[]}
-    return this.http.get<ICardUser[]>(this.url + '/auth')
+    return this.http.get<any>( 'http://localhost:3000/auth')
     .pipe(
       map( r => {
-          response.data = r;
-          r.map(i => {
-            if(i.gender === '') {
-              i.gender = "---";
-            }
-          });
+          response.data = r.data;
           return response;
         }
       ),
@@ -70,11 +65,13 @@ export class UserService /*extends ApiClass*/ {
     data:ICardUser,
   }>{
     const response = {error: false, msg: '', data: null as any};
-    return this.http.get<ICardUser>(this.url + 'users/' + id)
+    return this.http.get<any>(API_ROUTES.DATA_USERS.USERS +'/'+ id)
     .pipe(
       map( r => {
-          response.data = r;
-          return response;
+        response.error = r.error;
+        response.data = r.data;
+        response.msg = r.message
+        return response;
         }
       ),
       catchError(() => of(response))
@@ -83,7 +80,7 @@ export class UserService /*extends ApiClass*/ {
 
   buscarCoworkers(idProyect:number):Observable<any>{
     const response = { error:true, message:'No tiene compañeros', data:null}
-    return this.http.get<any>(API_ROUTES.DATA_USERS.USERS + '?id' + idProyect)
+    return this.http.get<any>(API_ROUTES.DATA_USERS.USERS + '/'+ idProyect + '/coworkers')
     .pipe(
       map(r=>{
         response.error = r.error
