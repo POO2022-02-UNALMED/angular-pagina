@@ -17,18 +17,20 @@ export class ProyectService {
     private router: Router
   ) { }
 
-    traerProyecto(id:any):Observable<IresponseValidation>{
-      const response= {error:true, msg:'No tienes proyecto', data:null}
-      return this.http.get<{error:boolean, msg:string, data: any}>(API_ROUTES.DATA_PROYECTS.PROYECTS + '?id=' + id)
+    traerProyecto(id:any):Observable<any>{
+      const response= {error:true, message:'No tienes proyecto', data:null}
+      return this.http.get<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_PROYECTS.PROYECTS + '/' + id)
       .pipe(
         map( r => {
-          let dat:any = r
-          if (!(dat[0]=== undefined)){
-            response.error=false
-            response.data=dat[0]
-            response.msg="proyecto cargado"
+          response.error=r.error
+          response.data=r.data
+          response.message=r.message
+          if(response.error==false){
+            return response.data
+          }else{
+            return null
           }
-          return response
+          
         })
       )
     }
@@ -52,7 +54,12 @@ export class ProyectService {
     //}
 
     searchTasks(id:number):Observable<Array<ITask>>{
-      return this.http.get<Array<ITask>>(API_ROUTES.DATA_TASK.TASKS + '?admin=' + id)
+      return this.http.get<IresponseValidation>(API_ROUTES.DATA_TASK.TASKS + '/' + id)
+      .pipe(
+        map(r=>{
+          return r.data
+        })
+      )
     }
 
 
@@ -73,8 +80,17 @@ export class ProyectService {
       )
     }
 
-    editTask(id:number, task:ITask):Observable<any>{
-      return this.http.put(API_ROUTES.DATA_TASK.TASKS + '/' + id, task)
+    editTask(id:number, task:ITask):Observable<IresponseValidation>{
+      const response = { error:true, message:'falla cambiando los datos', data:null}
+      return this.http.put<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_TASK.TASKS + '/' + id, task)
+      .pipe(
+        map(r=>{
+          response.data=r.data
+          response.error=r.error
+          response.message=r.message
+          return response
+        })
+      )
     }
 
     //reloadComponent():Observable<any>{

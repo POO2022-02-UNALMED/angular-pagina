@@ -20,23 +20,24 @@ export class CarouselComponent {
   }
 
   ngOnInit() {
-    this.enviar.emit(this.items[this.selectedIndex].image)
-        this.items.map( (i ) => {
-          if (i.title != null) {
-          }else{
-            i.title = {
-              first: '',
-              second: ''
-            }
-          }
-          
-        });
-        this.items.map((i) => {
-          if (i.subtitle != null) {            
-          }else{
-            i.subtitle = ''
-          }
-        })
+    //console.log('holiii')
+    //this.enviar.emit(this.items[this.selectedIndex].image)
+    //  this.items.map( (i ) => {
+    //    if (i.title != null) {
+    //    }else{
+    //      i.title = {
+    //        first: '',
+    //        second: ''
+    //      }
+    //    }
+    //    
+    //  });
+      this.items.map((i) => {
+        if (i.subtitle != null) {            
+        }else{
+          i.subtitle = ''
+        }
+      })
     }
 
   selectImage(index: number): void {

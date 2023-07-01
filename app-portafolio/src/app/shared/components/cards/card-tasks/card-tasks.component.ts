@@ -16,12 +16,12 @@ export class CardTasksComponent implements OnInit{
   @Input() task:ITask
   edit=false
   colaborando:boolean
-  my:any
+  @Input() my:any
   
 
   editForm!: FormGroup
   id:number
-  user:Array<ICoworker> =[]
+  user:Array<number> =[]
   workers:Array<ICoworker>
 
   constructor(
@@ -35,7 +35,9 @@ export class CardTasksComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.user = this.task.user
+    this.task.users.forEach((element, index)=>{
+      this.user.push(element.id)
+    })
 
     this.workersService.workers$.subscribe(m=>{
       this.workers=m
@@ -48,21 +50,20 @@ export class CardTasksComponent implements OnInit{
     this.editForm = this.formBuilder.group ({
 
       //poner las mismas variables
-      admin: [this.workers.find((u:ICoworker)=>u.license==='ADMIN')!.id],
       name: [ `${this.task.name}`],
       description: [ `${this.task.description}`],
       date: [`${this.task.date}`] ,
-      user:[``]
+      users:[``]
     })
+
     
-    this.my = this.searchWorkerForId(JSON.parse(localStorage.getItem("currentUserCatask")!).id)
-    if(this.task.user.find((u:ICoworker)=> u.id === this.my!.id)){
+    if(this.task.users.find((u:ICoworker)=> u.id === this.my!.id)){
       this.colaborando=true
     }else{
       this.colaborando=false
     }
+    
   }
-
 
   taskEdit(){
     this.edit=true
@@ -74,24 +75,38 @@ export class CardTasksComponent implements OnInit{
   }
 
   agregarUser(task:ITask){
-    if(this.colaborando===true){ //si no aparece como colaborador de la tarea se agrega, sino no
+    if(this.colaborando === true){ //si no aparece como colaborador de la tarea se agrega, sino no
+      
+      this.user.forEach((element, index)=>{
+        if(element === this.my.id){
+          this.user.splice(index,1);}
+      })
+      this.task.users.forEach((element, index)=>{
+        if(element.id === this.my.id){
+          this.task.users.splice(index,1);}
+      })
+     //this.task.users.pop()
+      
 
-      this.task.user.forEach((element, index)=>{
-        if(element === this.my){
-          delete this.task.user[index];}
-     })
-      this.task.user.pop()
-
-    }else{
-
-      this.task.user.push(this.my!)
+    }if(this.colaborando === false){
+     
+      this.user.push(this.my!.id)
+      this.task.users.push(this.my!)
     }
     this.colaborando=!this.colaborando
-    console.log(this.task.user)
-    this.editForm.controls['user'].setValue(this.user)
-    this.proyectService.editTask(this.task.id, this.editForm.value).subscribe()
-    this.ngOnInit()
+    
+    this.editForm.controls['users'].setValue(this.user)
+    this.proyectService.editTask(this.task.id, this.editForm.value).subscribe(r=>{
+      if(r.error===false){
+        console.log('succes colaborando')
+      }else{
+        console.log('failed colaborando')
+      }
+    })
+    //console.log('datos',this.task.users, this.user)
+    //this.ngOnInit()
   }
+
 
   searchWorkerForId(id:number){
     let person = this.workers.find((persona:ICoworker)=>persona.id===id)

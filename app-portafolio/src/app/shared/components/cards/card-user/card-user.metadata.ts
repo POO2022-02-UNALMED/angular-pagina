@@ -9,6 +9,6 @@ export interface ICardUser {
     age: number;
     description: string;
     work?: number; //opcional
-    license: Licencias;
+    is_Admin: boolean;
     info: string
 }

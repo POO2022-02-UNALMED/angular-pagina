@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { INTERNAL_ROUTES } from '@data/constants/routes';
 import { AuthService } from '@data/services/api/auth.service';
 import { HideModalService } from '@shared/services/hide/hide-modal.service';
 
@@ -14,7 +16,8 @@ export class NavigationComponent implements OnInit{
 
   constructor(
     private authService: AuthService,
-    private hideModalService:HideModalService
+    private hideModalService:HideModalService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -31,8 +34,10 @@ export class NavigationComponent implements OnInit{
     }
 
     logOut(){
-      let id = this.authService.obtenerLocalStorage().id
-      this.logOutSubscription = this.authService.logout(id).subscribe()
+      //TODO
+      this.logOutSubscription = this.authService.logout().subscribe()
+      this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN)
+      
     }
 
     

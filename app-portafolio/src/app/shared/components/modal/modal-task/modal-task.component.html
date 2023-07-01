@@ -19,7 +19,7 @@
                     <div class="footer" style="display: flex; padding-top: 10px;">
                         <i class="fa-regular fa-clock text-danger"></i>
                         <h6 class="text-danger" >fecha limite: {{task.date}}</h6>
-                        <app-scrollable-menu [workers]="task.user"></app-scrollable-menu>
+                        <app-scrollable-menu [workers]="task.users"></app-scrollable-menu>
                     </div>
                     <button type="button"  *ngIf="colaborando" [ngClass]="task.chek? 'btn-outline-danger': 'btn-success'" class="btn" (click)="chekTask()">{{this.task.chek? 'Seguir':'Terminar'}}</button>
                     <button *ngIf="admin" type="button" class="btn" style="background-color: #e30052; color: rgb(255, 255, 255);" (click)="modal.showModal()">Editar</button>

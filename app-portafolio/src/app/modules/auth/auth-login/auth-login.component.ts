@@ -44,7 +44,7 @@ export class AuthLoginComponent implements OnInit{
   ngOnInit(): void {
     //validations 
     this.loginForm = this.formBuilder.group ({
-      email: ['hola@gmail3.com', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
+      email: ['email@gmail.com', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
       password: [ '12345', Validators.required],
     })
   }
@@ -71,24 +71,19 @@ export class AuthLoginComponent implements OnInit{
   autenticate() {
     this.loginForm.markAllAsTouched()
     if(this.loginForm.valid){
-
       this.loginLocalSubscribe = this.authService.login(this.loginForm.value)!.subscribe( r=> {
-        console.log(r.error)
+        console.log(r)
+        this.msgError= r.message
         if(r.error){
-          this.msgError= r.msg
-          if(r.msg===ERRORS_CONST.LOGIN.USER){
+          if(r.message===ERRORS_CONST.LOGIN.USER){
             this.loginForm.controls['email'].setErrors({'incorrect': true})
           }
-          if(r.msg===ERRORS_CONST.LOGIN.PASSWORD){
+          if(r.message===ERRORS_CONST.LOGIN.PASSWORD){
             this.loginForm.controls['password'].setErrors({'incorrect': true})
           }
-        } else{
-          const newData= {
-            email: r.data.email,
-            password: r.data.password,
-            id: r.data.id
-          }
-          this.authService.loginByEmail(newData)!.subscribe()
+        }else{
+          //TODO
+        //this.authService.user()!.subscribe()
         }
       })
     }

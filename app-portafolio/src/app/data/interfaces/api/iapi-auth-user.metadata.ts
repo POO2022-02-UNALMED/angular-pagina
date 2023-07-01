@@ -15,8 +15,7 @@ export interface ICompleteUser {
     gender: string;
     info: string;
     password: string;
-    license: string;
-    isActive: boolean;
+    is_Admin: string;
 
 }
 

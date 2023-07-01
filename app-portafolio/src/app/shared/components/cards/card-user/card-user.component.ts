@@ -16,7 +16,7 @@ export class CardUserComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if(this.data.license==="ADMIN"){
+    if(this.data.is_Admin){
       this.admin=true
     } else{
       this.admin=false

@@ -140,12 +140,12 @@ ngOnInit(): void {
     this.workers = r
   })
   this.registerTask = this.formBuilder.group ({
-    admin: [this.workers.find((u:ICoworker)=>u.license==='ADMIN')!.id],
+    id_Proyect: [this.workers.find((u:ICoworker)=>u.is_Admin===true)!.id],
     name: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(50)]],
     description: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(70)]],
     check:[false],
     date: [``,[Validators.required]] ,
-    user:[``]
+    users:[``]
   })
 }
 
@@ -173,9 +173,8 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 autenticate() {
   this.registerTask.markAllAsTouched()
   if(this.registerTask.valid){
-    this.registerTask.controls['user'].setValue(this.user)
+    this.registerTask.controls['users'].setValue(this.user)
     this.proyectService.addTask(this.registerTask.value).subscribe()
-    console.log(this.registerTask.value)
     this.hideModal()
     this.ngOnInit()
     this.refreshService.refresh.emit()

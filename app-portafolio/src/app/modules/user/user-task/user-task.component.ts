@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AuthService } from '@data/services/api/auth.service';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { UserService } from '@data/services/api/user.service';
-import { ICoworker, IProyect } from '@shared/components/cards/card-tasks/card-tasks.metadata'
+import { ICoworker, IProyect, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata'
+import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
 import { WorkersService } from '@shared/services/workers/workers.service';
 
@@ -11,13 +14,13 @@ import { WorkersService } from '@shared/services/workers/workers.service';
   styleUrls: ['./user-task.component.css']
 })
 export class UserTaskComponent implements OnInit, OnDestroy{
-
+  user :any
   proyecto:IProyect
-  tasks:any
+
+  tasks:Array<ITask>
   exist:boolean
   completeUsers:any = []
   task:boolean = true
-  admin:boolean = false
 
   //suscripciones
 
@@ -28,67 +31,62 @@ export class UserTaskComponent implements OnInit, OnDestroy{
     private userService: UserService,
     private refreshService: RefreshService,
     private workersService: WorkersService,
-  ){}
+    private authService:AuthService
+  ){
+  }
+  
 
-  ngOnInit(): void {
-
+  async ngOnInit() {
+    
     this.refreshService.refresh.subscribe(r=>{
       this.ngOnInit()
     })
 
-
-
-    let work = JSON.parse(localStorage.getItem("currentUserCatask")!).work
-    if(JSON.parse(localStorage.getItem("currentUserCatask")!).license === 'ADMIN'){
-      this.admin=true
+    this.user = await this.getuser()
+    if (this.user.id_Proyect!==null){
+      this.proyecto = await this.traerProyect(this.user.id_Proyect)
     }
+    if(this.proyecto!==null){
+      this.proyecto.coworker = await this.buscarCoworkers()
+      this.completeUsers = this.proyecto.coworker
+      this.workersService.setWorker$(this.proyecto.coworker)
+      this.exist=true
+      this.tasks = await this.traerTareas()
+    }
+    
 
-    //traigo el proyecto en el que esta trabajando el usuario
-
-    this.proyectService.traerProyecto(work).subscribe(r => {
-      if (r.error===false){
-        this.proyecto=r.data
-
-        this.workersService.setWorker$(this.proyecto.coworker)
-
-
-        //recojo los id de compa;eros y busco sus usuarios para imprimir las tarjetas
-        for(let i=0; i <this.proyecto.coworker.length; i++){
-          this.userService.getUserById(this.proyecto.coworker[i].id).subscribe(r=>{
-            this.completeUsers.push(r.data)
-          })
-        }
-        this.exist=true
-        let code = this.proyecto.coworker.find((persona:ICoworker)=>persona.license==="ADMIN")  
-
-        this.proyectService.searchTasks(code!.id).subscribe(r=>{
-          //this.componentService.envio.emit(code!.id)
-          //for(let i=0; i< r.length; i++){
-          //  this.task.push(r[i])
-          //}
-        this.tasks=r
-        })
-      }
-      else{
-        this.exist=false
-      }
-
-
+    this.refreshService.refresh.subscribe(r=>{
     })
   }
 
-
-  ponerUsuarios(id:any){
+  getuser():Promise<ICardUser>{
+    return this.authService.users().toPromise()
   }
 
-  searchWorkerForId(id:number){
-    let person = this.proyecto.coworker.find((persona:ICoworker)=>persona.id===1)
-    return person
+  traerProyect(work:number):Promise<IProyect>{
+    return this.proyectService.traerProyecto(work).toPromise()
   }
+
+  buscarCoworkers():Promise<ICoworker[]>{
+    return this.userService.buscarCoworkers(this.user.id_Proyect).toPromise()
+  }
+
+  traerTareas():Promise<any>{
+    return this.proyectService.searchTasks(this.proyecto.id).toPromise()
+  }
+  
+
+  //ponerUsuarios(id:any){
+  //}
+
+  //searchWorkerForId(id:number){
+  //  let person = this.proyecto.coworker.find((persona:ICoworker)=>persona.id===1)
+  //  return person
+  //}
 
   replace(){
     this.task = !this.task
-    console.log(this.task)
+    this.ngOnInit()
   }
 
   ngOnDestroy(): void {

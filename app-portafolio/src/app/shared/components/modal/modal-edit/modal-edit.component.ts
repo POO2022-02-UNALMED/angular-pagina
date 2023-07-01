@@ -20,6 +20,7 @@ export class ModalEditComponent {
   @Output() enviar: EventEmitter<void> = new EventEmitter<void>();
   user:Array<ICoworker> =[]
   id:number
+  my: any
 
   msgError: string
 
@@ -35,38 +36,39 @@ constructor(
 
 
 
-ngOnInit(){
+  ngOnInit(){
 
-  this.user = this.task.user
-  console.log(this.task)
+  this.user = this.task.users
 
   this.workersService.workers$.subscribe(m=>{
     this.workers=m
   })
+
   
 
   //validations 
   this.editForm = this.formBuilder.group ({
-    admin: [this.workers.find((u:ICoworker)=>u.license==='ADMIN')!.id],
+    //id_P: [this.workers.find((u:ICoworker)=>u.is_Admin===true)!.id],
     name: [ `${this.task.name}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(49)]],
     description: [ `${this.task.description}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(70)]],
     date: [`${this.task.date}`],
     chek: [this.task.chek],
-    user:[``]
+    users:[``]
   })
 }
 
+
 recibirMensaje(user:ICoworker){
-  if (this.task.user.find((u:ICoworker)=>user.id===u.id)){
+  if (this.task.users.find((u:ICoworker)=>user.id===u.id)){
     
-    this.task.user.forEach((element, index)=>{
+    this.task.users.forEach((element, index)=>{
       if(element === user){
-        delete this.task.user[index];}
+        delete this.task.users[index];}
    })
-   this.task.user.pop()
+   this.task.users.pop()
    
   }else{
-    this.task.user.push(user)
+    this.task.users.push(user)
   }
   
  
@@ -96,7 +98,7 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 autenticate() {
   this.editForm.markAllAsTouched()
   if(this.editForm.valid){
-    this.editForm.controls['user'].setValue(this.user)
+    this.editForm.controls['users'].setValue(this.user)
     this.proyectService.editTask(this.task.id, this.editForm.value).subscribe()
     this.hideModalService.hide.emit()
     this.refreshService.refresh.emit()
@@ -118,7 +120,7 @@ autenticate() {
   }
 
   isSelected(worker:ICoworker):boolean{
-    if(this.task.user.find((person:ICoworker)=>person.id===worker.id)){
+    if(this.task.users.find((person:ICoworker)=>person.id===worker.id)){
       return true
     }else{
       return false

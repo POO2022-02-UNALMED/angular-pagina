@@ -11,9 +11,10 @@
 //}
 
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { INTERNAL_PATHS } from '@data/constants/routes';
 import { AuthService } from '@data/services/api/auth.service';
+import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
 
 @Component({
@@ -27,18 +28,24 @@ export class SideVarComponent implements OnInit{
   admin = INTERNAL_PATHS.PANEL_USER_LIST
   perfil = INTERNAL_PATHS.PANEL_USER_EDIT
   datos:any
-
+  
   constructor(
     private authService : AuthService,
     private refreshService: RefreshService
   ){
   }
 
-  ngOnInit(): void {
-    this.authService.getUser.subscribe(r=>{
-      this.datos = r
-      console.log("user",r)
+  async ngOnInit(){
+    
+    this.refreshService.navbar.subscribe(r=>{
+      this.ngOnInit()
     })
+    this.datos = await this.getuser()
+    //console.log("jas")
+    //TODO    this.authService.getUser.subscribe(r=>{
+    //      this.datos = r
+    //      console.log("user",r)
+    //    })
     
     //let email = JSON.parse(localStorage.getItem("currentUserCatask")!).email
     //this.authService.getByCode(email).subscribe(r=>{
@@ -46,23 +53,28 @@ export class SideVarComponent implements OnInit{
     //  this.datos = r
     //})
 
-    //this.refreshService.refresh.subscribe(r=>{
-    //  console.log('se recibio el msj')
-    //  this.ngOnInit()
-    //})
+   
     
-    console.log(this.datos)
+  }
+  
+  getuser():Promise<ICardUser>{
+    return this.authService.users().toPromise()
   }
 
-  datosUser(){
-    return  JSON.parse(localStorage.getItem("currentUserCatask")!)
-  }
 
   isAdmin(){
-    if(JSON.parse(localStorage.getItem("currentUserCatask")!).license==='ADMIN'){
+    if(this.datos.is_Admin){
       return true
     }else{
       return false
+    }
+  }
+
+  role(){
+    if(this.datos.is_Admin){
+      return 'ADMIN'
+    }else{
+      return 'USER'
     }
   }
   

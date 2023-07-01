@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthService } from '@data/services/api/auth.service';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
+import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { HideModalService } from '@shared/services/hide/hide-modal.service';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
 
@@ -15,23 +17,27 @@ export class ModalTaskComponent implements OnInit {
   @Output() edit = new EventEmitter<void>();
   @Input () colaborando:boolean
   admin:boolean=false
-
+  my:any
 
   constructor(
     private proyectService: ProyectService,
     private refreshService: RefreshService,
-    private hideModalService: HideModalService
+    private hideModalService: HideModalService,
+    private authService: AuthService
     
   ){
   }
-  ngOnInit(): void {
-    if(JSON.parse(localStorage.getItem("currentUserCatask")!).license === 'ADMIN'){
-      this.admin=true
-    }
+  async ngOnInit(): Promise<void> {
+    this.my = await this.getuser()
+    this.admin= this.my.is_Admin
     
     this.hideModalService.hide.subscribe(
       this.hideModal()
     )
+  }
+
+  getuser():Promise<ICardUser>{
+    return this.authService.users().toPromise()
   }
 
   recibirMensaje(){

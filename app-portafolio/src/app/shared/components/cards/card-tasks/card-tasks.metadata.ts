@@ -9,9 +9,9 @@ export interface IProyect {
 export interface ICoworker{
     id:number;
     name: string;
-    license: string,
+    is_Admin: boolean,
     charge: string;
-    avatar: string
+    avatar: string;
 }
 
 export interface ITask{
@@ -19,7 +19,7 @@ export interface ITask{
     date:string;
     chek: boolean,
     name: string;
-    admin:number;
-    user:Array<ICoworker>;
+    id_Proyect:number;
+    users:Array<any>;
     description: string
 }

@@ -1,6 +1,6 @@
 export const ERRORS_CONST = {
     LOGIN: {
-        USER: '*Usuario incorrecto',
+        USER: '*No existe el usurio',
         PASSWORD: '*Contraseña incorrecta',
         ACTIVE: '*Su cuenta esta incativa, contacte con el admin'
     },

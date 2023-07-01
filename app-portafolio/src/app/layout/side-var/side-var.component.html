@@ -30,33 +30,35 @@
     </div>
   </nav>
 -->
-<div class="side-navbar">
-  <div class="dsc-left-nav-user border-black">
-    <img src={{this.datos.avatar}}>
+<ng-container *ngIf="datos">
+  <div class="side-navbar">
+    <div class="dsc-left-nav-user border-black">
+      <img src={{this.datos.avatar}}>
+    </div>
+      <ul class="nav-list">
+        <h6 style="font-size: larger; margin-top: -30px;">{{this.datos.name}}</h6>
+        <p style="font-size: smaller;">{{role()}}</p>
+        <hr style="padding-bottom: 15px;">
+          <li class="nav-list-item">
+              <span>
+                  <a href={{this.perfil}}>Perfil</a>
+              </span>
+          </li>
+          <li class="nav-list-item">
+              <span>
+                  <a href={{this.proyecto}}>Proyecto</a>
+              </span>
+          </li>
+          <li class="nav-list-item">
+            <span>
+                <a href="#" class="text-muted">Disabled</a>
+            </span>
+          </li>
+          <li class="nav-list-item" *ngIf="isAdmin()">
+            <span>
+                <a href={{this.admin}}>Admin</a>
+            </span>
+          </li>
+      </ul>
   </div>
-    <ul class="nav-list">
-      <h6 style="font-size: larger; margin-top: -30px;">{{this.datos.name}}</h6>
-      <p style="font-size: smaller;">{{datosUser().license}}</p>
-      <hr style="padding-bottom: 15px;">
-        <li class="nav-list-item">
-            <span>
-                <a href={{this.perfil}}>Perfil</a>
-            </span>
-        </li>
-        <li class="nav-list-item">
-            <span>
-                <a href={{this.proyecto}}>Proyecto</a>
-            </span>
-        </li>
-        <li class="nav-list-item">
-          <span>
-              <a href="#" class="text-muted">Disabled</a>
-          </span>
-        </li>
-        <li class="nav-list-item" *ngIf="isAdmin()">
-          <span>
-              <a href={{this.admin}}>Admin</a>
-          </span>
-        </li>
-    </ul>
-</div>
+</ng-container>

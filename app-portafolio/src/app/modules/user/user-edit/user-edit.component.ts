@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { EmailValidator, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ICompleteUser } from '@data/interfaces';
 import { AuthService } from '@data/services/api/auth.service';
+import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
-
+import * as crypto from 'crypto-js';
 
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css']
 })
-export class UserEditComponent implements OnInit{
+export class UserEditComponent {
 
   editPerfil: FormGroup
   datosBase:ICompleteUser
@@ -21,27 +22,27 @@ export class UserEditComponent implements OnInit{
     private refreshService : RefreshService
   ){}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
 
-    this.datosBase = JSON.parse(localStorage.getItem("currentUserCatask")!)
+    this.datosBase = await this.getuser()
 
     this.editPerfil = this.formBuilder.group({
       
       //editables
       name: [`${this.datosBase.name}`, [Validators.required, Validators.maxLength(20)]],
-      age: [this.datosBase.age, [Validators.pattern((/^[0-9]*$/))]],
-      description: [`${this.datosBase.description}`, [Validators.maxLength(18)]],
-      gender: [`${this.datosBase.gender}`],
-      info: [`${this.datosBase.info}`,  [Validators.maxLength(100)]],
+      age: [this.datosBase.age, [Validators.required, Validators.pattern((/^[0-9]*$/))]],
+      description: [`${this.datosBase.description}`, [Validators.required, Validators.maxLength(18)]],
+      gender: [`${this.datosBase.gender}`,[Validators.required]],
+      info: [`${this.datosBase.info}`,  [Validators.required,Validators.maxLength(100)]],
       avatar:[`${this.datosBase.avatar}`, [Validators.required]],
 
       //no editables
-      email: [`${this.datosBase.email}`],
-      password: [`${this.datosBase.password}`, [Validators.required, Validators.minLength(5)]],
-      work: [this.datosBase.work],
-      id: [this.datosBase.id],
-      license: [`${this.datosBase.license}`],
+      email: [`${this.datosBase.email}`]
     })
+  }
+
+  getuser():Promise<ICompleteUser>{
+    return this.authService.users().toPromise() 
   }
 
   onEdit(formfield: string){
@@ -49,7 +50,6 @@ export class UserEditComponent implements OnInit{
       return
     }else {
       this.validateAllFormFields(this.editPerfil, formfield)
-      console.log('hola',this.editPerfil.value)
     } 
   }
 
@@ -76,10 +76,21 @@ export class UserEditComponent implements OnInit{
     //     // this.msgError= r.msg
     //    }
     //  })
-        this.authService.editUser(this.editPerfil.value).subscribe()
-        this.refreshService.refresh.emit()
         
-        console.log('se envio el mensaje',this.editPerfil.value)
+        this.authService.editUser(this.editPerfil.value, this.datosBase.id).subscribe(r=>{
+          if(!r.error){
+            // aqui desencriptamos el email y el password para cambiar las cookies y que aparezcan los nuevos datos
+            const key='123'
+            const user={
+              email: localStorage.getItem('email')!,
+              password: crypto.AES.decrypt(localStorage.getItem('password')!, key).toString(crypto.enc.Utf8)
+            }
+            this.authService.logout().subscribe()
+            this.authService.login(user).subscribe()
+            this.refreshService.navbar.emit()
+          }
+        })
+        
 
     } else {
     // // this.msgError= "*Formulario invalido. llene los espacios que se piden"

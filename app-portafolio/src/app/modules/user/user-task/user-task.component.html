@@ -22,20 +22,22 @@
         <!--
             ///tareas
         -->
-        
             <div class="container-fluid row" style="margin-top: 40px;">
-                <app-card-tasks [task]="task" *ngFor="let task of this.tasks" class="col-12 col-md-6 col-xl-6" ></app-card-tasks>
+                <app-card-tasks [task]="task" [my]="this.user" *ngFor="let task of this.tasks" class="col-12 col-md-6 col-xl-6" ></app-card-tasks>
             </div>
-
+        
             <ng-container>
-            <img *ngIf="admin" class="img" src="assets/images/task/add-button.png" (click)="modalCreate.showModal()" style="margin-left: 18px;">
-            <app-modal-create #modalCreate [workers]="this.proyecto.coworker"></app-modal-create>
+                <img *ngIf="this.user.is_Admin" class="img" src="assets/images/task/add-button.png" (click)="modalCreate.showModal()" style="margin-left: 18px;">
+                <app-modal-create #modalCreate [workers]="this.proyecto.coworker"></app-modal-create>
 
-        </ng-container>
+            </ng-container>
+         
+            
     
         
        
     </ng-container>
+
     <ng-template #elseTask>
 
         

@@ -7,6 +7,8 @@ import { of } from "rxjs";
 import { environment } from 'environments/environment';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { NONE_TYPE } from '@angular/compiler';
+import { IresponseValidation } from '../iresponse-validation.metadata';
+import { API_ROUTES } from '@data/constants/routes';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,7 @@ export class UserService /*extends ApiClass*/ {
   }//CIERRA
 
 
+
   //TRAER USUARIOS SERVICE
   /**
    * Trae todos los usuarios de la api
@@ -40,7 +43,7 @@ export class UserService /*extends ApiClass*/ {
     data:ICardUser[]      
   }>{
     const response = {error: false, msg: '', data: [] as ICardUser[]}
-    return this.http.get<ICardUser[]>(this.url + 'users')
+    return this.http.get<ICardUser[]>(this.url + '/auth')
     .pipe(
       map( r => {
           response.data = r;
@@ -77,5 +80,24 @@ export class UserService /*extends ApiClass*/ {
       catchError(() => of(response))
       );
   };
+
+  buscarCoworkers(idProyect:number):Observable<any>{
+    const response = { error:true, message:'No tiene compañeros', data:null}
+    return this.http.get<any>(API_ROUTES.DATA_USERS.USERS + '?id' + idProyect)
+    .pipe(
+      map(r=>{
+        response.error = r.error
+        response.data = r.data
+        response.message = r.message
+        if (r.error===false){
+          return r.data
+        }else{
+          return null
+        }
+      })
+    )
+  }
+
+  
 
 }

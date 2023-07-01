@@ -108,7 +108,7 @@ autenticate() {
         })
       } else{
         this.registerForm.controls['email'].setErrors({'incorrect': true})
-        this.msgError= r.msg
+        this.msgError= r.message
       }
     })
   
