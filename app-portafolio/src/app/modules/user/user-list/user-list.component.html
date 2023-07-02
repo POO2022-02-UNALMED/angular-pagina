@@ -1,7 +1,7 @@
 
 <div class="jumbotron" style="margin-left: 40px; margin-right: 40px;">
 
-    <ng-container>
+    <ng-container *ngIf="proyect">
         <div class="container-fluid proyect" style="text-align: center;">
             <div class="col-12">
                 <h4 class="display-4" style=" font-weight: 300; color: black; margin-bottom: 20px;">Crea tu propio proyecto</h4>
@@ -10,8 +10,52 @@
             <p class="lead" style="font-size: medium;">Abajo tienes la lista de todos los usurios registrados. En el recuadro puedes editar y crear tu proyecto.
                  recuerda que solo puedes elegir usuarios que no estan trabajando en ningun proyecto, no puedes elegir otros admin
             </p>
+            <form [formGroup]="formProyect" style="margin-top: 30px;"> 
+                 
+                <div class="row" style="margin-bottom: 20px;">
+                    <div class="col">
+
+                        <div class="mb-3">
+                            <label class="form-label">Titulo*:</label>
+                            <input type="text" class="form-control" formControlName="name" (click)="onSingup('name')" [class.error]="formProyect.controls['name'].touched && formProyect.hasError('required','name')" placeholder="nombre de la tarea">
+                            <!--<small *ngIf="registerTask.controls['name'].touched && registerTask.hasError('required','name')" class="text-danger rounded">*Nombre es requerido</small>-->
+                            <small *ngIf="formProyect.controls['name'].touched && formProyect.hasError('required','name')" class="text-danger rounded">*Tilulo entre 5 y 50 caracteres</small>
+                        </div>
+                
+                        <div class="mb-3">
+                            <label class="form-label">Descripcion*:</label>
+                            <textarea type="text" row="4" class="form-control" formControlName="description" (click)="onSingup('description')" [class.error]="formProyect.controls['description'].touched && formProyect.hasError('required','description')" placeholder="Agregue una descripcion de su tarea" maxlength="150" ></textarea>
+                            <small *ngIf="formProyect.controls['description'].touched && formProyect.hasError('required','description')" class="text-danger rounded">*Descripcion entre 5 y 150 caracteres</small>
+                        </div>
+                
+                        <div class="mb-3">
+                            <button>boton</button>
+                            <!--
+                            <button type="submit" class="btn" style="background-color: #e30052; color: white;" (click)="autenticate()">Guardar</button>
+                            -->
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Elige a tu equipo*:</label>
+                        <div class="overflow-auto scroll">
+                            <div class="row">
+                                
+                                    <ng-container  *ngFor="let user of users">
+                                        <div class="col-6 col-sm-4 col-md-4 col-xl-4 workers">
+                                            <app-select-coworker [worker]="user"></app-select-coworker>
+                                        </div>
+                                            
+                                    </ng-container>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
             
-            
+        
+                
+            </form>
 
 
         </div>

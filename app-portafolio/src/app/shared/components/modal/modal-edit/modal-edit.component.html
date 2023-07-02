@@ -93,7 +93,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">Titulo*:</label>
-                                    <input type="text" class="form-control" formControlName="name" (click)="onSingup('name')" [class.error]="editForm.controls['name'].touched && editForm.hasError('required','name')" placeholder="nombre del proyecto">
+                                    <input type="text" class="form-control" formControlName="name" (click)="onSingup('name')" [class.error]="editForm.controls['name'].touched && editForm.hasError('required','name')" placeholder="nombre de la tarea">
                                     <!--<small *ngIf="editForm.controls['name'].touched && editForm.hasError('required','name')" class="text-danger rounded">*Nombre es requerido</small>-->
                                     <small *ngIf="editForm.controls['name'].touched && editForm.hasError('required','name')" class="text-danger rounded">*Tilulo entre 5 y 50 caracteres</small>
                                 </div>

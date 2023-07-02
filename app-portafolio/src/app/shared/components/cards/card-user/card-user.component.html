@@ -20,12 +20,12 @@
             </div>
             <div class="dsc-card-info">
                 <h5>{{data.name}}</h5>
-                <h6 style="font-size: 13px;">Edad: {{data.age}}</h6>
+                <h6 style="font-size: 13px;">Edad: {{data.age===0? '--': data.age}}</h6>
                 <h6 style="font-size: 13px;">Genero:
                     <ng-container [ngSwitch]="data.gender">
                         <span *ngSwitchCase="'F'">F</span>
                         <span *ngSwitchCase="'M'">M</span>
-                        <span *ngSwitchDefault="">{{data.gender}}</span>
+                        <span *ngSwitchDefault="">--</span>
                     </ng-container>
                 </h6>
                 <p style="margin-bottom: 0;">{{data.id_Proyect ? "Proyecto "+data.id_Proyect:'sin proyecto'}} </p>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICoworker } from '@shared/components/cards/card-tasks/card-tasks.metadata';
+import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 
 @Component({
   selector: 'app-select-coworker',

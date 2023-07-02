@@ -9,6 +9,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { NONE_TYPE } from '@angular/compiler';
 import { IresponseValidation } from '../iresponse-validation.metadata';
 import { API_ROUTES } from '@data/constants/routes';
+import { ICoworker } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 
 @Injectable({
   providedIn: 'root'
@@ -40,9 +41,9 @@ export class UserService /*extends ApiClass*/ {
   getAllUser(): Observable<{
     error:boolean,          //mostrar si tiene error
     msg:string,             //mensaje del error. si no tiene queda ''
-    data:ICardUser[]      
+    data:ICoworker[]      
   }>{
-    const response = {error: false, msg: '', data: [] as ICardUser[]}
+    const response = {error: false, msg: '', data: [] as ICoworker[]}
     return this.http.get<any>( 'http://localhost:3000/auth')
     .pipe(
       map( r => {

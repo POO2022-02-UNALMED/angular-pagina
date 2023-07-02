@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ICardUser, Licencias } from './card-user.metadata';
 import { Router } from '@angular/router';
+import { ICoworker } from '../card-tasks/card-tasks.metadata';
 
 @Component({
   selector: 'app-card-user',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./card-user.component.css']
 })
 export class CardUserComponent implements OnInit{
-  @Input() data: ICardUser;
+  @Input() data: ICoworker;
   @Input() fromTask:boolean
 
   admin:boolean

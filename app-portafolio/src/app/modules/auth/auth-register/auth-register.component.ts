@@ -103,7 +103,16 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 autenticate() {
   this.registerForm.markAllAsTouched()
   if(this.registerForm.valid){
-    this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe()
+    if(this.registerForm.controls['is_Admin'].value=== 'true'){
+      this.registerForm.controls['is_Admin'].setValue(true)
+      this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe(r=>{
+        this.authService.editUser({id_Proyect:r.data.id}, r.data.id_Admin).subscribe()
+      })
+    }else{
+      this.registerForm.controls['is_Admin'].setValue(false)
+      this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe()
+    }
+    
   //  if(this.registerForm.controls['is_Admin'].value === 'true'){
   //    console.log('true')
   //    this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe(user=>{

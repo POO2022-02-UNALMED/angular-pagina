@@ -4,8 +4,8 @@
     <img src={{currentUser.avatar}} class="card-img-top" alt="..." style="height: 240px;">
     <div class="card-body">
       <h5 class="card-title">{{currentUser.name}}</h5>
-      <h6 class="card-title">{{currentUser.age}} años</h6>
-      <p style="opacity: 1;">{{currentUser.id_Proyect ? 'Proyecto '+ currentUser.id_Proyect: 'Desempleado-Sin proyecto'}}</p>
+      <h6 class="card-title">{{currentUser.age===0?'--': currentUser.age}} años</h6>
+      <p style="opacity: 1;">{{currentUser.id_Proyect ? 'Proyecto '+ currentUser.id_Proyect: 'Sin proyecto'}}</p>
       <p class="card-text">{{currentUser.description}}.</p>
       <p class="card-text">{{currentUser.info}}.</p>
       <hr>

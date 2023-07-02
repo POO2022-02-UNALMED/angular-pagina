@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@data/services/api/auth.service';
+import { ProyectService } from '@data/services/api/proyect.service';
 import { UserService } from '@data/services/api/user.service';
+import { ICoworker, IProyect } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 
 @Component({
@@ -11,8 +13,9 @@ import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata
 })
 export class UserListComponent implements OnInit, OnDestroy{
   public dateVar: number;
-  public users: ICardUser[]; //= USERS_DATA;
-  public userSubscription: any
+  public users: ICoworker[]; //= USERS_DATA;
+  public nextCoworker: ICoworker[];
+  public userSubscription: any;
   public user: {
     name: string;
     role: string;
@@ -20,12 +23,14 @@ export class UserListComponent implements OnInit, OnDestroy{
   };
 
   my:any
+  proyect:IProyect
   formProyect: FormGroup
 
   constructor(
     private formBuilder : FormBuilder,
     private userService: UserService,
-    private authService : AuthService
+    private authService : AuthService,
+    private proyectService:ProyectService
   ){
     this.dateVar = (new Date()).getTime(),
     this.user = {
@@ -42,27 +47,38 @@ export class UserListComponent implements OnInit, OnDestroy{
 
   async ngOnInit(){
     this.my = await this.getuser()
-
     this.getUsers()
 
-    //this.formProyect = this.formBuilder.group({
-    //  
-    //  //editables
-    //  name: [`${this.datosBase.name}`, [Validators.required, Validators.maxLength(20)]],
-    //  age: [this.datosBase.age, [Validators.required, Validators.pattern((/^[0-9]*$/))]],
-    //  description: [`${this.datosBase.description}`, [Validators.required, Validators.maxLength(18)]],
-    //  gender: [`${this.datosBase.gender}`,[Validators.required]],
-    //  info: [`${this.datosBase.info}`,  [Validators.required,Validators.maxLength(100)]],
-    //  avatar:[`${this.datosBase.avatar}`, [Validators.required]],
-//
-    //  //no editables
-    //  email: [`${this.datosBase.email}`]
-    //})
+   this.proyect = await this.getProyect()
+
+    console.log(this.proyect)
+    this.formProyect = this.formBuilder.group({
+      
+      //editables
+      name: [`${this.proyect.name}`, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      description: [`${this.proyect.description}`, [Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
+
+      
+    })
 
   }
 
+  onSingup(formfield: string){
+    if(this.formProyect.valid){
+  
+      return
+    }else {
+      //this.validateAllFormFields(this.registerTask, formfield)
+    } 
+  }
+
   getuser(){
-    return this.authService.users().toPromise()
+    let users = this.authService.users().toPromise()
+    return users
+  }
+
+  getProyect(){
+    return this.proyectService.traerProyecto(this.my.id_Proyect).toPromise()
   }
 
 

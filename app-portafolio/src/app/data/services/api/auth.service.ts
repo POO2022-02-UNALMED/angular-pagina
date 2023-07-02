@@ -69,7 +69,7 @@ export class AuthService{ plainText:string;
     response.message = 'success'
     response.data=r
     response.error=false
-
+    this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN);
     return response;
     }),
   )}
@@ -127,11 +127,9 @@ export class AuthService{ plainText:string;
 
   editUser(newData:ICompleteUser, id:number): Observable <IresponseValidation>{
     const response = { error:true, message:'No se completó el cambio', data:null}
-    console.log(newData,id)
     return this.http.put<{error:boolean, message: string, data: any}>(API_ROUTES.DATA_USERS.USERS + '/' + id, newData)
     .pipe(
       map(r=>{
-        console.log('entro',r)
         response.error=false
         response.message='succes'
         return response

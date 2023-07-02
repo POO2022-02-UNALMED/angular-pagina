@@ -140,7 +140,7 @@ ngOnInit(): void {
     this.workers = r
   })
   this.registerTask = this.formBuilder.group ({
-    id_Proyect: [this.workers.find((u:ICoworker)=>u.is_Admin===true)!.id],
+    id_Proyect: [this.workers.find((u:ICoworker)=>u.is_Admin===true)!.id_Proyect],
     name: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(50)]],
     description: [ ``, [Validators.required, Validators.minLength(5) ,Validators.maxLength(70)]],
     check:[false],
