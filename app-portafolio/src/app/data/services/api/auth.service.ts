@@ -41,7 +41,7 @@ export class AuthService{ plainText:string;
     response.message = r.message
     if (r.message === 'succes'){
       response.data=r.data
-      response.error=false
+      response.error=r.error
       this.serUserToLocalStorage(r.data);
       this.currentUser.next(r.data)
       localStorage.setItem('password', crypto.AES.encrypt(data.password, this.key).toString())
@@ -63,14 +63,18 @@ export class AuthService{ plainText:string;
   })
   :Observable <any>{
   const response = { error:true, message:ERRORS_CONST.LOGIN.USER, data:null}
-  return this.http.post<any>(API_ROUTES.DATA_USERS.USERS + '/register', dataRegister)
+  return this.http.post<{error:boolean, message: string, data: any}>(API_ROUTES.DATA_USERS.USERS + '/register', dataRegister)
   .pipe(
   map( r=>{
     response.message = 'success'
-    response.data=r
-    response.error=false
+    response.data=r.data
+    response.error=r.error
     this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN);
     return response;
+    }),
+    catchError( e =>{
+      response.message='No se pudo regisrar, use otro email'
+      return of (response);
     }),
   )}
 
@@ -83,6 +87,7 @@ export class AuthService{ plainText:string;
   
 
   logout():Observable<any>{
+    const response = { error:true, message:ERRORS_CONST.LOGIN.USER, data:null}
     localStorage.removeItem(this.nameUserLS);
     localStorage.removeItem('email');
     localStorage.removeItem('password');
@@ -90,6 +95,10 @@ export class AuthService{ plainText:string;
     .pipe(
       map(r=>{
         //this.cookieSvc.delete('UserAutenticado')
+      }),
+      catchError( e =>{
+        response.message='Hubo un error'
+        return of (response);
       })
     )
   }
@@ -108,12 +117,12 @@ export class AuthService{ plainText:string;
     .pipe(
       map( r=>{
           return r
-        },
-        catchError( e =>{
-          response.message='not logged'
-          return of (response);
-        })),
-        
+        }
+      ),
+      catchError( e =>{
+        response.message='Hubo un error'
+        return of (response);
+      })
     )
   }
 
@@ -133,6 +142,10 @@ export class AuthService{ plainText:string;
         response.error=false
         response.message='succes'
         return response
+      }),
+      catchError( e =>{
+        response.message='Hubo un error en el usuario'
+        return of (response);
       })
     )
 
@@ -148,10 +161,14 @@ export class AuthService{ plainText:string;
     .pipe(
       map(r=>{
         response.error=false
-        response.message='peticion correcta'
+        response.message='Peticion correcta'
         response.data=r
         
-        return r
+        return response
+      }),
+      catchError( e =>{
+        response.message='Hubo un error'
+        return of (response);
       })
     )
   }

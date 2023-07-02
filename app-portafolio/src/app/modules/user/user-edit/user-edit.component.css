@@ -1,7 +1,9 @@
 .container-fluid{
     background-color: #e7dfdd;
     width: 90%;
-    margin-top: auto
+    margin-top: auto;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 
@@ -15,7 +17,6 @@
 
 form{
     margin: auto;
-    max-width: 780px;
 }
 
 label{

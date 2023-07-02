@@ -3,6 +3,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '@data/services/api/auth.service';
 import { ProyectService } from '@data/services/api/proyect.service';
 import { UserService } from '@data/services/api/user.service';
+import { IresponseValidation } from '@data/services/iresponse-validation.metadata';
 import { ICoworker, IProyect, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata'
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
@@ -21,6 +22,8 @@ export class UserTaskComponent implements OnInit, OnDestroy{
   exist:boolean
   completeUsers:any = []
   task:boolean = true
+
+  errorMsg:string
 
   //suscripciones
 
@@ -42,15 +45,31 @@ export class UserTaskComponent implements OnInit, OnDestroy{
       this.ngOnInit()
     })
 
-    this.user = await this.getuser()
+    let mi = await this.getuser()
+    if(mi.error){
+      this.errorMsg=mi.message
+     }else{
+      this.user=mi.data
+     }
     if (this.user.id_Proyect!==null){
-      this.proyecto = await this.traerProyect(this.user.id_Proyect)
+      let res = await this.traerProyect(this.user.id_Proyect)
+      if(res.error){
+        this.errorMsg=res.message
+      }else{
+        this.proyecto=res.data
+      }
+      
       if(this.proyecto!==null){
         this.proyecto.coworker = await this.buscarCoworkers()
         this.completeUsers = this.proyecto.coworker
         this.workersService.setWorker$(this.proyecto.coworker)
         this.exist=true
-        this.tasks = await this.traerTareas()
+        let res = await this.traerTareas()
+        if(res.error){
+          this.errorMsg=res.message
+        }else{
+          this.tasks=res.data
+        }
       }
     }
     //console.log('los coworkers son', this.completeUsers)
@@ -60,11 +79,11 @@ export class UserTaskComponent implements OnInit, OnDestroy{
     })
   }
 
-  getuser():Promise<ICardUser>{
+  getuser():Promise<IresponseValidation>{
     return this.authService.users().toPromise()
   }
 
-  traerProyect(work:number):Promise<IProyect>{
+  traerProyect(work:number):Promise<IresponseValidation>{
     return this.proyectService.traerProyecto(work).toPromise()
   }
 

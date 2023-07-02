@@ -36,8 +36,9 @@
       <img src={{this.datos.avatar}}>
     </div>
       <ul class="nav-list">
+        <small class="text-danger rounded">{{this.errorMsg}}</small>
         <h6 style="font-size: larger; margin-top: -30px;">{{this.datos.name}}</h6>
-        <p style="font-size: smaller;">{{role()}}</p>
+        <p style="font-size: smaller;">{{role()}} {{this.datos.id_Proyect? 'con proyecto ':'libre' }}</p>
         <hr style="padding-bottom: 15px;">
           <li class="nav-list-item">
               <span>
@@ -51,7 +52,7 @@
           </li>
           <li class="nav-list-item">
             <span>
-                <a href="#" class="text-muted">Disabled</a>
+                <a href="#" class="text-muted">historial</a>
             </span>
           </li>
           <li class="nav-list-item" *ngIf="isAdmin()">

@@ -14,6 +14,7 @@ export class UserDetailComponent implements OnInit, OnDestroy{
   public id: number;
   public detailSubscribe: any
 
+  errorMsg:string
   constructor(
     private userServices: UserService,
     private route: ActivatedRoute
@@ -37,7 +38,9 @@ export class UserDetailComponent implements OnInit, OnDestroy{
     this.detailSubscribe = this.userServices
     .getUserById(this.id)
     .subscribe(r => {
-      if(!r.error){
+      if(r.error){
+        this.errorMsg = r.msg
+      }else{
         this.currentUser = r.data
       }
     })

@@ -1,20 +1,21 @@
 <!--
         ///Titulo y boton de cambio
     -->
-
+<small class="text-danger rounded">{{this.errorMsg}}</small>
 <ng-container *ngIf="exist else elseExist">
 
     <div class="jumbotro" style="margin-bottom: 75px; margin-top: 40px; padding-left: 50px; padding-right: 50px;">
         <div class="row">
             <div class="col-9">
-                <h3 class="display-4" style=" font-weight: 300; color: black;">Catask colaborativo</h3>
+                <h4 class="display-4" style=" font-weight: 300; color: black; font-size: 35px; padding-right: 20px;">Catask Work</h4>
             </div>
-            <div class="col-3  info" style="display: flex; margin-top: 25px;" (click)="replace()">
-                <p class="display-4" style=" font-weight: 200; color: black">{{task? 'my team & info':'tasks'}}</p>
+            <div class="col-3  info" style="display: flex;" (click)="replace()">
+                <p class="display-4" style=" font-weight: 200; color: black">{{task? 'proyect':'tasks'}}</p>
                 <i class="fa-solid fa-arrow-right" style=" padding-left: 3px;"></i>
             </div>
         </div>
         <hr class="my-4">
+        <small class="text-danger rounded">{{errorMsg}}</small>
     </div>
 
     <ng-container *ngIf=" task else elseTask">
@@ -47,6 +48,8 @@
             junto con tu equipo de trabajo puedan avanzar en el proyecto y terminarlo en la fecha acordada. En detalles vas a tener  la opcion 
             de otro boton de completar para que marques la tarea como lista. esta funcion solo está habilitada si estas colaborando en la tarea 
         </p>
+        <p class="display-4" style=" font-weight: 300; color: black; font-size: 30px;">Tu proyecto: {{proyecto.name}}</p>
+        <p class="lead" style="font-size: medium;">{{proyecto.description}}</p>
           </div>
     
     
@@ -67,6 +70,7 @@
 
 
 <ng-template #elseExist >
+    <small class="text-danger rounded">{{errorMsg}}</small>
     <div style="max-width: 500px; margin: auto; ">
         <img class="" src="assets/images/task/proyecto.gif" style=" width: 400px; margin-top: -20px;">
         <h1 class="display-4" style=" font-size: 50px; font-weight: 800; text-align: center;">OH NO!</h1>

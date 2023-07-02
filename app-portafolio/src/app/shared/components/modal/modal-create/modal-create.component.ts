@@ -124,6 +124,7 @@ export class ModalCreateComponent {
   @Input() workers:Array<ICoworker>
   user:Array<ICoworker> =[]
 
+  errorMsg:string
 
 constructor(
   private formBuilder:FormBuilder,
@@ -174,7 +175,11 @@ autenticate() {
   this.registerTask.markAllAsTouched()
   if(this.registerTask.valid){
     this.registerTask.controls['users'].setValue(this.user)
-    this.proyectService.addTask(this.registerTask.value).subscribe()
+    this.proyectService.addTask(this.registerTask.value).subscribe(r=>{
+      if(r.error){
+        this.errorMsg=r.message
+      }
+    })
     this.hideModal()
     this.ngOnInit()
     this.refreshService.refresh.emit()
@@ -199,9 +204,11 @@ autenticate() {
       
       this.user.forEach((element, index)=>{
         if(element === user){
-          delete this.user[index];}
+          delete this.user[index];
+          this.user.splice(index,1) //borrar si falla
+        }
      })
-     this.user.pop()
+     //this.user.pop()
      
     }else{
       this.user.push(user)

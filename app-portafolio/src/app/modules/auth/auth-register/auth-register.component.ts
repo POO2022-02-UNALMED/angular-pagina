@@ -72,10 +72,10 @@ constructor(
 ngOnInit(): void {
   //validations 
   this.registerForm = this.formBuilder.group ({
-    name: [ 'seb', [Validators.required,  Validators.pattern(/^[a-z0-9._%+-]{3,10}$/)]],
-    email: [ 'email5@gmail.com', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
-    password: [ '12345', Validators.required],
-    is_Admin: [ false , Validators.required],
+    name: [ , [Validators.required,  Validators.pattern(/^[a-z0-9._%+-]{3,10}$/)]],
+    email: [ , [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
+    password: [ , Validators.required],
+    is_Admin: [ , Validators.required],
   })
 }
 
@@ -106,11 +106,23 @@ autenticate() {
     if(this.registerForm.controls['is_Admin'].value=== 'true'){
       this.registerForm.controls['is_Admin'].setValue(true)
       this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe(r=>{
-        this.authService.editUser({id_Proyect:r.data.id}, r.data.id_Admin).subscribe()
+        if(r.error){
+          this.msgError=r.message
+        }else{
+          this.authService.editUser({id_Proyect:r.data.id}, r.data.id_Admin).subscribe(r=>{
+            if(r.error){
+              this.msgError=r.message
+            }
+          })
+        }
       })
     }else{
       this.registerForm.controls['is_Admin'].setValue(false)
-      this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe()
+      this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe(r=>{
+        if(r.error){
+          this.msgError=r.message
+        }
+      })
     }
     
   //  if(this.registerForm.controls['is_Admin'].value === 'true'){

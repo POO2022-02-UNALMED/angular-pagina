@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { IresponseValidation } from '../iresponse-validation.metadata';
 import { API_ROUTES, INTERNAL_ROUTES } from '@data/constants/routes';
 import { ICoworker, IProyect, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
@@ -28,12 +28,16 @@ export class ProyectService {
           response.data=r.data
           response.message=r.message
           if(response.error==false){
-            return response.data
+            return response
           }else{
             return null
           }
           
-        })
+        }),
+        catchError( e =>{
+          response.message='Hubo un probelma'
+          return of (response);
+        }),
       )
     }
 
@@ -55,12 +59,20 @@ export class ProyectService {
     //  // TODO TERMINAR EL SERVICIO
     //}
 
-    searchTasks(id:number):Observable<Array<ITask>>{
+    searchTasks(id:number):Observable<IresponseValidation>{
+      const response= {error:true, message:'No tienes proyecto', data:null}
       return this.http.get<IresponseValidation>(API_ROUTES.DATA_TASK.TASKS + '/' + id)
       .pipe(
         map(r=>{
-          return r.data
-        })
+          response.data=r.data
+          response.error=r.error
+          response.message=r.message
+          return response
+        }),
+        catchError( e =>{
+          response.message='Hubo un probelma'
+          return of (response);
+        }),
       )
     }
 
@@ -78,28 +90,46 @@ export class ProyectService {
           response.error=r.error
           response.message=r.message
           return response
-        })
+        }),
+        catchError( e =>{
+          response.message='Hubo un probelma'
+          return of (response);
+        }),
       )
     }
 
     addTask(data:any):Observable<any>{
+      const response = { error:true, message:'falla cambiando los datos', data:null}
       return this.http.post(API_ROUTES.DATA_TASK.TASKS, data)
       .pipe(
         map(r=>{
           return r
-        })
+        }),
+        catchError( e =>{
+          response.message='Hubo un probelma'
+          return of (response);
+        }),
       )
     }
 
-    deleteTask(task:ITask):Observable<any>{
-      return this.http.delete(API_ROUTES.DATA_TASK.TASKS + '/' + task.id)
+    deleteTask(task:ITask):Observable<IresponseValidation>{
+      const response = { error:true, message:'falla cambiando los datos', data:null}
+      return this.http.delete<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_TASK.TASKS + '/' + task.id)
       .pipe(
         map(r=>{
-        })
+          response.data = r.data
+          response.error = r.error
+          response.message = r.message
+          return response
+        }),
+        catchError( e =>{
+          response.message='Hubo un probelma'
+          return of (response);
+        }),
       )
     }
 
-    editTask(id:number, task:ITask):Observable<IresponseValidation>{
+    editTask(id:number, task:ITask|any):Observable<IresponseValidation>{
       const response = { error:true, message:'falla cambiando los datos', data:null}
       return this.http.put<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_TASK.TASKS + '/' + id, task)
       .pipe(
@@ -108,10 +138,30 @@ export class ProyectService {
           response.error=r.error
           response.message=r.message
           return response
-        })
+        }),
+        catchError( e =>{
+          response.message='Hubo un problema'
+          return of (response);
+        }),
       )
     }
 
+    editProyect(id:number, proyect:IProyect):Observable<IresponseValidation>{
+      const response = { error:true, message:'falla cambiando los datos', data:null}
+      return this.http.put<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_PROYECTS.PROYECTS + '/' + id, proyect)
+      .pipe(
+        map(r=>{
+          response.data=r.data
+          response.error=r.error
+          response.message=r.message
+          return response
+        }),
+        catchError( e =>{
+          response.message='Hubo un problema al editar el proyecto'
+          return of (response);
+        }),
+      )
+    }
     //reloadComponent():Observable<any>{
     //  
     //}

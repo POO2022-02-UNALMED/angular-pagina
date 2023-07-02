@@ -14,6 +14,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { INTERNAL_PATHS } from '@data/constants/routes';
 import { AuthService } from '@data/services/api/auth.service';
+import { IresponseValidation } from '@data/services/iresponse-validation.metadata';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
 
@@ -29,6 +30,7 @@ export class SideVarComponent implements OnInit{
   perfil = INTERNAL_PATHS.PANEL_USER_EDIT
   datos:any
   
+  errorMsg:string
   constructor(
     private authService : AuthService,
     private refreshService: RefreshService
@@ -40,7 +42,12 @@ export class SideVarComponent implements OnInit{
     this.refreshService.navbar.subscribe(r=>{
       this.ngOnInit()
     })
-    this.datos = await this.getuser()
+    let mi = await this.getuser()
+    if(mi.error){
+      this.errorMsg=mi.message
+     }else{
+      this.datos=mi.data
+     }
     //console.log("jas")
     //TODO    this.authService.getUser.subscribe(r=>{
     //      this.datos = r
@@ -57,7 +64,7 @@ export class SideVarComponent implements OnInit{
     
   }
   
-  getuser():Promise<ICardUser>{
+  getuser():Promise<IresponseValidation>{
     return this.authService.users().toPromise()
   }
 

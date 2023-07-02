@@ -11,7 +11,7 @@ export interface ICompleteUser {
     age?: number;
     description?: string;
     avatar?: string;
-    id_Proyect?: number;
+    id_Proyect?: number|null;
     gender?: string;
     info?: string;
     password?: string;

@@ -18,7 +18,7 @@ export class CardTasksComponent implements OnInit{
   colaborando:boolean
   @Input() my:any
   
-
+  errorMsg:string
   editForm!: FormGroup
   id:number
   user:Array<number> =[]
@@ -67,7 +67,6 @@ export class CardTasksComponent implements OnInit{
 
   taskEdit(){
     this.edit=true
-    console.log('editando')
   }
   
   del(){
@@ -97,10 +96,8 @@ export class CardTasksComponent implements OnInit{
     
     this.editForm.controls['users'].setValue(this.user)
     this.proyectService.editTask(this.task.id, this.editForm.value).subscribe(r=>{
-      if(r.error===false){
-        console.log('succes colaborando')
-      }else{
-        console.log('failed colaborando')
+      if(r.error){
+        this.errorMsg=r.message
       }
     })
     //console.log('datos',this.task.users, this.user)

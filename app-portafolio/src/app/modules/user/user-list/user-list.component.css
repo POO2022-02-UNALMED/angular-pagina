@@ -28,3 +28,13 @@ textarea{
 small{
     font-size: 12px;
 }
+
+h4{
+    font-size: 40px;
+}
+
+h5{
+    font-size: 35px;
+    margin-bottom: -20px;
+    margin-top: 20px;
+}

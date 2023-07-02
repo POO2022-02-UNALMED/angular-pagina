@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmailValidator, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ICompleteUser } from '@data/interfaces';
 import { AuthService } from '@data/services/api/auth.service';
+import { IresponseValidation } from '@data/services/iresponse-validation.metadata';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
 import * as crypto from 'crypto-js';
@@ -16,6 +17,8 @@ export class UserEditComponent {
   editPerfil: FormGroup
   datosBase:ICompleteUser
 
+  errorMsg:string
+
   constructor(
     private formBuilder : FormBuilder,
     private authService : AuthService,
@@ -24,7 +27,12 @@ export class UserEditComponent {
 
   async ngOnInit(): Promise<void> {
 
-    this.datosBase = await this.getuser()
+    let my = await this.getuser()
+    if(my.error){
+      this.errorMsg=my.message
+     }else{
+      this.datosBase=my.data
+     }
 
     this.editPerfil = this.formBuilder.group({
       
@@ -41,7 +49,7 @@ export class UserEditComponent {
     })
   }
 
-  getuser():Promise<ICompleteUser>{
+  getuser():Promise<IresponseValidation>{
     return this.authService.users().toPromise() 
   }
 
@@ -78,7 +86,9 @@ export class UserEditComponent {
     //  })
         
         this.authService.editUser(this.editPerfil.value, this.datosBase.id!).subscribe(r=>{
-          if(!r.error){
+          if(r.error){
+            this.errorMsg=r.message
+          }else{
             // aqui desencriptamos el email y el password para cambiar las cookies y que aparezcan los nuevos datos
             const key='123'
             const user={
@@ -86,7 +96,11 @@ export class UserEditComponent {
               password: crypto.AES.decrypt(localStorage.getItem('password')!, key).toString(crypto.enc.Utf8)
             }
             this.authService.logout().subscribe()
-            this.authService.login(user).subscribe()
+            this.authService.login(user).subscribe(r=>{
+              if(r.error){
+                this.errorMsg=r.message
+              }
+            })
             this.refreshService.navbar.emit()
           }
         })

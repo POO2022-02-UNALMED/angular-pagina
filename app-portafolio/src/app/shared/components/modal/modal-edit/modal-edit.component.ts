@@ -59,19 +59,21 @@ constructor(
 
 
 recibirMensaje(user:ICoworker){
+  
   if (this.task.users.find((u:ICoworker)=>user.id===u.id)){
-    
     this.task.users.forEach((element, index)=>{
-      if(element === user){
-        delete this.task.users[index];}
+      if(element.id === user.id){
+        console.log(user, element)
+        delete this.task.users[index];
+        this.task.users.splice(index,1) //borrar este si falla
+      }
    })
-   this.task.users.pop()
+   //this.task.users.pop()
    
   }else{
     this.task.users.push(user)
   }
-  
- 
+  //console.log(this.task.users)
 }
 
 
@@ -98,8 +100,12 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 autenticate() {
   this.editForm.markAllAsTouched()
   if(this.editForm.valid){
-    this.editForm.controls['users'].setValue(this.user)
-    this.proyectService.editTask(this.task.id, this.editForm.value).subscribe()
+    this.editForm.controls['users'].setValue(this.task.users)
+    this.proyectService.editTask(this.task.id, this.editForm.value).subscribe(r=>{
+      if(r.error){
+        this.msgError=r.message
+      }
+    })
     this.hideModalService.hide.emit()
     this.refreshService.refresh.emit()
     this.ngOnInit()

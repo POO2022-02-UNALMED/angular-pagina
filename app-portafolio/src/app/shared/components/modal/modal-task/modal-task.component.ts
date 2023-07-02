@@ -19,6 +19,7 @@ export class ModalTaskComponent implements OnInit {
   admin:boolean=false
   my:any
 
+  errorMsg:string 
   constructor(
     private proyectService: ProyectService,
     private refreshService: RefreshService,
@@ -59,7 +60,11 @@ export class ModalTaskComponent implements OnInit {
   }
 
   delete(task:ITask){
-    this.proyectService.deleteTask(task).subscribe()
+    this.proyectService.deleteTask(task).subscribe(r=>{
+      if(r.error){
+        this.errorMsg=r.message
+      }
+    })
     this.refreshService.refresh.emit()
     this.ngOnInit
     this.hideModal()
@@ -68,8 +73,11 @@ export class ModalTaskComponent implements OnInit {
 
   chekTask(){
     this.task.chek = !this.task.chek
-    this.proyectService.editTask(this.task.id, this.task).subscribe()
-    console.log(this.task)
+    this.proyectService.editTask(this.task.id, this.task).subscribe(r=>{
+      if(r.error){
+        this.errorMsg=r.message
+      }
+    })
     this.hideModal()
     this.edit.emit()
   }
