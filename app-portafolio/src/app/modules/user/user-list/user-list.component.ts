@@ -14,7 +14,7 @@ import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata
 export class UserListComponent implements OnInit, OnDestroy{
   public dateVar: number;
   public users: ICoworker[]; //= USERS_DATA;
-  public nextCoworker: ICoworker[];
+  public nextCoworker: ICoworker[]=[];
   public userSubscription: any;
   public user: {
     name: string;
@@ -50,8 +50,11 @@ export class UserListComponent implements OnInit, OnDestroy{
     this.getUsers()
 
    this.proyect = await this.getProyect()
-
-    console.log(this.proyect)
+    this.users.forEach(element => {
+      if(!element.id_Proyect){
+        this.nextCoworker.push(element)
+      }
+    });
     this.formProyect = this.formBuilder.group({
       
       //editables
@@ -85,6 +88,10 @@ export class UserListComponent implements OnInit, OnDestroy{
   getUsers(){
     this.userSubscription = this.userService.getAllUser()
       .subscribe(r =>  this.users = (r.error) ? [] : r.data)
+  }
+
+  recibir(user:ICoworker){
+    console.log(user)
   }
 
   /*Desuscribirse de los servicios prara no 

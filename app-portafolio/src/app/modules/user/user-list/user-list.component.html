@@ -4,7 +4,7 @@
     <ng-container *ngIf="proyect">
         <div class="container-fluid proyect" style="text-align: center;">
             <div class="col-12">
-                <h4 class="display-4" style=" font-weight: 300; color: black; margin-bottom: 20px;">Crea tu propio proyecto</h4>
+                <h4 class="display-4" style=" font-weight: 300; color: black; margin-bottom: 20px;">Edita tu proyecto</h4>
             </div>
             <h1 class="display-4"></h1>
             <p class="lead" style="font-size: medium;">Abajo tienes la lista de todos los usurios registrados. En el recuadro puedes editar y crear tu proyecto.
@@ -41,9 +41,9 @@
                         <div class="overflow-auto scroll">
                             <div class="row">
                                 
-                                    <ng-container  *ngFor="let user of users">
+                                    <ng-container  *ngFor="let user of nextCoworker">
                                         <div class="col-6 col-sm-4 col-md-4 col-xl-4 workers">
-                                            <app-select-coworker [worker]="user"></app-select-coworker>
+                                            <app-select-coworker [worker]="user" (enviar)="recibir($event)"></app-select-coworker>
                                         </div>
                                             
                                     </ng-container>
