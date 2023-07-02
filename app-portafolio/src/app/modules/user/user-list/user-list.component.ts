@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '@data/services/api/auth.service';
 import { UserService } from '@data/services/api/user.service';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
@@ -19,8 +20,10 @@ export class UserListComponent implements OnInit, OnDestroy{
   };
 
   my:any
+  formProyect: FormGroup
 
   constructor(
+    private formBuilder : FormBuilder,
     private userService: UserService,
     private authService : AuthService
   ){
@@ -41,7 +44,21 @@ export class UserListComponent implements OnInit, OnDestroy{
     this.my = await this.getuser()
 
     this.getUsers()
-    console.log('users',this.my)
+
+    //this.formProyect = this.formBuilder.group({
+    //  
+    //  //editables
+    //  name: [`${this.datosBase.name}`, [Validators.required, Validators.maxLength(20)]],
+    //  age: [this.datosBase.age, [Validators.required, Validators.pattern((/^[0-9]*$/))]],
+    //  description: [`${this.datosBase.description}`, [Validators.required, Validators.maxLength(18)]],
+    //  gender: [`${this.datosBase.gender}`,[Validators.required]],
+    //  info: [`${this.datosBase.info}`,  [Validators.required,Validators.maxLength(100)]],
+    //  avatar:[`${this.datosBase.avatar}`, [Validators.required]],
+//
+    //  //no editables
+    //  email: [`${this.datosBase.email}`]
+    //})
+
   }
 
   getuser(){

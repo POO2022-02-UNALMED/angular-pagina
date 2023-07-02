@@ -77,7 +77,7 @@ export class UserEditComponent {
     //    }
     //  })
         
-        this.authService.editUser(this.editPerfil.value, this.datosBase.id).subscribe(r=>{
+        this.authService.editUser(this.editPerfil.value, this.datosBase.id!).subscribe(r=>{
           if(!r.error){
             // aqui desencriptamos el email y el password para cambiar las cookies y que aparezcan los nuevos datos
             const key='123'

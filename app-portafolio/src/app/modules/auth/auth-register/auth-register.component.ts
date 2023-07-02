@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '@data/services/api/auth.service';
 import { Router } from '@angular/router';
 import { INTERNAL_ROUTES } from '@data/constants/routes';
+import { ProyectService } from '@data/services/api/proyect.service';
 
 @Component({
   selector: 'app-auth-register',
@@ -63,6 +64,7 @@ msgError: string
 constructor(
   private formBuilder:FormBuilder,
   private authService:AuthService,
+  private proyectService: ProyectService
   ){}
 
 
@@ -70,10 +72,10 @@ constructor(
 ngOnInit(): void {
   //validations 
   this.registerForm = this.formBuilder.group ({
-    name: [ '', [Validators.required,  Validators.pattern(/^[a-z0-9._%+-]{3,10}$/)]],
-    email: [ '', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
-    password: [ '', Validators.required],
-    is_Admin: [ '', Validators.required],
+    name: [ 'seb', [Validators.required,  Validators.pattern(/^[a-z0-9._%+-]{3,10}$/)]],
+    email: [ 'email5@gmail.com', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
+    password: [ '12345', Validators.required],
+    is_Admin: [ false , Validators.required],
   })
 }
 
@@ -100,13 +102,20 @@ validateAllFormFields(formGroup: FormGroup, formfield: string){
 
 autenticate() {
   this.registerForm.markAllAsTouched()
-  if(this.registerForm.controls['is_Admin'].value ==='true'){
-    this.registerForm.controls['is_Admin'].setValue(true)
-  }else{
-    this.registerForm.controls['is_Admin'].setValue(false)
-  }
   if(this.registerForm.valid){
     this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe()
+  //  if(this.registerForm.controls['is_Admin'].value === 'true'){
+  //    console.log('true')
+  //    this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe(user=>{
+  //      console.log('id de user',user.data.id)
+  //      this.proyectService.addProyect(user.data.id).subscribe()
+  //    })
+  //  }else{
+  //    console.log('false')
+  //    this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe()
+  //  }
+  
+    
     //this.searchEmailSubscribe = this.authService.getByCode(this.registerForm.value.email)!.subscribe( r=> {
     //  if (!r.error){
     //    this.registerSubscribe = this.authService.register(this.registerForm.value).subscribe(r=>{

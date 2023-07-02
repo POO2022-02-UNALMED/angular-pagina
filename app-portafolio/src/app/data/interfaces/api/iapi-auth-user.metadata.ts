@@ -5,17 +5,17 @@ export interface IApiUserAutentificated {
 }
 
 export interface ICompleteUser {
-    id: number;
-    name: string;
-    email: string;
-    age: number;
-    description: string;
-    avatar: string;
-    work: number;
-    gender: string;
-    info: string;
-    password: string;
-    is_Admin: string;
+    id?: number;
+    name?: string;
+    email?: string;
+    age?: number;
+    description?: string;
+    avatar?: string;
+    id_Proyect?: number;
+    gender?: string;
+    info?: string;
+    password?: string;
+    is_Admin?: string;
 
 }
 

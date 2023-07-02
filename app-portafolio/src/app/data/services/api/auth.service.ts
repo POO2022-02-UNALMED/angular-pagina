@@ -24,49 +24,8 @@ export class AuthService{ plainText:string;
     this.currentUser = new BehaviorSubject(
       JSON.parse(localStorage.getItem(this.nameUserLS)!)
     );
-    
   }
 
-
-  
-
-  //register
-
-  //register(dataRegister: {
-  //  firstName:string;
-  //  lastName:String;
-  //  email: string;
-  //  password: string;
-  //}): Observable <IresponseValidation>{
-  //  const newData= {
-  //    name: `${dataRegister.firstName} ${dataRegister.lastName}`,
-  //    email: dataRegister.email,
-  //    password: dataRegister.password,
-  //    isActive: false
-  //  }
-  //  this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN)
-  //  return this.http.post<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_USERS.USERS, newData)
-  //}
-
-  //getByCode(email:any)
-  //: Observable <IresponseValidation>{
-  //  const response = { error:true,message:ERRORS_CONST.REGISTER.EMAIL, data:null}
-  //  return this.http.get<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_USERS.USERS + '?email='+ email)
-  //  .pipe(
-  //    map( r => {
-  //      let dat:any = r
-  //      if (dat[0]=== undefined){
-  //        response.error=false
-  //      }else{
-  //        response.data=dat[0]
-  //      }
-  //      return response;
-  //    }),
-  //    catchError( e =>{
-  //      return of (response);
-  //    })
-  //  );
-  //}
 
   //login 
 
@@ -92,95 +51,35 @@ export class AuthService{ plainText:string;
     }
     return response;
   }), 
-)}
+  )}
 
-register(dataRegister:{
-  name:string;
-  email: string;
-  password: string;
-})
-:Observable <IresponseValidation>{
-const response = { error:true, message:ERRORS_CONST.LOGIN.USER, data:null}
-return this.http.post<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_USERS.USERS + '/register', dataRegister)
-.pipe(
-map( r=>{
-  response.message = r.message
-    response.data=r.data
+
+  //register
+
+  register(dataRegister:{
+    name:string;
+    email: string;
+    password: string;
+  })
+  :Observable <any>{
+  const response = { error:true, message:ERRORS_CONST.LOGIN.USER, data:null}
+  return this.http.post<any>(API_ROUTES.DATA_USERS.USERS + '/register', dataRegister)
+  .pipe(
+  map( r=>{
+    response.message = 'success'
+    response.data=r
     response.error=false
-    this.router.navigateByUrl(INTERNAL_ROUTES.AUTH_LOGIN);
-  return response;
-  }),
-)}
-  //login(data: {
-  //      email: string;
-  //      password: string;
-  //    })
-  //:Observable <IresponseValidation>{
-  //  const response = { error:true, msg:ERRORS_CONST.LOGIN.USER, data:null}
-  //  return this.http.get<{error:boolean, msg:string, data: any}>(API_ROUTES.DATA_USERS.USERS + '?email='+ data.email)
-  //  .pipe(
-  //    map( r => {
-  //      let dat:any = r
-//
-  //      //email existe? y contraseña conincide
-  //      if (!(dat[0]=== undefined) && dat[0].password===data.password){
-  //        response.data = dat[0]
-  //        response.error = false
-  //        response.msg = 'login succes'
-  //       this.serUserToLocalStorage(dat[0]);
-  //        this.currentUser.next(dat[0])
-  //          
-  //          
-  //         
-  //      }else{
-  //        if(!(dat[0]=== undefined)){
-  //          response.msg= ERRORS_CONST.LOGIN.PASSWORD
-  //      }}
-  //      
-  //      return response;
-  //    }),
-  //    catchError( e =>{
-  //      return of (response);
-  //    })
-  //  );
-  //}
-//
-  //get getUser():Observable<ICompleteUser>{
-  //  return this.currentUser.asObservable()
-  //}
 
+    return response;
+    }),
+  )}
 
-  //login(
-  //  data: {
-  //    email: string;
-  //    password: string;
-  //  }
-  //  ): Observable <{
-  //      error: boolean;
-  //      msg: string;
-  //      data: any
-  //  }> {
-  //    
-  //    const response = { error:true, msg:ERRORS_CONST.LOGIN.ERROR, data:null}
-  //    return this.http.post<{error:boolean, msg: string, data: any}>(API_ROUTES.USERS.LOGIN, data)
-  //    .pipe(
-  //      map( r => {
-  //        response.msg = r.msg;
-  //        response.error = r.error
-  //        response.data = r.data
-  //        this.serUserToLocalStorage(r.data);
-  //        this.currentUser.next(r.data);
-  //        if (!response.error) {
-  //          this.router.navigateByUrl(INTERNAL_ROUTES.PANEL_USER_LIST);
-  //        }
-  //        return response;
-  //      }),
-  //      catchError( e =>{
-  //        return of (response);
-  //      })
-  //    );
-  //  }
-
+  admin(idProyect:number, id:number){
+    const newData={
+      id_Proyect: idProyect
+    }
+    this.http.put<{error:boolean, message: string, data: any}>(API_ROUTES.DATA_USERS.USERS + '/' + id, newData)
+  }
   
 
   logout():Observable<any>{
@@ -195,10 +94,11 @@ map( r=>{
     )
   }
 
-
+  // set user
   private serUserToLocalStorage( user:IApiUserAutentificated){
     localStorage.setItem(this.nameUserLS, JSON.stringify(user))
   }
+
 
   //user
 
@@ -217,23 +117,21 @@ map( r=>{
     )
   }
 
-  //loginByEmail(data:any):Observable<IresponseValidation>{
-  //  this.router.navigateByUrl(INTERNAL_ROUTES.PANEL_USER_TASK);
-  // const response = { error:true, msg:ERRORS_CONST.LOGIN.USER, data:null}
-  //  return this.http.post<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_LOGINS.LOGINS, data)
-  //}
-
-
+  //guard
   obtenerLocalStorage(){
     return JSON.parse(localStorage.getItem("currentUserCatask")!)
   }
 
+
+  //edit user
+
   editUser(newData:ICompleteUser, id:number): Observable <IresponseValidation>{
     const response = { error:true, message:'No se completó el cambio', data:null}
-    console.log(newData.id)
+    console.log(newData,id)
     return this.http.put<{error:boolean, message: string, data: any}>(API_ROUTES.DATA_USERS.USERS + '/' + id, newData)
     .pipe(
       map(r=>{
+        console.log('entro',r)
         response.error=false
         response.message='succes'
         return response
@@ -242,6 +140,8 @@ map( r=>{
 
   }
 
+
+  //get allusers
 
   users():Observable <any>{
     const response = { error:true, message:'No se encontro el usuario', data:null}

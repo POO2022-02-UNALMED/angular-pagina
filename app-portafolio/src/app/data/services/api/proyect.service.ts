@@ -6,6 +6,7 @@ import { IresponseValidation } from '../iresponse-validation.metadata';
 import { API_ROUTES, INTERNAL_ROUTES } from '@data/constants/routes';
 import { ICoworker, IProyect, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 import { identifierName } from '@angular/compiler';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class ProyectService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
     traerProyecto(id:any):Observable<any>{
@@ -35,10 +37,10 @@ export class ProyectService {
       )
     }
 
+    //addUserToTask(worker:ICoworker, idProyecto:number,task:any):Observable<any>{
+    //  return this.http.get<ITask>(API_ROUTES.DATA_PROYECTS.PROYECTS + '?task=' + task + '?id=' + idProyecto)
+    //}
 
-    addUserToTask(worker:ICoworker, idProyecto:number,task:any):Observable<any>{
-      return this.http.get<ITask>(API_ROUTES.DATA_PROYECTS.PROYECTS + '?task=' + task + '?id=' + idProyecto)
-    }
     //addUserToTask(idUser:number, idProyecto:number,idTask:number):Observable<Array<IProyect>>{
     //  this.http.get<Array<IProyect>>(API_ROUTES.DATA_PROYECTS.PROYECTS + '?id=' + idProyecto)
     //  .pipe(
@@ -62,6 +64,23 @@ export class ProyectService {
       )
     }
 
+    addProyect(id:number):Observable<IresponseValidation>{
+      const response= {error:true, message:'No tienes proyecto', data:null}
+      const newData={
+        name: "proyect",
+        id_Admin: id,
+        description: "new proyect"
+      }
+      return this.http.post<{error:boolean, message:string, data:any}>(API_ROUTES.DATA_PROYECTS.PROYECTS, newData)
+      .pipe(
+        map(r=>{
+          response.data=r.data
+          response.error=r.error
+          response.message=r.message
+          return response
+        })
+      )
+    }
 
     addTask(data:any):Observable<any>{
       return this.http.post(API_ROUTES.DATA_TASK.TASKS, data)
