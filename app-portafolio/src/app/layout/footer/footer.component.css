@@ -1,6 +1,87 @@
-.container-fluid {
-    bottom: 0;
-    background-color: #faf3f4;
-    text-align: center;
+
+footer{
+    box-shadow: 0px 0px 1px 2px rgba(0,0,0,0.15);
+    background-color: #7e99a0;
+    box-sizing: border-box;
     font-size: small;
+    margin-bottom: -20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: auto;
+}
+.footerContainer{
+    width: 100%;
+    padding-top: 10px;
+}
+.icons{
+    display: flex;
+    justify-content: center;
+}
+.icons a{
+    text-decoration: none;
+    padding: 10px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 100%;
+}
+
+.icons a img{
+    font-size: 2em;
+    opacity: 0.9;
+}
+
+.icons a:hover{
+    background-color: #7e99a0;
+    transition: 0.5s;
+}
+
+.icons a img:hover{
+   transform: scale(1.4);
+   transition: 0.5s;
+}
+
+.footerNav{
+    margin: 20px 0;
+}
+
+.footerNav ul {
+    justify-content: center;
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+ 
+.footerNav li a{
+    height: 2rem;
+    line-height: 2rem;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    opacity: 0.8;
+    transition: 0.5s;
+    font-weight: 600;
+}
+
+.footerNav li a:hover{
+    opacity: 1;
+}
+
+.footerBotom{
+    background-color: #6a8187;
+    text-align: center;
+}
+
+.footerBotom p{
+    color: white;
+    padding: 10px;
+    opacity: 1;
+}
+
+.designer{
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
 }

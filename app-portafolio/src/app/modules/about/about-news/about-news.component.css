@@ -1,0 +1,18 @@
+.container-fluid{
+    padding: 3%
+}
+
+.img{
+    border-radius: 100%;
+    width: 50spx;
+    height: 50px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+p{
+    font-size: 25px;
+    cursor: pointer;
+}
+
+

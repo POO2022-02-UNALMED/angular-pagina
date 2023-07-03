@@ -12,6 +12,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
 import { SideVarComponent } from './layout/side-var/side-var.component';
 import { LoginComponent } from './layout/login/login.component';
+import { AboutComponent } from './layout/about/about.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LoginComponent } from './layout/login/login.component';
     NavigationComponent,
     SideVarComponent,
     LoginComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

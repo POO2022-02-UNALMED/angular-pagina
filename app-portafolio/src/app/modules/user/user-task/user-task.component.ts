@@ -19,9 +19,10 @@ export class UserTaskComponent implements OnInit, OnDestroy{
   proyecto:IProyect
 
   tasks:Array<ITask>
-  exist:boolean
+  exist:boolean 
   completeUsers:any = []
-  task:boolean = true
+  task:boolean =true
+  zero:boolean 
 
   errorMsg:string
 
@@ -42,6 +43,7 @@ export class UserTaskComponent implements OnInit, OnDestroy{
   async ngOnInit() {
     
     this.refreshService.refresh.subscribe(r=>{
+      console.log('refresh')
       this.ngOnInit()
     })
 
@@ -69,10 +71,16 @@ export class UserTaskComponent implements OnInit, OnDestroy{
           this.errorMsg=res.message
         }else{
           this.tasks=res.data
+          if(this.tasks.length!==0){
+            this.zero=false
+          }else{
+            this.zero=true
+          }
         }
+      }else{
+        this.exist= false
       }
     }
-    //console.log('los coworkers son', this.completeUsers)
     
 
     this.refreshService.refresh.subscribe(r=>{

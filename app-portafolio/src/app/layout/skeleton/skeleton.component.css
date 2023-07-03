@@ -26,7 +26,6 @@ app-side-nav{
 */
 
 main {
-    top: 3.5rem;
     z-index: 0;
 }
 
@@ -44,7 +43,6 @@ app-footer {
         position: static;
         width: calc(100% - 220px);
         margin-left: 220px;
-        margin-top: 30px;
     }
 }
 

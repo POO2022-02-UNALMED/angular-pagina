@@ -38,7 +38,6 @@ export class SideVarComponent implements OnInit{
   }
 
   async ngOnInit(){
-    
     this.refreshService.navbar.subscribe(r=>{
       this.ngOnInit()
     })

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from '@data/services/api/auth.service';
 import { ProyectService } from '@data/services/api/proyect.service';
+import { IresponseValidation } from '@data/services/iresponse-validation.metadata';
 import { ICoworker, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { HideModalService } from '@shared/services/hide/hide-modal.service';
@@ -29,7 +30,12 @@ export class ModalTaskComponent implements OnInit {
   ){
   }
   async ngOnInit(): Promise<void> {
-    this.my = await this.getuser()
+    let mi = await this.getuser()
+    if(mi.error){
+      this.errorMsg=mi.message
+    }else{
+      this.my=mi.data
+    }
     this.admin= this.my.is_Admin
     
     this.hideModalService.hide.subscribe(
@@ -37,7 +43,7 @@ export class ModalTaskComponent implements OnInit {
     )
   }
 
-  getuser():Promise<ICardUser>{
+  getuser():Promise<IresponseValidation>{
     return this.authService.users().toPromise()
   }
 

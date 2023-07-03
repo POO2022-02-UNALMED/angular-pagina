@@ -34,8 +34,8 @@ img {
     list-style: none;
     justify-content: center;
     text-align: center;
-    height: 60%;
-    padding: 25%;
+    height: 5%;
+    padding: 5%;
     margin-bottom: 0%;
     text-transform: uppercase;
 }
@@ -43,12 +43,13 @@ img {
 .nav-list-item {
     display: flex;
     height: 50px;
+    margin: auto;
 }
-
 
 
 .nav-list-item span {
     width: 120px;
+    margin: auto;
 }
 
 a {

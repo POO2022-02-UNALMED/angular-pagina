@@ -1,10 +1,10 @@
 <!--
         ///Titulo y boton de cambio
     -->
-<small class="text-danger rounded">{{this.errorMsg}}</small>
-<ng-container *ngIf="exist else elseExist">
+    <small class="text-danger rounded">{{this.errorMsg}}</small>
+<ng-container *ngIf="exist">
 
-    <div class="jumbotro" style="margin-bottom: 75px; margin-top: 40px; padding-left: 50px; padding-right: 50px;">
+    <div class="jumbotro" style="margin-bottom: 10px; margin-top: 40px; padding-left: 50px; padding-right: 50px;">
         <div class="row">
             <div class="col-9">
                 <h4 class="display-4" style=" font-weight: 300; color: black; font-size: 35px; padding-right: 20px;">Catask Work</h4>
@@ -23,9 +23,24 @@
         <!--
             ///tareas
         -->
+        <ng-container *ngIf="zero">
+            
+            <small class="text-danger rounded">{{errorMsg}}</small>
+            <div style="max-width: 450px; margin: auto; ">
+                <img class="" src="assets/images/task/tarea.gif" style="left: 40vh; max-width: 350px; margin-top: -40px; margin: auto;">
+                <h1 class="display-4" style=" font-size: 50px; font-weight: 800; text-align: center;">ESPERA</h1>
+                <h4 class="display-4 text-muted" style=" font-size: 30px; font-weight: 300; text-align: center;">NO ENCONTRAMOS TAREAS</h4>
+                <p class="text-muted" style="font-size: 20px; font-weight: 200;">Espera a que el administrador del proyecto cree una tarea para empezar a trabajar</p>
+            </div>
+
+        </ng-container>
+
+        <ng-container *ngIf="!zero">
             <div class="container-fluid row" style="margin-top: 40px;">
                 <app-card-tasks [task]="task" [my]="this.user" *ngFor="let task of this.tasks" class="col-12 col-md-6 col-xl-6" ></app-card-tasks>
             </div>
+        </ng-container>
+            
         
             <ng-container>
                 <img *ngIf="this.user.is_Admin" class="img" src="assets/images/task/add-button.png" (click)="modalCreate.showModal()" style="margin-left: 18px;">
@@ -39,7 +54,7 @@
        
     </ng-container>
 
-    <ng-template #elseTask>
+    <ng-template  #elseTask>
 
         
         <div class="jumbotron" style="margin-left: 40px; margin-right: 40px; margin-top: -40px;">
@@ -57,7 +72,7 @@
             ///tarjetas team
         -->
     
-        <div class="container-fluid row">
+        <div class="container-fluid row" style="margin-bottom: 20px;">
             <app-card-user [fromTask]="true" [data]="user" *ngFor="let user of this.completeUsers" class="col-12 col-md-6 col-xl-4" ></app-card-user>
         </div>
 
@@ -69,10 +84,10 @@
 
 
 
-<ng-template #elseExist >
+<ng-container *ngIf="!exist" >
     <small class="text-danger rounded">{{errorMsg}}</small>
-    <div style="max-width: 500px; margin: auto; ">
-        <img class="" src="assets/images/task/proyecto.gif" style=" width: 400px; margin-top: -20px;">
+    <div style="max-width: 450px; margin: auto; ">
+        <img class="" src="assets/images/task/proyecto.gif" style="left: 20%; max-width: 350px; margin-top: -20px;">
         <h1 class="display-4" style=" font-size: 50px; font-weight: 800; text-align: center;">OH NO!</h1>
         <h4 class="display-4 text-muted" style=" font-size: 30px; font-weight: 300;">PARECE QUE NO TIENES PROYECTO...</h4>
         <p class="text-muted" style="font-size: 20px; font-weight: 200;">Conseguir un proyecto es muy facil. Actualiza tu perfil y espera que un administrador te elija</p>
@@ -80,35 +95,5 @@
     
 
 
-</ng-template>
-
-
-   <!--
-        <div style="margin-left: 40px;">
-
-        <div class="row">
-            <div *ngFor="let user of this.completeUsers; let first = first" class="col-1" style="margin-bottom: 5px;">
-                
-                <img class="img" src="{{user.avatar}}" alt="">
-                
-            </div>
-        </div>
-
-
-
-    </div>
-    -->
-
-<!--
-    <app-title-h1 text="Equipo de trabajo"></app-title-h1>
-    <div class="container-fluid row">
-        <app-card-user [data]="user" *ngFor="let user of this.completeUsers" class="col-12 col-md-6 col-xl-4"></app-card-user>
-    </div>
--->
-    <!--
-    <ng-container *ngFor="let coworker of proyecto.coworker"> 
-        {{ponerUsuarios(coworker.id)}}  
-    </ng-container>
--->
-    
+</ng-container>
 

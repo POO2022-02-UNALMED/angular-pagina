@@ -17,9 +17,7 @@ img {
 
 
 ng-container {
-    position: absolute;
     width: 100%;
-    top: 3.5rem;
     z-index: 0;
 }
 app-side-var{
@@ -31,6 +29,14 @@ app-side-var{
     border-top: 1px solid #7e99a0;
     z-index: 0;
 }
+.side-navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    display: flex;
+}
+
 
 .btn {
     margin-left: 25px;
@@ -46,13 +52,6 @@ app-side-var{
 
 .nav {
     height: 100%;
-}
-.side-navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    display: flex;
 }
 
 .side-navbar-btn {
