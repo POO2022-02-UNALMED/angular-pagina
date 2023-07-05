@@ -2,7 +2,7 @@
 <div class="jumbotron" style="margin-left: 20px; margin-right: 20px;">
 
     <ng-container *ngIf="loader">
-        <div class="container-fluid proyect" style="text-align: center; margin-left: 40px;">
+        <div class="container-fluid proyect" style="text-align: center; margin: auto;">
             <div class="col-12">
                 <h4 class="display-4" style=" font-weight: 300; color: black; margin-bottom: 20px;">Edita tu proyecto</h4>
             </div>
@@ -30,7 +30,7 @@
                         </div>
                 
                         <div class="mb-3">
-                            <button type="submit" class="btn" style="background-color: #e30052; color: white;" (click)="autenticate()">Guardar</button>
+                            <button type="submit" class="btn" style="font-size: small; background-color: #e30052; color: white;" (click)="autenticate()">Guardar</button>
                         </div>
 
                     </div>
@@ -40,7 +40,7 @@
                             <div class="row">
                                 
                                     <ng-container  *ngFor="let user of workers">
-                                        <div class="col-6 col-sm-7 col-md-4 col-xl-3 workers">
+                                        <div class="col-7 col-sm-6 col-md-4 col-xl-2 workers">
                                             <app-select-coworker [worker]="user" (enviar)="recibir($event)" [selected]="isSelected(user)" ></app-select-coworker>
                                         </div>
                                             

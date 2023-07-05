@@ -22,7 +22,7 @@
                         <h6 class="text-danger" >fecha limite: {{task.date}}</h6>
                         <app-scrollable-menu [workers]="task.users"></app-scrollable-menu>
                     </div>
-                    <button type="button"  *ngIf="colaborando" [ngClass]="task.chek? 'btn-outline-danger': 'btn-success'" class="btn" (click)="chekTask()">{{this.task.chek? 'Seguir':'Terminar'}}</button>
+                    <button type="button"  *ngIf="colaborando" [ngClass]="task.check? 'btn-outline-danger': 'btn-success'" class="btn" (click)="checkTask()">{{this.task.check? 'Seguir':'Terminar'}}</button>
                     <button *ngIf="admin" type="button" class="btn" style="background-color: #e30052; color: rgb(255, 255, 255);" (click)="modal.showModal()">Editar</button>
                     <button *ngIf="admin" type="button" class="btn bg-danger" style=" color: rgb(255, 255, 255);" (click)="delete(task)">Eliminar</button>
                     <app-modal-edit #modal [task]="task"></app-modal-edit>

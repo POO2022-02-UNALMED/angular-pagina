@@ -77,15 +77,77 @@ export class ModalTaskComponent implements OnInit {
     
   }
 
-  chekTask(){
-    this.task.chek = !this.task.chek
-    this.proyectService.editTask(this.task.id, this.task).subscribe(r=>{
-      if(r.error){
-        this.errorMsg=r.message
+  async checkTask(){
+
+    this.proyectService.traerProyecto(this.my.id_Proyect).subscribe(r=>{
+      if(!r.error){
+        //esta en el proyecto
+        if(r.data.id=== this.task.id_Proyect){
+          this.proyectService.traerTarea(this.task.id).subscribe(r=>{
+            if(!r.error){
+              
+              if(r.data.users.find((u:any) => u.id===this.my.id)){ //el user esta en la tarea
+
+                //codigo
+                this.task.check = !this.task.check
+                this.proyectService.editTask(this.task.id, this.task).subscribe(r=>{
+                  console.log(r)
+                  if(r.error){
+                    this.errorMsg=r.message
+                  }else{
+                    this.edit.emit()
+                    this.hideModal()
+                  }
+                })
+
+                //
+
+              }else{
+                this.errorMsg='Ya no participas en esta tarea'
+              }
+            }else{
+              this.errorMsg='La tarea fue eliminada'
+            }
+          })
+        }
       }
     })
-    this.hideModal()
-    this.edit.emit()
+
+    //let mi = await this.getuser()
+    //if(mi.error){
+    //  this.errorMsg=mi.message
+    //}else{
+    //  if(mi.data.id_Proyect===this.my.id_Proyect){
+    //    this.proyectService.searchTasks(this.task.id_Proyect).subscribe(r=>{
+    //      if(r.data.find((tarea:any) => (tarea.id ===this.task.id))){
+    //        r.data.forEach((element:ITask, index:number) => {
+    //          if(element.id === this.task.id ){ //existe la tarea
+    //            if(element.users.find(user=>(user.id===this.my.id))){
+    //              this.task.chek = !this.task.chek
+    //              console.log('aki')
+    //              this.proyectService.editTask(this.task.id, {check:this.task.chek}).subscribe(r=>{
+    //                if(r.error){
+    //                  this.errorMsg=r.message
+    //                }
+    //                console.log(r.data)
+    //              })
+    //              this.hideModal()
+    //              this.edit.emit()
+    //            }else{
+    //              this.errorMsg= 'Ya no estas participando en la tarea'
+    //            }
+    //          }
+    //        });
+    //      }else{
+    //        this.errorMsg= 'Ya no existe esta tarea'
+    //      }
+    //    })
+    //  }else{
+    //    this.errorMsg ='ya no estas participando en este proyecto'
+    //  }
+    //}
+    
+  
   }
 
 

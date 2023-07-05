@@ -23,6 +23,7 @@ export class UserTaskComponent implements OnInit, OnDestroy{
   completeUsers:any = []
   task:boolean =true
   zero:boolean 
+  cargado=false
 
   errorMsg:string
 
@@ -85,6 +86,7 @@ export class UserTaskComponent implements OnInit, OnDestroy{
 
     this.refreshService.refresh.subscribe(r=>{
     })
+    this.cargado=true
   }
 
   getuser():Promise<IresponseValidation>{

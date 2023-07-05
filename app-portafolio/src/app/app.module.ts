@@ -13,6 +13,8 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
 import { SideVarComponent } from './layout/side-var/side-var.component';
 import { LoginComponent } from './layout/login/login.component';
 import { AboutComponent } from './layout/about/about.component';
+import { AngularFireModule } from "@angular/fire/compat";
+import { environment } from 'environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { AboutComponent } from './layout/about/about.component';
   ],
   imports: [
     BrowserModule,
+    AngularFireModule,
+    AngularFireModule.initializeApp(environment.firebase),
     // CORE
 
     FormsModule,

@@ -5,6 +5,8 @@ import { range } from 'rxjs';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { WorkersService } from '@shared/services/workers/workers.service';
+import { IresponseValidation } from '@data/services/iresponse-validation.metadata';
+import { AuthService } from '@data/services/api/auth.service';
 
 @Component({
   selector: 'app-card-tasks',
@@ -28,7 +30,8 @@ export class CardTasksComponent implements OnInit{
     private formBuilder:FormBuilder,
     private proyectService: ProyectService,
     private refreshService: RefreshService,
-    private workersService: WorkersService
+    private workersService: WorkersService,
+    private authService: AuthService
   ){
   }
   
@@ -50,9 +53,9 @@ export class CardTasksComponent implements OnInit{
     this.editForm = this.formBuilder.group ({
 
       //poner las mismas variables
-      name: [ `${this.task.name}`],
-      description: [ `${this.task.description}`],
-      date: [`${this.task.date}`] ,
+      //name: [ `${this.task.name}`],
+      //description: [ `${this.task.description}`],
+      //date: [`${this.task.date}`] ,
       users:[``]
     })
 
@@ -73,36 +76,86 @@ export class CardTasksComponent implements OnInit{
     this.delete.emit()
   }
 
-  agregarUser(task:ITask){
-    if(this.colaborando === true){ //si no aparece como colaborador de la tarea se agrega, sino no
-      
-      this.user.forEach((element, index)=>{
-        if(element === this.my.id){
-          this.user.splice(index,1);}
-      })
-      this.task.users.forEach((element, index)=>{
-        if(element.id === this.my.id){
-          this.task.users.splice(index,1);}
-      })
-     //this.task.users.pop()
-      
+  getuser():Promise<IresponseValidation>{
+    return this.authService.users().toPromise()
+  }
 
-    }if(this.colaborando === false){
-     
-      this.user.push(this.my!.id)
-      this.task.users.push(this.my!)
-    }
-    this.colaborando=!this.colaborando
+  async agregarUser(task:ITask){
+    /* VER SI ESTA EN LA TAREA Y EL PROYECTO Y LUEGO CONTINUAR CON LA EDICION*/
+    let mi = await this.getuser()
+    if(mi.error){
+     }else{
+      if(mi.data.id_Proyect===this.task.id_Proyect){
+        if(this.colaborando === true){ //si no aparece como colaborador de la tarea se agrega, sino no
+          this.user.forEach((element, index)=>{
+            if(element === this.my.id){
+              this.user.splice(index,1);}
+          })
+          this.task.users.forEach((element, index)=>{
+            if(element.id === this.my.id){
+              this.task.users.splice(index,1);}
+          })
+         //this.task.users.pop()
+          
     
-    this.editForm.controls['users'].setValue(this.user)
-    this.proyectService.editTask(this.task.id, this.editForm.value).subscribe(r=>{
-      if(r.error){
-        this.errorMsg=r.message
+        }if(this.colaborando === false){
+         
+          this.user.push(this.my!.id)
+          this.task.users.push(this.my!)
+        }
+    
+    
+        this.editForm.controls['users'].setValue(this.user)
+        this.proyectService.editTask(this.task.id, {users:this.editForm.controls['users'].value}).subscribe(r=>{
+          if(r.error){
+            this.errorMsg=r.message
+          }else{
+            this.colaborando=!this.colaborando
+          }
+        })
+      }else{
+        this.errorMsg='ya no participas en el proyecto'
       }
-    })
+
+     }
+
+    
+    //comprobar si la tarea sigue activa
+    //this.proyectService.searchTasks(this.task.id_Proyect).subscribe(r=>{
+    //  if(r.data.find((tarea:any) => (tarea.id ===this.task.id))){
+    //    r.data.forEach((element:ITask, index:number) => {
+    //      console.log('aki')
+    //      if(element.id === this.task.id ){ //existe la tarea
+    //        console.log('aki')
+    //        if(this.editForm.controls['users'].value===true){
+    //          this.proyectService.editTask(this.task.id, {users:this.editForm.controls['users'].value}).subscribe(r=>{
+    //            if(r.error){
+    //              this.errorMsg=r.message
+    //            }else{
+    //              this.colaborando=!this.colaborando
+    //            }
+    //          })
+    //        }else{
+    //          if(element.chek==true){
+    //            this.editForm.controls['users'].setValue(this.user)
+    //            this.proyectService.editTask(this.task.id, {users:this.editForm.controls['users'].value}).subscribe(r=>{
+    //              if(r.error){
+    //                this.errorMsg=r.message
+    //              }else{
+    //                this.colaborando=!this.colaborando
+    //              }
+    //            })
+    //          }else{
+    //            this.errorMsg='esta tarea ya esta terminada'
+    //          }
+    //        }
+    //      }
+    //      })
+//
     //console.log('datos',this.task.users, this.user)
     //this.ngOnInit()
-  }
+  //}})
+}
 
 
   searchWorkerForId(id:number){

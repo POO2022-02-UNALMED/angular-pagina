@@ -52,7 +52,7 @@ constructor(
     name: [ `${this.task.name}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(49)]],
     description: [ `${this.task.description}`, [Validators.required, Validators.minLength(5) ,Validators.maxLength(70)]],
     date: [`${this.task.date}`],
-    chek: [this.task.chek],
+    chek: [this.task.check],
     users:[``]
   })
 }
@@ -101,14 +101,21 @@ autenticate() {
   this.editForm.markAllAsTouched()
   if(this.editForm.valid){
     this.editForm.controls['users'].setValue(this.task.users)
+
+    //si mientras que hago los ajustes se une una persona mas o se va 
+    //TODO
+    //
+
     this.proyectService.editTask(this.task.id, this.editForm.value).subscribe(r=>{
       if(r.error){
         this.msgError=r.message
+      }else{
+        this.hideModalService.hide.emit()
+        this.refreshService.refresh.emit()
+        this.ngOnInit()
       }
     })
-    this.hideModalService.hide.emit()
-    this.refreshService.refresh.emit()
-    this.ngOnInit()
+   
     }else {
     }
   }

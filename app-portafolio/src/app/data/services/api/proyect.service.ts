@@ -130,7 +130,7 @@ export class ProyectService {
     }
 
     editTask(id:number, task:ITask|any):Observable<IresponseValidation>{
-      const response = { error:true, message:'falla cambiando los datos', data:null}
+      const response = { error:true, message:'parece que hay cambios en el proyecto, recarge la pagina', data:null}
       return this.http.put<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_TASK.TASKS + '/' + id, task)
       .pipe(
         map(r=>{
@@ -140,9 +140,26 @@ export class ProyectService {
           return response
         }),
         catchError( e =>{
-          response.message='Hubo un problema'
+          response.message='parece que hay cambios en el proyecto, recarge la pagina o intente despues'
           return of (response);
         }),
+      )
+    }
+
+    traerTarea(idTask:number):Observable<IresponseValidation>{
+      const response = { error:true, message:'falla cambiando los datos', data:null}
+      return this.http.get<{error:boolean, message:string, data: any}>(API_ROUTES.DATA_TASK.TASKS + '/' + idTask + '/byId')
+      .pipe(
+        map(r=>{
+          response.data=r.data
+          response.error=r.error
+          response.message=r.message
+          return response
+        }),
+        catchError( e =>{
+          response.message='problema al traer la tarea'
+          return of (response);
+        })
       )
     }
 

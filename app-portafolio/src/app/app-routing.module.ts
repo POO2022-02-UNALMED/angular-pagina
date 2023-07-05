@@ -11,14 +11,14 @@ const routes: Routes = [
   {
     path: INTERNAL_PATHS.AUTH_DEFAULT,
     component: LoginComponent,
-    //canActivate: [NoAuthGuard],
+    canActivate: [NoAuthGuard],
     loadChildren: ()=> 
     import ('@modules/auth/auth.module').then((m)=>m.AuthModule)
   },
   {
     path: INTERNAL_PATHS.PANEL_DEFAULT,
     component: SkeletonComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: ()=> 
     import ('@modules/user/user.module').then((m)=>m.UserModule)
   },

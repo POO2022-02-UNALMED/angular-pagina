@@ -3,7 +3,7 @@
 <div class="container-fluid row" style="margin-right: 5%;">
         <ng-container *ngIf="task">
             <div class="card" >
-                <img src="assets/images/task/cheque.png" style="width: 25px; height: 25px; margin-top: 10px;" [ngClass]="task.chek? 'opacity-100':'opacity-0'">
+                <img src="assets/images/task/cheque.png" style="width: 25px; height: 25px; margin-top: 10px;" [ngClass]="task.check? 'opacity-100':'opacity-0'">
                 <div class="card-body">
                     <small class="text-danger rounded">{{errorMsg}}</small>
                     <p class="card-title" style="text-transform: capitalize; font-size: 30px;">{{task.name}}</p>
@@ -18,7 +18,7 @@
                             Detalles
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
-                        <button *ngIf="!task.chek" style="background-color: #D3D3D3; color: #fff;" [ngClass]="colaborando? 'text-withe, bg-success': ' text-dark'" type="button" class="btn btn-colab" (click)="agregarUser(task)">
+                        <button *ngIf="!task.check" style="background-color: #D3D3D3; color: #fff;" [ngClass]="colaborando? 'text-withe, bg-success': ' text-dark'" type="button" class="btn btn-colab" (click)="agregarUser(task)">
                             {{this.colaborando? 'Colaborando': 'Colaborar'}}
                             <i *ngIf="!colaborando" class="fa-solid fa-plus"></i>
                         </button>
