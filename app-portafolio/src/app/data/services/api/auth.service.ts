@@ -141,6 +141,7 @@ export class AuthService{ plainText:string;
       map(r=>{
         response.error=false
         response.message='succes'
+        this.router.navigateByUrl(INTERNAL_ROUTES.PANEL_USER_TASK);
         return response
       }),
       catchError( e =>{

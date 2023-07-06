@@ -38,19 +38,13 @@ export class UserService /*extends ApiClass*/ {
   /**
    * Trae todos los usuarios de la api
    */
-  getAllUser(): Observable<{
-    error:boolean,          //mostrar si tiene error
-    msg:string,             //mensaje del error. si no tiene queda ''
-    data:ICoworker[]      
-  }>{
+  getAllUser(): Observable<any>{
     const response = {error: false, msg: '', data: [] as ICoworker[]}
-    console.log(API_ROUTES.DATA_USERS.USERS)
     return this.http.get<any>(API_ROUTES.DATA_USERS.USERS)
     .pipe(
       map( r => {
           response.data = r.data;
           response.error =r.error
-          console.log(r)
           return response;
         }
       ),

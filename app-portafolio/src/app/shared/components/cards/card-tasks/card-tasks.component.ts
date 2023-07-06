@@ -82,6 +82,7 @@ export class CardTasksComponent implements OnInit{
 
   async agregarUser(task:ITask){
     /* VER SI ESTA EN LA TAREA Y EL PROYECTO Y LUEGO CONTINUAR CON LA EDICION*/
+
     let mi = await this.getuser()
     if(mi.error){
      }else{
@@ -117,7 +118,9 @@ export class CardTasksComponent implements OnInit{
         this.errorMsg='ya no participas en el proyecto'
       }
 
-     }
+      
+      this.proyectService.editTask(this.task.id, {users:this.my.id})
+    }
 
     
     //comprobar si la tarea sigue activa

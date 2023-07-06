@@ -9,6 +9,7 @@ import { IresponseValidation } from '@data/services/iresponse-validation.metadat
 import { ICoworker, IProyect, ITask } from '@shared/components/cards/card-tasks/card-tasks.metadata';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { WorkersService } from '@shared/services/workers/workers.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -16,11 +17,11 @@ import { WorkersService } from '@shared/services/workers/workers.service';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit, OnDestroy{
+  private subscriptions: Subscription[] = [];
   public dateVar: number; 
   public users: ICoworker[]; //= USERS_DATA;  //todos los usarios para la lista
   public workers: ICoworker[]=[];  //usarios en el proyecto o sin proyecto para elegir
   public selected: ICoworker[]=[]  //usuarios elegidos
-  public userSubscription: any;
   public tasks:Array<ITask>
   public user: {
     name: string;
@@ -34,6 +35,7 @@ export class UserListComponent implements OnInit, OnDestroy{
   loader=false
   msg:string
   change:ITask
+  
 
   constructor(
     private formBuilder : FormBuilder,
@@ -62,7 +64,13 @@ export class UserListComponent implements OnInit, OnDestroy{
      }else{
       this.my=mi.data
      }
-    this.getUsers()
+
+    let s =await this.getUsers()
+    if(s.error){
+      this.msg=s.message
+    }else{
+      this.users= s.data
+    }
 
    let data = await this.getProyect()
    if(data.error){
@@ -144,33 +152,39 @@ export class UserListComponent implements OnInit, OnDestroy{
     this.formProyect.markAllAsTouched()
     if(this.formProyect.valid){
       //proyecto
-      this.proyectService.editProyect(this.my.id_Proyect, this.formProyect.value).subscribe(r=>{
+      this.subscriptions.push(
+        this.proyectService.editProyect(this.my.id_Proyect, this.formProyect.value).subscribe(r=>{
         if(r.error){
           this.msg=r.message
         }
       })
+      )
+      
       
 
       //tareas
       this.selected.forEach(element => {
         if(element.id_Proyect!==this.my.id_Proyect){
-
+          this.subscriptions.push(
           this.authService.editUser({id_Proyect:this.my.id_Proyect}, element.id).subscribe(r=>{
             if(r.error){
               this.msg=r.message
             }
           })
+          )
         }
       });
       this.workers.forEach(element => {
         if(element.id_Proyect===this.my.id_Proyect){
           if (this.selected.find((u:ICoworker)=> element.id===u.id)){
           }else{
+            this.subscriptions.push(
             this.authService.editUser({id_Proyect:null}, element.id).subscribe(r=>{
               if(r.error){
                 this.msg=r.message
               }
             })
+            )
             //TODO
             //entro a cada tarea
             this.tasks.forEach(task => {
@@ -180,11 +194,13 @@ export class UserListComponent implements OnInit, OnDestroy{
                   let users= task.users //cojo la lista y le elimino el usuario y esa lista le hago put en api task
                   delete users[index];
                   users!.splice(index,1)
+                  this.subscriptions.push(
                   this.proyectService.editTask(task.id, {users:users}).subscribe(r=>{
                     if(r.error){
                       this.msg=r.message
                     }
                   })
+                  )
 
                 }
               });
@@ -209,12 +225,8 @@ export class UserListComponent implements OnInit, OnDestroy{
   }
 
 
-  getUsers(){
-    this.userSubscription = this.userService.getAllUser()
-      .subscribe(r =>{
-        console.log(r)
-        this.users = (r.error) ? [] : r.data
-      })
+  getUsers():Promise<IresponseValidation>{
+    return this.userService.getAllUser().toPromise()
   }
 
   recibir(user:ICoworker){
@@ -236,6 +248,9 @@ export class UserListComponent implements OnInit, OnDestroy{
   generar errores al cargar de nuevo el servicio*/ 
 
   ngOnDestroy(){
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 }
 

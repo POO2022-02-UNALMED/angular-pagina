@@ -48,7 +48,6 @@ export class UserDetailComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     if (this.detailSubscribe){
-      console.log('unsuscribe')
       this.detailSubscribe.unsubscribe()
     }
   }

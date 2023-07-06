@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { EmailValidator, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ICompleteUser } from '@data/interfaces';
 import { AuthService } from '@data/services/api/auth.service';
 import { IresponseValidation } from '@data/services/iresponse-validation.metadata';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
 import { RefreshService } from '@shared/services/refresh/refresh.service';
-import * as crypto from 'crypto-js';
 
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css']
 })
-export class UserEditComponent {
-
+export class UserEditComponent implements OnDestroy{
+  public editSubscribe: any
   editPerfil: FormGroup
   datosBase:ICompleteUser
 
@@ -85,34 +84,40 @@ export class UserEditComponent {
     //    }
     //  })
         
-        this.authService.editUser(this.editPerfil.value, this.datosBase.id!).subscribe(r=>{
-          if(r.error){
-            this.errorMsg=r.message
-          }else{
-            // aqui desencriptamos el email y el password para cambiar las cookies y que aparezcan los nuevos datos
-            //const key='123'
-            //const user={
-            //  email: localStorage.getItem('email')!,
-            //  password: crypto.AES.decrypt(localStorage.getItem('password')!, key).toString(crypto.enc.Utf8)
-            //}
-            //this.authService.logout().subscribe()
-            //this.authService.login(user).subscribe(r=>{
-            //  if(r.error){
-            //    this.errorMsg=r.message
-            //  }
-            //})
-            this.refreshService.navbar.emit()
-          }
-        })
+      this.editSubscribe = this.authService.editUser(this.editPerfil.value, this.datosBase.id!).subscribe(r=>{
+        if(r.error){
+          this.errorMsg=r.message
+        }else{
+          // aqui desencriptamos el email y el password para cambiar las cookies y que aparezcan los nuevos datos
+          //const key='123'
+          //const user={
+          //  email: localStorage.getItem('email')!,
+          //  password: crypto.AES.decrypt(localStorage.getItem('password')!, key).toString(crypto.enc.Utf8)
+          //}
+          //this.authService.logout().subscribe()
+          //this.authService.login(user).subscribe(r=>{
+          //  if(r.error){
+          //    this.errorMsg=r.message
+          //  }
+          //})
+          this.refreshService.navbar.emit()
+        }
+      })
         
 
     } else {
-    // // this.msgError= "*Formulario invalido. llene los espacios que se piden"
+      //this.msgError= "*Formulario invalido. llene los espacios que se piden"
     }
   }
 
   recibir(imagen:any){
     this.editPerfil.controls['avatar'].setValue(imagen)
   }
-  
+
+  ngOnDestroy() {
+    if (this.editSubscribe){
+      this.editSubscribe.unsubscribe()
+    }
   }
+  
+}

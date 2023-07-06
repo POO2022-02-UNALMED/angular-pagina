@@ -15,9 +15,9 @@ import { WorkersService } from '@shared/services/workers/workers.service';
   styleUrls: ['./user-task.component.css']
 })
 export class UserTaskComponent implements OnInit, OnDestroy{
+  
   user :any
   proyecto:IProyect
-
   tasks:Array<ITask>
   exist:boolean 
   completeUsers:any = []
