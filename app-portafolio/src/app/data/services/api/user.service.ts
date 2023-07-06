@@ -44,10 +44,13 @@ export class UserService /*extends ApiClass*/ {
     data:ICoworker[]      
   }>{
     const response = {error: false, msg: '', data: [] as ICoworker[]}
-    return this.http.get<any>( 'http://localhost:3000/auth')
+    console.log(API_ROUTES.DATA_USERS.USERS)
+    return this.http.get<any>(API_ROUTES.DATA_USERS.USERS)
     .pipe(
       map( r => {
           response.data = r.data;
+          response.error =r.error
+          console.log(r)
           return response;
         }
       ),

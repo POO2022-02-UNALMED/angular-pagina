@@ -45,7 +45,7 @@ export class AuthLoginComponent implements OnInit{
     //validations 
     this.loginForm = this.formBuilder.group ({
       email: [, [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
-      password: [ , Validators.required],
+      password: [, Validators.required],
     })
   }
 
@@ -72,7 +72,6 @@ export class AuthLoginComponent implements OnInit{
     this.loginForm.markAllAsTouched()
     if(this.loginForm.valid){
       this.loginLocalSubscribe = this.authService.login(this.loginForm.value)!.subscribe( r=> {
-        console.log(r)
         this.msgError= r.message
         if(r.error){
           if(r.message===ERRORS_CONST.LOGIN.USER){

@@ -156,8 +156,7 @@ export class AuthService{ plainText:string;
 
   users():Observable <any>{
     const response = { error:true, message:'No se encontro el usuario', data:null}
-    
-    return this.http.get<any>('http://localhost:3000/auth/user', {withCredentials:true})
+    return this.http.get<any>(API_ROUTES.DATA_USERS.USERS + '/user', {withCredentials:true})
     .pipe(
       map(r=>{
         response.error=false

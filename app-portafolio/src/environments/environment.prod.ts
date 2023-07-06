@@ -1,6 +1,6 @@
 export const environment = {
-    production: false,
-    url: 'http://localhost:3000/',
+    production: true,
+    url: 'https://app-45fd2a13-64eb-4ce3-803f-9ea4e101e0ef.cleverapps.io/',
     firebase : {
         apiKey: "AIzaSyARu-VD2JMJVPL3V4KRzISb7jhlE8kUIFE",
         authDomain: "mimosascatask.firebaseapp.com",

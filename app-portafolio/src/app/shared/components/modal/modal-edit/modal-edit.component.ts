@@ -63,7 +63,6 @@ recibirMensaje(user:ICoworker){
   if (this.task.users.find((u:ICoworker)=>user.id===u.id)){
     this.task.users.forEach((element, index)=>{
       if(element.id === user.id){
-        console.log(user, element)
         delete this.task.users[index];
         this.task.users.splice(index,1) //borrar este si falla
       }

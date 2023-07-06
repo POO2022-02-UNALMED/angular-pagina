@@ -12,7 +12,7 @@
 
 
 import { Component, Input, OnInit } from '@angular/core';
-import { INTERNAL_PATHS } from '@data/constants/routes';
+import { INTERNAL_PATHS, INTERNAL_ROUTES } from '@data/constants/routes';
 import { AuthService } from '@data/services/api/auth.service';
 import { IresponseValidation } from '@data/services/iresponse-validation.metadata';
 import { ICardUser } from '@shared/components/cards/card-user/card-user.metadata';
@@ -25,7 +25,7 @@ import { RefreshService } from '@shared/services/refresh/refresh.service';
 })
 export class SideVarComponent implements OnInit{
 
-  proyecto = INTERNAL_PATHS.PANEL_DEFAULT
+  proyecto = INTERNAL_ROUTES.PANEL_USER_TASK
   admin = INTERNAL_PATHS.PANEL_USER_LIST
   perfil = INTERNAL_PATHS.PANEL_USER_EDIT
   datos:any
@@ -43,7 +43,7 @@ export class SideVarComponent implements OnInit{
     })
     let mi = await this.getuser()
     if(mi.error){
-      this.errorMsg=mi.message
+      this.ngOnInit()
      }else{
       this.datos=mi.data
      }

@@ -12,51 +12,6 @@ import { ProyectService } from '@data/services/api/proyect.service';
 })
 export class AuthRegisterComponent implements OnInit {
 
-//public registerForm: FormGroup
-//public registerSubmitted = false
-//
-//constructor(
-//  private formBuilder: FormBuilder
-//){
-//  this.registerForm = this.formBuilder.group({
-//    email: [
-//      '',
-//      [
-//        Validators.required,
-//        Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
-//      ]
-//    ],
-//    password: ['', [Validators.required, Validators.maxLength(10)]],
-//    person: this.formBuilder.group({
-//      name: ['', [Validators.required, Validators.maxLength(7)]],
-//      lastName: ['', [Validators.required, Validators.maxLength(10)]]
-//    })
-//  });
-//}
-//
-//ngOnInit(): void {
-//    this.registerForm.get('email')!.setValue('nuevo@email.com')
-//}
-//get fm() {
-//  console.log('holi')
-//  return this.registerForm.controls;
-//}
-//
-//get fp() {
-//  console.log('holi1')
-//  return this.registerForm.controls['person'];
-//}
-//
-//authenticate() {
-//  this.registerSubmitted = true;
-//  if (this.registerForm.valid) {
-//    return;
-//  } else {
-//    console.log('autenticado')
-//  }
-//}
-//}
-
 registerForm!: FormGroup
 registerSubscribe : any
 msgError: string
@@ -125,27 +80,6 @@ autenticate() {
       })
     }
     
-  //  if(this.registerForm.controls['is_Admin'].value === 'true'){
-  //    console.log('true')
-  //    this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe(user=>{
-  //      console.log('id de user',user.data.id)
-  //      this.proyectService.addProyect(user.data.id).subscribe()
-  //    })
-  //  }else{
-  //    console.log('false')
-  //    this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe()
-  //  }
-  
-    
-    //this.searchEmailSubscribe = this.authService.getByCode(this.registerForm.value.email)!.subscribe( r=> {
-    //  if (!r.error){
-    //    this.registerSubscribe = this.authService.register(this.registerForm.value).subscribe(r=>{
-    //    })
-    //  } else{
-    //    this.registerForm.controls['email'].setErrors({'incorrect': true})
-    //    this.msgError= r.message
-    //  }
-    //})
   
   } else {
     this.msgError= "*Formulario invalido. llene los espacios que se piden"

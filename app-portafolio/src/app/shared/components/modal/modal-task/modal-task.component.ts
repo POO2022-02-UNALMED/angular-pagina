@@ -91,7 +91,6 @@ export class ModalTaskComponent implements OnInit {
                 //codigo
                 this.task.check = !this.task.check
                 this.proyectService.editTask(this.task.id, this.task).subscribe(r=>{
-                  console.log(r)
                   if(r.error){
                     this.errorMsg=r.message
                   }else{

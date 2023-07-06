@@ -178,11 +178,12 @@ autenticate() {
     this.proyectService.addTask(this.registerTask.value).subscribe(r=>{
       if(r.error){
         this.errorMsg=r.message
+      }else{
+        this.hideModal()
+        this.ngOnInit()
+        this.refreshService.refresh.emit()
       }
     })
-    this.hideModal()
-    this.ngOnInit()
-    this.refreshService.refresh.emit()
     }else {
     }
   }
@@ -214,7 +215,6 @@ autenticate() {
       this.user.push(user)
     }
     
-    console.log(this.user)
   }
   
 }

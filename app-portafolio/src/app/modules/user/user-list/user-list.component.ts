@@ -71,6 +71,7 @@ export class UserListComponent implements OnInit, OnDestroy{
     this.proyect=data.data
    }
 
+
     this.users.forEach(element => {
       if(!element.id_Proyect || element.id_Proyect===this.my.id_Proyect){
         if(element.id!==this.my.id){
@@ -210,7 +211,10 @@ export class UserListComponent implements OnInit, OnDestroy{
 
   getUsers(){
     this.userSubscription = this.userService.getAllUser()
-      .subscribe(r =>  this.users = (r.error) ? [] : r.data)
+      .subscribe(r =>{
+        console.log(r)
+        this.users = (r.error) ? [] : r.data
+      })
   }
 
   recibir(user:ICoworker){
@@ -232,9 +236,6 @@ export class UserListComponent implements OnInit, OnDestroy{
   generar errores al cargar de nuevo el servicio*/ 
 
   ngOnDestroy(){
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
   }
 }
 

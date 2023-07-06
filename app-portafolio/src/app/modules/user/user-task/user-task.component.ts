@@ -44,7 +44,6 @@ export class UserTaskComponent implements OnInit, OnDestroy{
   async ngOnInit() {
     
     this.refreshService.refresh.subscribe(r=>{
-      console.log('refresh')
       this.ngOnInit()
     })
 

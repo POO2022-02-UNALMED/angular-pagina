@@ -90,17 +90,17 @@ export class UserEditComponent {
             this.errorMsg=r.message
           }else{
             // aqui desencriptamos el email y el password para cambiar las cookies y que aparezcan los nuevos datos
-            const key='123'
-            const user={
-              email: localStorage.getItem('email')!,
-              password: crypto.AES.decrypt(localStorage.getItem('password')!, key).toString(crypto.enc.Utf8)
-            }
-            this.authService.logout().subscribe()
-            this.authService.login(user).subscribe(r=>{
-              if(r.error){
-                this.errorMsg=r.message
-              }
-            })
+            //const key='123'
+            //const user={
+            //  email: localStorage.getItem('email')!,
+            //  password: crypto.AES.decrypt(localStorage.getItem('password')!, key).toString(crypto.enc.Utf8)
+            //}
+            //this.authService.logout().subscribe()
+            //this.authService.login(user).subscribe(r=>{
+            //  if(r.error){
+            //    this.errorMsg=r.message
+            //  }
+            //})
             this.refreshService.navbar.emit()
           }
         })
